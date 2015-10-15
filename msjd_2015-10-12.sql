@@ -5,9 +5,9 @@
 # http://www.sequelpro.com/
 # http://code.google.com/p/sequel-pro/
 #
-# Host: 127.0.0.1 (MySQL 5.5.25)
-# Database: msjd
-# Generation Time: 2015-10-12 07:44:14 +0000
+# Host: 127.0.0.1 (MySQL 5.5.42)
+# Database: msjd_2015-10-12
+# Generation Time: 2015-10-15 14:26:38 +0000
 # ************************************************************
 
 
@@ -43,17 +43,18 @@ DROP TABLE IF EXISTS `table_content`;
 
 CREATE TABLE `table_content` (
   `content_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `content_title` text,
-  `content_headline` text,
-  `content_detail` text,
-  `content_media_id` text,
-  `content_users_uploader` int(11) DEFAULT NULL,
-  `content_last_editor` int(11) DEFAULT NULL,
-  `content_date_insert` datetime DEFAULT NULL,
-  `content_date_update` datetime DEFAULT NULL,
-  `content_date_expired` datetime DEFAULT NULL,
-  `content_publish` varchar(50) DEFAULT NULL,
-  `content_category_id` int(11) DEFAULT NULL,
+  `content_title` text NOT NULL,
+  `content_headline` text NOT NULL,
+  `content_detail` text NOT NULL,
+  `content_media_id` text NOT NULL,
+  `content_users_uploader` int(11) NOT NULL,
+  `content_last_editor` int(11) NOT NULL,
+  `content_date_insert` datetime NOT NULL,
+  `content_date_update` datetime NOT NULL,
+  `content_date_expired` datetime NOT NULL,
+  `content_publish` varchar(50) NOT NULL DEFAULT '',
+  `content_category_id` int(11) NOT NULL,
+  `content_repost_from` int(11) NOT NULL,
   PRIMARY KEY (`content_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -143,6 +144,8 @@ CREATE TABLE `table_users` (
   `users_description` text NOT NULL,
   `media_manager_id` text NOT NULL,
   `users_avatar` int(11) NOT NULL,
+  `users_status_id` int(11) NOT NULL,
+  `users_password_recovery` text NOT NULL,
   PRIMARY KEY (`users_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -158,6 +161,20 @@ CREATE TABLE `table_users_group` (
   `users_group_name` varchar(100) NOT NULL DEFAULT '',
   `users_group_description` text NOT NULL,
   PRIMARY KEY (`users_group_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table table_users_status
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `table_users_status`;
+
+CREATE TABLE `table_users_status` (
+  `users_status_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `users_status_title` varchar(100) NOT NULL DEFAULT '',
+  `users_status_desc` text NOT NULL,
+  PRIMARY KEY (`users_status_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
