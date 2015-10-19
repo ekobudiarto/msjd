@@ -1,11 +1,11 @@
 <?php
 
-
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\table_banned_report;
+use App\Models\table_banned_report;
 
 class controller_banned_report extends Controller
 {
@@ -18,9 +18,10 @@ class controller_banned_report extends Controller
     {
         
          $data=array(
-            'banned_report' => table_banned_report::latest('created_at')->get(),
-        );
-        return view('banned-report.index', compact('data'));
+            'banned_report' => table_banned_report::latest('banned_report_id')->get(),
+         );
+
+        return view('admin.database.banned-report.banned-report-index', compact('data'));
     }
 
     /**
@@ -30,7 +31,7 @@ class controller_banned_report extends Controller
      */
     public function create()
     {
-       return view('banned-report.create');
+       return view('admin.database.banned-report.banned-report-create');
     }
 
     /**
@@ -41,10 +42,9 @@ class controller_banned_report extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
         table_banned_report::create($request->all());
-
-        return redirect('banned-report')->with('message', 'Data berhasil ditambahkan!');
+        return redirect('admin/banned-report')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -55,9 +55,11 @@ class controller_banned_report extends Controller
      */
    public function show($id)
     {
-        $data = table_banned_report::find($id);
+        $data = array(
+                'databanned' => table_banned_report::find($id),
+        );
 
-        return view('banned-report.show', compact('databanned'));
+        return view('banned-report.show', compact('data'));
     }
 
     /**

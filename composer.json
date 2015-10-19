@@ -5,6 +5,8 @@
     "license": "MIT",
     "type": "project",
     "require": {
+        "illuminate/html": "5.*",
+        "laravelcollective/html": "~5.0",
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*"
     },

@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Masjid Apps</title>
 
-	<!-- <link href="/css-js/app.css" rel="stylesheet"> -->
 	<!-- template -->
 	<link type="text/css" href="/css-js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link type="text/css" href="/css-js/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">

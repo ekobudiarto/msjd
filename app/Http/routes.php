@@ -16,14 +16,18 @@ Route::get('/', function () {
 });
 Route::get('home', 'HomeController@index');
 
-Route::resource('banned-report', 'controller_banned_report');
-Route::resource('content', 'controller_content');
-Route::resource('ontent-category', 'controller_content_category');
-Route::resource('media-manager', 'controller_media_manager');
-Route::resource('schedule', 'controller_schedule');
-Route::resource('schedule-type', 'controller_schedule_type');
-Route::resource('users', 'controller_users');
-Route::resource('users-group', 'controller_users_group');
+//admin
+Route::resource('admin/banned-report', 'Admin\controller_banned_report');
+Route::post('admin/banned-report', 'Admin\controller_banned_report@store');
+
+Route::resource('admin/content', 'controller_content');
+Route::resource('admin/content-category', 'controller_content_category');
+Route::resource('admin/media-manager', 'controller_media_manager');
+Route::resource('admin/schedule', 'controller_schedule');
+Route::resource('admin/schedule-type', 'controller_schedule_type');
+Route::resource('admin/users', 'controller_users');
+Route::resource('admin/users-group', 'controller_users_group');
+
 
 //login
 Route::get('auth/login', 'Auth\AuthController@getLogin');
