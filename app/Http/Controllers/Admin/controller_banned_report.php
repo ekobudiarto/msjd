@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_banned_report;
@@ -20,6 +20,7 @@ class controller_banned_report extends Controller
          $data=array(
             'banned_report' => table_banned_report::latest('banned_report_id')->get(),
          );
+
 
         return view('admin.database.banned-report.banned-report-index', compact('data'));
     }
@@ -56,10 +57,9 @@ class controller_banned_report extends Controller
    public function show($id)
     {
         $data = array(
-                'databanned' => table_banned_report::find($id),
-        );
-
-        return view('banned-report.show', compact('data'));
+                'databanned' => table_banned_report::where('banned_report_id', '=', $id)->get(),
+         );     
+        return view('admin.database.banned-report.banned-report-show', compact('data'));
     }
 
     /**
@@ -70,9 +70,11 @@ class controller_banned_report extends Controller
      */
     public function edit($id)
     {
-        $data = table_banned_report::find($id);
-
-        return view('banned-report.edit', compact('databanned'));
+           
+         $data = array(
+                'databanned' => table_banned_report::where('banned_report_id', '=', $id)->get(),
+         );     
+        return view('admin.database.banned-report.banned-report-edit', compact('data'));
     }
 
     /**
@@ -84,10 +86,11 @@ class controller_banned_report extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $dataUpdate = Request::all();
         $data = table_banned_report::find($id);
         $data->update($dataUpdate);
-        return redirect('banned-report')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/banned-report')->with('message', 'Data berhasil dirubah!');
     
     }
 
@@ -100,8 +103,7 @@ class controller_banned_report extends Controller
     public function destroy($id)
     {
         table_banned_report::find($id)->delete();
-
-        return redirect('banned-report')->with('message', 'Data berhasil dihapus!');
+        return redirect('admin/banned-report')->with('warning', 'Data berhasil dihapus!');
     
     }
 }

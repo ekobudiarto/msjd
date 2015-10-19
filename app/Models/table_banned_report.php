@@ -9,6 +9,6 @@ class table_banned_report extends Model
     //
     public $timestamps = false;
     protected $table = 'table_banned_report';
-
+    protected $primaryKey = 'banned_report_id';
 	protected $fillable = ['users_by', 'content_id', 'users_dest', 'banned_report_message'];
 }

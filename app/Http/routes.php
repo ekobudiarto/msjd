@@ -18,8 +18,6 @@ Route::get('home', 'HomeController@index');
 
 //admin
 Route::resource('admin/banned-report', 'Admin\controller_banned_report');
-Route::post('admin/banned-report', 'Admin\controller_banned_report@store');
-
 Route::resource('admin/content', 'controller_content');
 Route::resource('admin/content-category', 'controller_content_category');
 Route::resource('admin/media-manager', 'controller_media_manager');

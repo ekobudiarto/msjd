@@ -3,12 +3,24 @@
 @section('content')
 
 <div class="module">
+    
     @if(Session::has('success'))
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>Well done!</strong> {{ Session::get('success') }} 
-        </div>  
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Well done!</strong> {{ Session::get('success') }} 
+    </div>          
+    @elseif(Session::has('warning'))
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Done!</strong> {{ Session::get('warning') }} 
+    </div>
+    @elseif(Session::has('failed'))
+    <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Oh snap!</strong> {{ Session::get('failed') }}  
+    </div>
     @endif
+
 
     <div class="module-head">
         <b>Banned Report</b>
@@ -51,12 +63,11 @@
 
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>
-                            <a class="btn btn-small btn-success" href="{{ URL('pegawai/' . $value->id) }}">Tampilkan Data</a>
+                            <a class="btn btn-small btn-success" href="{{ URL('admin/banned-report/' . $value->banned_report_id) }}">Tampilkan Data</a>
 
-                            <a class="btn btn-small btn-warning" href="{{ URL('pegawai/' . $value->id . '/edit') }}">Ubah Data</a>
+                            <a class="btn btn-small btn-warning" href="{{ URL('admin/banned-report/' . $value->banned_report_id . '/edit') }}">Ubah Data</a>
 
-                            {!! Form::open(['url' => 'admin/banned-report' . $value->id, 'class' => 'pull-right']) !!}
-                                {!! Form::hidden('_method', 'DELETE') !!}
+                            {!! Form::open(['method' => 'DELETE', 'url' => 'admin/banned-report/' . $value->banned_report_id, 'class' => 'pull-right', 'onsubmit' => 'return confirm("Are you sure you want to delete this item?");']) !!}
                                 {!! Form::submit('Hapus Data', ['class' => 'btn btn-danger']) !!}
                             {!! Form::close() !!}
 
