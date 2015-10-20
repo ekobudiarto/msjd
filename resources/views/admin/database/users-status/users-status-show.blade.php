@@ -4,7 +4,7 @@
 
 <div class="module">
 	<div class="module-head">
-		<h3>Forms Users Status</h3>
+		<h3>View Detail Users Status</h3>
 	</div>
 	<div class="module-body">
 

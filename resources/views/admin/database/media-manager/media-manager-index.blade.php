@@ -27,13 +27,13 @@
         <a href="/admin/media-manager/create" class="btn btn-info" style="float:right;">Add Data</a>
 
     </div>
-    <div class="module-body table">
-        <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped  display"
+    <div class="module-body">
+        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"
             width="100%">
             <thead>
                 <tr>
                     <th>
-                        id
+                        No
                     </th>
                     <th>
                         Title
@@ -45,10 +45,10 @@
                         Filename
                     </th>
                     <th>
-                        publish
+                        Publish
                     </th>
                     <th>
-                        Editor
+                        #
                     </th>
                 </tr>
             </thead>
@@ -63,40 +63,18 @@
 
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>
-                            <a class="btn btn-small btn-success" href="{{ URL('admin/media-manager/' . $value->media_manager_id) }}">Tampilkan Data</a>
+                            <a class="btn btn-small btn-success" href="{{ URL('admin/media-manager/' . $value->media_manager_id) }}">View</a>
 
-                            <a class="btn btn-small btn-warning" href="{{ URL('admin/media-manager/' . $value->media_manager_id . '/edit') }}">Ubah Data</a>
+                            <a class="btn btn-small btn-warning" href="{{ URL('admin/media-manager/' . $value->media_manager_id . '/edit') }}">Edit</a>
 
                             {!! Form::open(['method' => 'DELETE', 'url' => 'admin/media-manager/' . $value->media_manager_id, 'class' => 'pull-right', 'onsubmit' => 'return confirm("Are you sure you want to delete this item?");']) !!}
-                                {!! Form::submit('Hapus Data', ['class' => 'btn btn-danger']) !!}
+                                {!! Form::submit('Delete', ['class' => 'btn btn-small btn-danger']) !!}
                             {!! Form::close() !!}
 
                         </td>
                     </tr>
                 @endforeach
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>
-                        id
-                    </th>
-                    <th>
-                        Title
-                    </th>
-                    <th>
-                        Type
-                    </th>
-                    <th>
-                        Filename
-                    </th>
-                    <th>
-                        publish
-                    </th>
-                    <th>
-                        Editor
-                    </th>
-                </tr>
-            </tfoot>
         </table>
     </div>
 </div>

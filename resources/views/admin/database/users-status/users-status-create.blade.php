@@ -4,7 +4,7 @@
 
 <div class="module">
 	<div class="module-head">
-		<h3>Forms Add Users Status</h3>
+		<h3>Add Users Status</h3>
 	</div>
 	<div class="module-body">
 
@@ -37,20 +37,21 @@
 			<form class="form-horizontal row-fluid" role="form" method="POST" action="/admin/users-status">
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 				<div class="control-group">
-					<label class="control-label" for="basicinput">Users Status Title</label>
+					<label class="control-label" for="basicinput">Title</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_status_title">
+						<input type="text" id="basicinput" placeholder="" class="span8" name="users_status_title">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="basicinput">Users Status Description</label>
+					<label class="control-label" for="basicinput">Description</label>
 					<div class="controls">
 						<textarea class="span8" rows="5" name="users_status_desc"></textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" class="btn">Submit Form</button>
+						<button type="submit" class="btn btn-small btn-success">Submit</button>
+						<a class="btn btn-small btn-info" href="">Back</a>
 					</div>
 				</div>
 			</form>

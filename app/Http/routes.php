@@ -26,6 +26,7 @@ Route::get('home', 'HomeController@index');
 		Route::resource('admin/schedule-type', 'Admin\database\controller_schedule_type');
 		Route::resource('admin/users', 'Admin\database\controller_users');
 		Route::resource('admin/users-group', 'Admin\database\controller_users_group');
+		Route::resource('admin/users-status', 'Admin\database\controller_users_status');
 
 
 

@@ -39,25 +39,25 @@
 				<input name="_method" type="hidden" value="PUT">
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 				<div class="control-group">
-					<label class="control-label" for="basicinput">Users by</label>
+					<label class="control-label" for="basicinput">Users</label>
 					<div class="controls">
 						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_by" value="{{ $value->users_by }}">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="basicinput">Content ID</label>
+					<label class="control-label" for="basicinput">Content</label>
 					<div class="controls">
 						<input type="text" id="basicinput" placeholder="number" class="span8" name="content_id" value="{{ $value->content_id }}">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="basicinput">Users Destination</label>
+					<label class="control-label" for="basicinput">Users Target</label>
 					<div class="controls">
 						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_dest" value="{{ $value->users_dest }}">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="basicinput">Banned Report Message</label>
+					<label class="control-label" for="basicinput">Report Message</label>
 					<div class="controls">
 						<textarea class="span8" rows="5" name="banned_report_message">{{ $value->banned_report_message }}</textarea>
 					</div>
