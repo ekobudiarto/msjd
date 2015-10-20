@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\database;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\table_content;
+use App\Models\table_banned_report;
 
-class controller_content extends Controller
+class controller_banned_report extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,11 @@ class controller_content extends Controller
     {
         
          $data=array(
-            'content' => table_content::latest('created_at')->get(),
-        );
-        return view('content.index', compact('data'));
+            'banned_report' => table_banned_report::latest('banned_report_id')->get(),
+         );
+
+
+        return view('admin.database.banned-report.banned-report-index', compact('data'));
     }
 
     /**
@@ -30,7 +32,7 @@ class controller_content extends Controller
      */
     public function create()
     {
-       return view('content.create');
+       return view('admin.database.banned-report.banned-report-create');
     }
 
     /**
@@ -41,10 +43,9 @@ class controller_content extends Controller
      */
     public function store(Request $request)
     {
-        //
-        table_content::create($request->all());
-
-        return redirect('content')->with('message', 'Data berhasil ditambahkan!');
+       
+        table_banned_report::create(Request::all());
+        return redirect('admin/banned-report')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -55,9 +56,10 @@ class controller_content extends Controller
      */
    public function show($id)
     {
-        $data = table_content::find($id);
-
-        return view('content.show', compact('databanned'));
+        $data = array(
+                'databanned' => table_banned_report::where('banned_report_id', '=', $id)->get(),
+         );     
+        return view('admin.database.banned-report.banned-report-show', compact('data'));
     }
 
     /**
@@ -68,9 +70,11 @@ class controller_content extends Controller
      */
     public function edit($id)
     {
-        $data = table_content::find($id);
-
-        return view('content.edit', compact('databanned'));
+           
+         $data = array(
+                'databanned' => table_banned_report::where('banned_report_id', '=', $id)->get(),
+         );     
+        return view('admin.database.banned-report.banned-report-edit', compact('data'));
     }
 
     /**
@@ -82,10 +86,11 @@ class controller_content extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $dataUpdate = Request::all();
-        $data = table_content::find($id);
+        $data = table_banned_report::find($id);
         $data->update($dataUpdate);
-        return redirect('content')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/banned-report')->with('message', 'Data berhasil dirubah!');
     
     }
 
@@ -97,9 +102,8 @@ class controller_content extends Controller
      */
     public function destroy($id)
     {
-        table_content::find($id)->delete();
-
-        return redirect('content')->with('message', 'Data berhasil dihapus!');
+        table_banned_report::find($id)->delete();
+        return redirect('admin/banned-report')->with('warning', 'Data berhasil dihapus!');
     
     }
 }

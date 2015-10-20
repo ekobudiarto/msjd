@@ -87,14 +87,14 @@
                                 </i>Database </a>
                                     <ul id="togglePages" class="collapse unstyled">
                                         <li><a href="<?PHP echo url()?>/admin/banned-report"><i class="icon-inbox"></i>Banned Report </a></li>
-                                        <li><a href="other-user-profile.html"><i class="icon-inbox"></i>Content </a></li>
-                                        <li><a href="other-user-listing.html"><i class="icon-inbox"></i>Content Category </a></li>
-                                        <li><a href="other-user-listing.html"><i class="icon-inbox"></i>Media Manager </a></li>
-                                        <li><a href="other-user-listing.html"><i class="icon-inbox"></i>Schedule </a></li>
-                                        <li><a href="other-user-listing.html"><i class="icon-inbox"></i>Schedule Type</a></li>
-                                        <li><a href="other-user-listing.html"><i class="icon-inbox"></i>Users </a></li>
-                                        <li><a href="other-user-listing.html"><i class="icon-inbox"></i>Users Group </a></li>
-                                        <li><a href="other-user-listing.html"><i class="icon-inbox"></i>Users Status </a></li>
+                                        <li><a href="<?PHP echo url()?>/admin/content"><i class="icon-inbox"></i>Content </a></li>
+                                        <li><a href="<?PHP echo url()?>/admin/content-category"><i class="icon-inbox"></i>Content Category </a></li>
+                                        <li><a href="<?PHP echo url()?>/admin/media-manager"><i class="icon-inbox"></i>Media Manager </a></li>
+                                        <li><a href="<?PHP echo url()?>/admin/schedule"><i class="icon-inbox"></i>Schedule </a></li>
+                                        <li><a href="<?PHP echo url()?>/admin/schedule-type"><i class="icon-inbox"></i>Schedule Type</a></li>
+                                        <li><a href="<?PHP echo url()?>/admin/users"><i class="icon-inbox"></i>Users </a></li>
+                                        <li><a href="<?PHP echo url()?>/admin/users-group"><i class="icon-inbox"></i>Users Group </a></li>
+                                        <li><a href="<?PHP echo url()?>/admin/users-status"><i class="icon-inbox"></i>Users Status </a></li>
                                     </ul>
                                 </li>
                             </ul>

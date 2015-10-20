@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\Admin\database;
+
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\table_media_manager;
+use App\Models\table_schedule_type;
 
-class controller_media_manager extends Controller
+class controller_schedule_type extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +19,11 @@ class controller_media_manager extends Controller
     {
         
          $data=array(
-            'media_manager' => table_media_manager::latest('created_at')->get(),
-        );
-        return view('media-manager.index', compact('data'));
+            'schedule-type' => table_schedule_type::latest('schedule_type_id')->get(),
+         );
+
+
+        return view('admin.database.schedule-type.schedule-type-index', compact('data'));
     }
 
     /**
@@ -30,7 +33,7 @@ class controller_media_manager extends Controller
      */
     public function create()
     {
-       return view('media-manager.create');
+       return view('admin.database.schedule-type.schedule-type-create');
     }
 
     /**
@@ -41,10 +44,9 @@ class controller_media_manager extends Controller
      */
     public function store(Request $request)
     {
-        //
-        table_media_manager::create($request->all());
-
-        return redirect('media-manager')->with('message', 'Data berhasil ditambahkan!');
+       
+        table_schedule_type::create(Request::all());
+        return redirect('admin/schedule-type')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -55,9 +57,10 @@ class controller_media_manager extends Controller
      */
    public function show($id)
     {
-        $data = table_media_manager::find($id);
-
-        return view('media-manager.show', compact('databanned'));
+        $data = array(
+                'schedule-type' => table_schedule_type::where('schedule_type_id', '=', $id)->get(),
+         );     
+        return view('admin.database.schedule-type.schedule-type-show', compact('data'));
     }
 
     /**
@@ -68,9 +71,11 @@ class controller_media_manager extends Controller
      */
     public function edit($id)
     {
-        $data = table_media_manager::find($id);
-
-        return view('media-manager.edit', compact('databanned'));
+           
+         $data = array(
+                'schedule-type' => table_schedule_type::where('schedule_type_id', '=', $id)->get(),
+         );     
+        return view('admin.database.schedule-type.schedule-type-edit', compact('data'));
     }
 
     /**
@@ -82,10 +87,11 @@ class controller_media_manager extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $dataUpdate = Request::all();
-        $data = table_media_manager::find($id);
+        $data = table_schedule_type::find($id);
         $data->update($dataUpdate);
-        return redirect('media-manager')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/schedule-type')->with('message', 'Data berhasil dirubah!');
     
     }
 
@@ -97,9 +103,8 @@ class controller_media_manager extends Controller
      */
     public function destroy($id)
     {
-        table_media_manager::find($id)->delete();
-
-        return redirect('media-manager')->with('message', 'Data berhasil dihapus!');
+        table_schedule_type::find($id)->delete();
+        return redirect('admin/schedule-type')->with('warning', 'Data berhasil dihapus!');
     
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\database;
 
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\table_banned_report;
+use App\Models\table_schedule;
 
-class controller_banned_report extends Controller
+class controller_schedule extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +18,11 @@ class controller_banned_report extends Controller
     {
         
          $data=array(
-            'banned_report' => table_banned_report::latest('banned_report_id')->get(),
+            'schedule' => table_schedule::latest('schedule_id')->get(),
          );
 
 
-        return view('admin.database.banned-report.banned-report-index', compact('data'));
+        return view('admin.database.schedule.schedule-index', compact('data'));
     }
 
     /**
@@ -32,7 +32,7 @@ class controller_banned_report extends Controller
      */
     public function create()
     {
-       return view('admin.database.banned-report.banned-report-create');
+       return view('admin.database.schedule.schedule-create');
     }
 
     /**
@@ -44,8 +44,8 @@ class controller_banned_report extends Controller
     public function store(Request $request)
     {
        
-        table_banned_report::create($request->all());
-        return redirect('admin/banned-report')->with('success', 'Data berhasil ditambahkan!');
+        table_schedule::create(Request::all());
+        return redirect('admin/schedule')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -57,9 +57,9 @@ class controller_banned_report extends Controller
    public function show($id)
     {
         $data = array(
-                'databanned' => table_banned_report::where('banned_report_id', '=', $id)->get(),
+                'dataschedule' => table_schedule::where('schedule_id', '=', $id)->get(),
          );     
-        return view('admin.database.banned-report.banned-report-show', compact('data'));
+        return view('admin.database.schedule.schedule-show', compact('data'));
     }
 
     /**
@@ -72,9 +72,9 @@ class controller_banned_report extends Controller
     {
            
          $data = array(
-                'databanned' => table_banned_report::where('banned_report_id', '=', $id)->get(),
+                'dataschedule' => table_schedule::where('schedule_id', '=', $id)->get(),
          );     
-        return view('admin.database.banned-report.banned-report-edit', compact('data'));
+        return view('admin.database.schedule.schedule-edit', compact('data'));
     }
 
     /**
@@ -88,9 +88,9 @@ class controller_banned_report extends Controller
     {
 
         $dataUpdate = Request::all();
-        $data = table_banned_report::find($id);
+        $data = table_schedule::find($id);
         $data->update($dataUpdate);
-        return redirect('admin/banned-report')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/schedule')->with('message', 'Data berhasil dirubah!');
     
     }
 
@@ -102,8 +102,8 @@ class controller_banned_report extends Controller
      */
     public function destroy($id)
     {
-        table_banned_report::find($id)->delete();
-        return redirect('admin/banned-report')->with('warning', 'Data berhasil dihapus!');
+        table_schedule::find($id)->delete();
+        return redirect('admin/schedule')->with('warning', 'Data berhasil dihapus!');
     
     }
 }

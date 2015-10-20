@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\database;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\table_schedule_type;
+use App\Models\table_users_status;
 
-class controller_schedule_type extends Controller
+class controller_users_status extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,11 @@ class controller_schedule_type extends Controller
     {
         
          $data=array(
-            'schedule_type' => table_schedule_type::latest('created_at')->get(),
-        );
-        return view('schedule-type.index', compact('data'));
+            'users_status' => table_users_status::latest('users_status_id')->get(),
+         );
+
+
+        return view('admin.database.users-status.users-status-index', compact('data'));
     }
 
     /**
@@ -30,7 +32,7 @@ class controller_schedule_type extends Controller
      */
     public function create()
     {
-       return view('schedule-type.create');
+       return view('admin.database.users-status.users-status-create');
     }
 
     /**
@@ -41,10 +43,8 @@ class controller_schedule_type extends Controller
      */
     public function store(Request $request)
     {
-        //
-        table_schedule_type::create($request->all());
-
-        return redirect('schedule-type')->with('message', 'Data berhasil ditambahkan!');
+        table_users_status::create(Request::all());
+        return redirect('admin/users-status')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -55,9 +55,10 @@ class controller_schedule_type extends Controller
      */
    public function show($id)
     {
-        $data = table_schedule_type::find($id);
-
-        return view('schedule-type.show', compact('databanned'));
+        $data = array(
+                'dataUsersStatus' => table_users_status::where('users_status_id', '=', $id)->get(),
+         );     
+        return view('admin.database.users-status.users-status-show', compact('data'));
     }
 
     /**
@@ -68,9 +69,11 @@ class controller_schedule_type extends Controller
      */
     public function edit($id)
     {
-        $data = table_schedule_type::find($id);
-
-        return view('schedule-type.edit', compact('databanned'));
+           
+         $data = array(
+                'dataUsersStatus' => table_users_status::where('users_status_id', '=', $id)->get(),
+         );     
+        return view('admin.database.users-status.users-status-edit', compact('data'));
     }
 
     /**
@@ -82,10 +85,11 @@ class controller_schedule_type extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $dataUpdate = Request::all();
-        $data = table_schedule_type::find($id);
+        $data = table_users_status::find($id);
         $data->update($dataUpdate);
-        return redirect('schedule-type')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/users-status')->with('message', 'Data berhasil dirubah!');
     
     }
 
@@ -97,9 +101,8 @@ class controller_schedule_type extends Controller
      */
     public function destroy($id)
     {
-        table_schedule_type::find($id)->delete();
-
-        return redirect('schedule-type')->with('message', 'Data berhasil dihapus!');
+        table_users_status::find($id)->delete();
+        return redirect('admin/users-status')->with('warning', 'Data berhasil dihapus!');
     
     }
 }

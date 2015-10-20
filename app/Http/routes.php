@@ -17,14 +17,16 @@ Route::get('/', function () {
 Route::get('home', 'HomeController@index');
 
 //admin
-Route::resource('admin/banned-report', 'Admin\controller_banned_report');
-Route::resource('admin/content', 'controller_content');
-Route::resource('admin/content-category', 'controller_content_category');
-Route::resource('admin/media-manager', 'controller_media_manager');
-Route::resource('admin/schedule', 'controller_schedule');
-Route::resource('admin/schedule-type', 'controller_schedule_type');
-Route::resource('admin/users', 'controller_users');
-Route::resource('admin/users-group', 'controller_users_group');
+	//database
+		Route::resource('admin/banned-report', 'Admin\database\controller_banned_report');
+		Route::resource('admin/content', 'Admin\database\controller_content');
+		Route::resource('admin/content-category', 'Admin\database\controller_content_category');
+		Route::resource('admin/media-manager', 'Admin\database\controller_media_manager');
+		Route::resource('admin/schedule', 'Admin\database\controller_schedule');
+		Route::resource('admin/schedule-type', 'Admin\database\controller_schedule_type');
+		Route::resource('admin/users', 'Admin\database\controller_users');
+		Route::resource('admin/users-group', 'Admin\database\controller_users_group');
+
 
 
 //login

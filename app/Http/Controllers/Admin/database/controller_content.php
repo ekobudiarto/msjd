@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\database;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\table_users_group;
+use App\Models\table_content;
 
-class controller_users_group extends Controller
+class controller_content extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,11 @@ class controller_users_group extends Controller
     {
         
          $data=array(
-            'users_group' => table_users_group::latest('created_at')->get(),
-        );
-        return view('users-group.index', compact('data'));
+            'content' => table_content::latest('content_id')->get(),
+         );
+
+
+        return view('admin.database.content.content-index', compact('data'));
     }
 
     /**
@@ -30,7 +32,7 @@ class controller_users_group extends Controller
      */
     public function create()
     {
-       return view('users-group.create');
+       return view('admin.database.content.content-create');
     }
 
     /**
@@ -41,10 +43,9 @@ class controller_users_group extends Controller
      */
     public function store(Request $request)
     {
-        //
-        table_users_group::create($request->all());
-
-        return redirect('users-group')->with('message', 'Data berhasil ditambahkan!');
+       
+        table_content::create(Request::all());
+        return redirect('admin/content')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -55,9 +56,10 @@ class controller_users_group extends Controller
      */
    public function show($id)
     {
-        $data = table_users_group::find($id);
-
-        return view('users-group.show', compact('databanned'));
+        $data = array(
+                'content' => table_content::where('content_id', '=', $id)->get(),
+         );     
+        return view('admin.database.content.content-show', compact('data'));
     }
 
     /**
@@ -68,9 +70,11 @@ class controller_users_group extends Controller
      */
     public function edit($id)
     {
-        $data = table_users_group::find($id);
-
-        return view('users-group.edit', compact('databanned'));
+           
+         $data = array(
+                'content' => table_content::where('content_id', '=', $id)->get(),
+         );     
+        return view('admin.database.content.content-edit', compact('data'));
     }
 
     /**
@@ -82,10 +86,11 @@ class controller_users_group extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $dataUpdate = Request::all();
-        $data = table_users_group::find($id);
+        $data = table_content::find($id);
         $data->update($dataUpdate);
-        return redirect('users-group')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/content')->with('message', 'Data berhasil dirubah!');
     
     }
 
@@ -97,9 +102,8 @@ class controller_users_group extends Controller
      */
     public function destroy($id)
     {
-        table_users_group::find($id)->delete();
-
-        return redirect('users-group')->with('message', 'Data berhasil dihapus!');
+        table_content::find($id)->delete();
+        return redirect('admin/content')->with('warning', 'Data berhasil dihapus!');
     
     }
 }

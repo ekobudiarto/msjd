@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\database;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\table_content_category;
+use App\Models\table_content_category;
 
 class controller_content_category extends Controller
 {
@@ -18,9 +18,11 @@ class controller_content_category extends Controller
     {
         
          $data=array(
-            'content_category' => table_content_category::latest('created_at')->get(),
-        );
-        return view('content-category.index', compact('data'));
+            'content_category' => table_content_category::latest('content_category_id')->get(),
+         );
+
+
+        return view('admin.database.content-category.content-category-index', compact('data'));
     }
 
     /**
@@ -30,7 +32,7 @@ class controller_content_category extends Controller
      */
     public function create()
     {
-       return view('content-category.create');
+       return view('admin.database.content-category.content-category-create');
     }
 
     /**
@@ -41,10 +43,8 @@ class controller_content_category extends Controller
      */
     public function store(Request $request)
     {
-        //
-        table_content_category::create($request->all());
-
-        return redirect('content-category')->with('message', 'Data berhasil ditambahkan!');
+        table_content_category::create(Request::all());
+        return redirect('admin/content-category')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -55,9 +55,10 @@ class controller_content_category extends Controller
      */
    public function show($id)
     {
-        $data = table_content_category::find($id);
-
-        return view('content-category.show', compact('databanned'));
+        $data = array(
+                'dataContentCategory' => table_content_category::where('content_category_id', '=', $id)->get(),
+         );     
+        return view('admin.database.content-category.content-category-show', compact('data'));
     }
 
     /**
@@ -68,9 +69,11 @@ class controller_content_category extends Controller
      */
     public function edit($id)
     {
-        $data = table_content_category::find($id);
-
-        return view('content-category.edit', compact('databanned'));
+           
+         $data = array(
+                'dataContentCategory' => table_content_category::where('content_category_id', '=', $id)->get(),
+         );     
+        return view('admin.database.content-category.content-category-edit', compact('data'));
     }
 
     /**
@@ -82,10 +85,11 @@ class controller_content_category extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $dataUpdate = Request::all();
         $data = table_content_category::find($id);
         $data->update($dataUpdate);
-        return redirect('content-category')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/content-category')->with('message', 'Data berhasil dirubah!');
     
     }
 
@@ -98,8 +102,7 @@ class controller_content_category extends Controller
     public function destroy($id)
     {
         table_content_category::find($id)->delete();
-
-        return redirect('content-category')->with('message', 'Data berhasil dihapus!');
+        return redirect('admin/content-category')->with('warning', 'Data berhasil dihapus!');
     
     }
 }

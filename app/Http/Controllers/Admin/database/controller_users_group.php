@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\database;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\table_schedule;
+use App\Models\table_users_group;
 
-class controller_schedule extends Controller
+class controller_users_group extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,11 @@ class controller_schedule extends Controller
     {
         
          $data=array(
-            'schedule' => table_schedule::latest('created_at')->get(),
-        );
-        return view('schedule.index', compact('data'));
+            'users-group' => table_users_group::latest('users_group_id')->get(),
+         );
+
+
+        return view('admin.database.users-group.users-group-index', compact('data'));
     }
 
     /**
@@ -30,7 +32,7 @@ class controller_schedule extends Controller
      */
     public function create()
     {
-       return view('schedule.create');
+       return view('admin.database.users-group.users-group-create');
     }
 
     /**
@@ -41,10 +43,9 @@ class controller_schedule extends Controller
      */
     public function store(Request $request)
     {
-        //
-        table_schedule::create($request->all());
-
-        return redirect('schedule')->with('message', 'Data berhasil ditambahkan!');
+       
+        table_users_group::create(Request::all());
+        return redirect('admin/users-group')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -55,9 +56,10 @@ class controller_schedule extends Controller
      */
    public function show($id)
     {
-        $data = table_schedule::find($id);
-
-        return view('schedule.show', compact('databanned'));
+        $data = array(
+                'users-group' => table_users_group::where('users_group_id', '=', $id)->get(),
+         );     
+        return view('admin.database.users-group.users-group-show', compact('data'));
     }
 
     /**
@@ -68,9 +70,11 @@ class controller_schedule extends Controller
      */
     public function edit($id)
     {
-        $data = table_schedule::find($id);
-
-        return view('schedule.edit', compact('databanned'));
+           
+         $data = array(
+                'users-group' => table_users_group::where('users_group_id', '=', $id)->get(),
+         );     
+        return view('admin.database.users-group.users-group-edit', compact('data'));
     }
 
     /**
@@ -82,10 +86,11 @@ class controller_schedule extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $dataUpdate = Request::all();
-        $data = table_schedule::find($id);
+        $data = table_users_group::find($id);
         $data->update($dataUpdate);
-        return redirect('schedule')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/users-group')->with('message', 'Data berhasil dirubah!');
     
     }
 
@@ -97,9 +102,8 @@ class controller_schedule extends Controller
      */
     public function destroy($id)
     {
-        table_schedule::find($id)->delete();
-
-        return redirect('schedule')->with('message', 'Data berhasil dihapus!');
+        table_users_group::find($id)->delete();
+        return redirect('admin/users-group')->with('warning', 'Data berhasil dihapus!');
     
     }
 }
