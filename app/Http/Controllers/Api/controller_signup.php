@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Response;
 use App\Library\GlobalLibrary;
+use App\Models\table_users_detail;
 
 class controller_signup extends Controller
 {
@@ -33,14 +34,17 @@ class controller_signup extends Controller
     			$roles = Input::get('r','');
     			
     			$field_users = array(
-    				'name' => $username,'email' => $email,'password' => GlobalLibrary::hashPassword($password)
+    				'name' => $username,'email' => $email,'password' => bcrypt($password)
     			);
     			
  
     			    			
     			$user = User::create($field_users);
-    			$user_login = User::where('email', '=', $email)->get();
-                $user_id = $user_login->row()->id;
+    			$user_login = User::where('email', '=', $email)->first();
+                foreach ($user_login as $key => $value) {
+                    $id = $user_login->id;
+                }
+
 
                 $field_user_detail = array(
                     'users_id'  => $id,
@@ -50,7 +54,7 @@ class controller_signup extends Controller
                     'users_email' => $email,
                     'users_status_id' => '1'
                 );
-                $user = users_detail::create($field_user_detail);
+                $user = table_users_detail::create($field_user_detail);
 
 	    		
 			 return (new Response(array('status' => true,'msg' => 'Register successfully'),200))->header('Content-Type', "json");
