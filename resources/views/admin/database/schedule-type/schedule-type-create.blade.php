@@ -57,7 +57,8 @@
 				</div>				
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" class="btn">Submit Form</button>
+						<button type="submit" class="btn btn-small btn-success">Submit</button>
+						<a class="btn btn-small btn-info" href="<?php echo url('/admin/schedule-type');?>">Back</a>
 					</div>
 				</div>
 			</form>
