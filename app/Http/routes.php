@@ -35,11 +35,12 @@ Route::get('home', 'HomeController@index');
 //login
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
+//logout
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 //register
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
-//logout
+//reset Password
 Route::get('password/email', 'Auth\PasswordController@getEmail');
 Route::post('password/email', 'Auth\PasswordController@postEmail');
 
