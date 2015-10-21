@@ -50,10 +50,6 @@ Route::controllers([
 
 //test API register
 Route::group(array('prefix'=>'api/v1'), function(){
-  // Opens view to register form
-  Route::get('register', array('as'=>'register', 'uses'=>'Auth\AuthController@getRegister'));
-  // Handles registration
-  Route::post('register', array('uses'=>'Auth\AuthController@postRegister'));
   
   //Example API
   Route::get('signup', array('as'=>'signup','uses'=>'Api\controller_signup@index'));

@@ -37,12 +37,21 @@ class controller_signup extends Controller
     			);
     			
  
-    			$field_user_detail = array(
-    				'users_name' => $username,'users_fullname' => $fullname,'users_group_id' => $roles,'users_email' => $email,'users_status_id' => '1'
-    			);
-    			
+    			    			
     			$user = User::create($field_users);
-    			//$user_login = table_users_group::where('email', '=', $email)->get();
+    			$user_login = User::where('email', '=', $email)->get();
+                $user_id = $user_login->row()->id;
+
+                $field_user_detail = array(
+                    'users_id'  => $id,
+                    'users_name' => $username,
+                    'users_fullname' => $fullname,
+                    'users_group_id' => $roles,
+                    'users_email' => $email,
+                    'users_status_id' => '1'
+                );
+                $user = users_detail::create($field_user_detail);
+
 	    		
 			 return (new Response(array('status' => true,'msg' => 'Register successfully'),200))->header('Content-Type', "json");
     		}
