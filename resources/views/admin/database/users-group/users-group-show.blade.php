@@ -49,6 +49,12 @@
 					<div class="controls">
 						<textarea class="span8" rows="5" name="users_group_description">{{ $value->users_group_name}}</textarea>
 					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="basicinput">Users Group Is Public</label>
+					<div class="controls">
+						<input type="text" id="basicinput" placeholder="text" class="span8" name="users_group_is_public" value="{{ $value->users_group_is_public}}">
+					</div>
 				</div>	
 			</form>
 			@endforeach

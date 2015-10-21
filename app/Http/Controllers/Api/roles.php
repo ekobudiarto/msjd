@@ -34,6 +34,7 @@ class roles extends Controller
 	    			$dataConverted[$i]->i = $row->users_group_id;
 	    			$dataConverted[$i]->t = $row->users_group_name;
 	    			$dataConverted[$i]->d = $row->users_group_description;
+	    			$dataConverted[$i]->p = $row->users_group_is_public;
 	    			$i++;
     			}
 	    		

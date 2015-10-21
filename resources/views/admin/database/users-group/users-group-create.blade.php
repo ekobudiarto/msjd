@@ -48,6 +48,12 @@
 					<div class="controls">
 						<textarea class="span8" rows="5" name="users_group_description"></textarea>
 					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="basicinput">User Group Is Public</label>
+					<div class="controls">
+						{!! Form::select('users_group_is_public', ['0' => 'No','1' => 'Yes']) !!}
+					</div>
 				</div>		
 				<div class="control-group">
 					<div class="controls">
