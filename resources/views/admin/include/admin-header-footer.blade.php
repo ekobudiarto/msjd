@@ -7,10 +7,10 @@
         <title>Admin</title>
         
        <!-- template -->
-    <link type="text/css" href="/css-js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link type="text/css" href="/css-js/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link type="text/css" href="/css-js/css/theme.css" rel="stylesheet">
-    <link type="text/css" href="/css-js/images/icons/css/font-awesome.css" rel="stylesheet">
+    <link type="text/css" href="{{ URL::asset('public/css-js/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ URL::asset('public/css-js/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ URL::asset('public/css-js/css/theme.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ URL::asset('public/css-js/images/icons/css/font-awesome.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -95,12 +95,12 @@
         </div>
 
 
-        <script src="/css-js/scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-        <script src="/css-js/scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-        <script src="/css-js/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="/css-js/scripts/flot/jquery.flot.js" type="text/javascript"></script>
-        <script src="/css-js/scripts/flot/jquery.flot.resize.js" type="text/javascript"></script>
-        <script src="/css-js/scripts/datatables/jquery.dataTables.js" type="text/javascript"></script>
-        <script src="/css-js/scripts/common.js" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/jquery-ui-1.10.1.custom.min.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/flot/jquery.flot.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/flot/jquery.flot.resize.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/datatables/jquery.dataTables.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/common.js') }}" type="text/javascript"></script>
       
     </body>
