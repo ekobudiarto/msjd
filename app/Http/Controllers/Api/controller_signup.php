@@ -35,11 +35,14 @@ class controller_signup extends Controller
     			$field_users = array(
     				'name' => $username,'email' => $email,'password' => GlobalLibrary::hashPassword($password)
     			);
+    			
+ 
     			$field_user_detail = array(
     				'users_name' => $username,'users_fullname' => $fullname,'users_group_id' => $roles,'users_email' => $email,'users_status_id' => '1'
     			);
     			
     			$user = User::create($field_users);
+    			//$user_login = table_users_group::where('email', '=', $email)->get();
 	    		
 			 return (new Response(array('status' => true,'msg' => 'Register successfully'),200))->header('Content-Type', "json");
     		}
