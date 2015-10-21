@@ -17,6 +17,8 @@ Route::get('/', function () {
 Route::get('home', 'HomeController@index');
 
 //admin
+	//dashboard
+		Route::resource('admin/dashboard', 'Admin\dashboard\controller_admin_dashboard');
 	//database
 		Route::resource('admin/banned-report', 'Admin\database\controller_banned_report');
 		Route::resource('admin/content', 'Admin\database\controller_content');

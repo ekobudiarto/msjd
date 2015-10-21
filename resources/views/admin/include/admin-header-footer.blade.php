@@ -51,7 +51,7 @@
                     <div class="span3">
                         <div class="sidebar">
                             <ul class="widget widget-menu unstyled">
-                                <li class="active"><a href="index.html"><i class="menu-icon icon-dashboard"></i>Dashboard
+                                <li class="active"><a href="{{url('/admin/dashboard')}}"><i class="menu-icon icon-dashboard"></i>Dashboard
                                 </a></li>
                                
                             </ul>
