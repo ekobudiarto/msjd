@@ -58,4 +58,6 @@ Route::group(array('prefix'=>'api/v1'), function(){
   Route::get('get-roles', array('uses'=>'Api\roles@findAll'));
   Route::get('post-ban-report', array('uses'=>'Api\post_ban_report@index'));
   Route::get('post-following', array('uses'=>'Api\post_following@index'));
+  Route::get('set-schedule', array('uses'=>'Api\set_schedule@index'));
+  Route::get('settings-profile', array('uses'=>'Api\settings_profile@index'));
 });
