@@ -24,7 +24,7 @@
 
     <div class="module-head">
         <b>Users Status</b>
-        <a href="/admin/users-status/create" class="btn btn-info" style="float:right;">Add Data</a>
+        <a href="users-status/create" class="btn btn-info" style="float:right;">Add Data</a>
 
     </div>
     <div class="module-body">
