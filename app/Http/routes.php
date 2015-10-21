@@ -57,4 +57,5 @@ Route::group(array('prefix'=>'api/v1'), function(){
   
   //Example API
   Route::get('signup', array('as'=>'signup','uses'=>'Api\controller_signup@index'));
+  Route::get('get_roles', array('uses'=>'Api\roles@findAll'));
 });
