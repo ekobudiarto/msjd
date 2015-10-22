@@ -34,7 +34,9 @@
 			@endif
 
 			@foreach($data['schedule-type'] as $key => $value)
-			<form class="form-horizontal row-fluid" role="form" method="POST" action="/admin/schedule-type/{{ $value->schedule_type_id }}">
+			
+			{!! Form::open(array('url' => 'admin/schedule-type/'.$value->schedule_type_id, 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
+			
 				<input name="_method" type="hidden" value="PUT">
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
@@ -60,10 +62,12 @@
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-small btn-success">Submit</button>
-						<a class="btn btn-small btn-info" href="<?php echo url('admin/schedule-type');?>">Back</a>
+						{!! Html::link('admin/schedule-type', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
-			</form>
+			
+			{!! Form::close() !!}
+			
 			@endforeach
 	</div>
 </div>

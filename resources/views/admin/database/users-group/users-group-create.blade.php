@@ -33,8 +33,8 @@
 			        @endforeach
 			    </ul>
 			@endif
-
-			<form class="form-horizontal row-fluid" role="form" method="POST" action="/admin/users-group">
+			
+			{!! Form::open(array('url' => 'admin/users-group', 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
 				<div class="control-group">
@@ -58,10 +58,10 @@
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-small btn-success">Submit</button>
-						<a class="btn btn-small btn-info" href="<?php echo url('admin/users-group');?>">Back</a>
+						{!! Html::link('admin/users-group', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
-			</form>
+			{!! Form::close() !!}
 	</div>
 </div>
 

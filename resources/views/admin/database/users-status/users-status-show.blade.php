@@ -52,6 +52,7 @@
 				</div>
 			
 			@endforeach
+			{!! Html::link('admin/users-group', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 	</div>
 </div>
 

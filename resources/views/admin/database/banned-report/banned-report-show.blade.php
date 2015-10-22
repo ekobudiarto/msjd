@@ -64,7 +64,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<a class="btn btn-small btn-info" href="<?php echo url('admin/banned-report');?>">Back</a>
+						{!! Html::link('admin/banned-report', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
 			

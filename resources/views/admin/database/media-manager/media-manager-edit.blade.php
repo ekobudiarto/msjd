@@ -34,7 +34,9 @@
 			@endif
 
 			@foreach($data['media-manager'] as $key => $value)
-			<form class="form-horizontal row-fluid" role="form" method="POST" action="/admin/media-manager/{{ $value->media_manager_id }}">
+			
+			{!! Form::open(array('url' => 'admin/media-manager/'.$value->media_manager_id, 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
+			
 				<input name="_method" type="hidden" value="PUT">
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
@@ -66,10 +68,12 @@
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-small btn-success">Submit</button>
-						<a class="btn btn-small btn-info" href="<?php echo url('admin/media-manager');?>">Back</a>
+						{!! Html::link('admin/media-manager', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
-			</form>
+			
+			{!! Form:close() !!}
+			
 			@endforeach
 	</div>
 </div>

@@ -24,7 +24,7 @@
 
     <div class="module-head">
         <b>Users Status</b>
-        <a href="users-status/create" class="btn btn-info" style="float:right;">Add Data</a>
+        {!! Html::link('admin/users-status/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
 
     </div>
     <div class="module-body">

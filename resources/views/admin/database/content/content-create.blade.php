@@ -34,6 +34,8 @@
 			    </ul>
 			@endif
 
+			{!! Form::open(array('url' => 'admin/content', 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
+			
 			<form class="form-horizontal row-fluid" role="form" method="POST" action="/admin/content">
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 				<div class="control-group">
@@ -112,10 +114,10 @@
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-small btn-success">Submit</button>
-						<a class="btn btn-small btn-info" href="<?php echo url('admin/content');?>">Back</a>
+						{!! Html::link('admin/content, 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
-			</form>
+			{!! Form::close() !!}
 	</div>
 </div>
 

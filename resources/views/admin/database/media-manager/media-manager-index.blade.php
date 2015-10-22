@@ -24,8 +24,7 @@
 
     <div class="module-head">
         <b>Media Manager</b>
-        <a href="media-manager/create" class="btn btn-info" style="float:right;">Add Data</a>
-
+		{!! Html::link('admin/media-manager/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"

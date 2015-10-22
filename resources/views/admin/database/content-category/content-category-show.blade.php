@@ -64,7 +64,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<a class="btn btn-small btn-info" href="<?php echo url('admin/content-category');?>">Back</a>
+						{!! Html::link('admin/content-category', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
 			@endforeach

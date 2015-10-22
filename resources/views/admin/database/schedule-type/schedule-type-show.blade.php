@@ -58,7 +58,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<a class="btn btn-small btn-info" href="<?php echo url('admin/schedule-type');?>">Back</a>
+						{!! Html::link('admin/schedule-type', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
 				
