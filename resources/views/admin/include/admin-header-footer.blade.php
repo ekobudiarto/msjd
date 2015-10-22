@@ -7,10 +7,10 @@
         <title>Admin</title>
         
        <!-- template -->
-    <link type="text/css" href="{{ URL::asset('css-js/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link type="text/css" href="{{ URL::asset('css-js/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">
-    <link type="text/css" href="{{ URL::asset('css-js/css/theme.css') }}" rel="stylesheet">
-    <link type="text/css" href="{{ URL::asset('css-js/images/icons/css/font-awesome.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ URL::asset('public/css-js/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ URL::asset('public/css-js/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ URL::asset('public/css-js/css/theme.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ URL::asset('public/css-js/images/icons/css/font-awesome.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
