@@ -56,6 +56,11 @@
 						<textarea class="span8" rows="5" name="media_manager_id" >{{ $value->media_manager_id}}</textarea>
 					</div>
 				</div>
+				<div class="control-group">
+					<div class="controls">
+						<a class="btn btn-small btn-info" href="<?php echo url('admin/schedule-type');?>">Back</a>
+					</div>
+				</div>
 				
 			</form>
 			@endforeach

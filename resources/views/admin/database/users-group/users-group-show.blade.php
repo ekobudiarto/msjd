@@ -56,6 +56,11 @@
 						<input type="text" id="basicinput" placeholder="text" class="span8" name="users_group_is_public" value="{{ $value->users_group_is_public}}">
 					</div>
 				</div>	
+				<div class="control-group">
+					<div class="controls">
+						<a class="btn btn-small btn-info" href="<?php echo url('admin/users-group');?>">Back</a>
+					</div>
+				</div>
 			</form>
 			@endforeach
 	</div>

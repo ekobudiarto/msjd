@@ -24,7 +24,7 @@
 
     <div class="module-head">
         <b>Banned Report</b>
-        <a href="/admin/banned-report/create" class="btn btn-info" style="float:right;">Add Data</a>
+        <a href="banned-report/create" class="btn btn-info" style="float:right;">Add Data</a>
 
     </div>
     <div class="module-body">
@@ -74,6 +74,7 @@
                         </td>
                     </tr>
                 @endforeach
+                @include('admin.include.pagination', ['paginator' => $data['banned_report']])
             </tbody>
         </table>
     </div>

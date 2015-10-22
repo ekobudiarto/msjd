@@ -62,7 +62,11 @@
 						<input type="text" id="basicinput" placeholder="number" class="span8" name="media_manager_id" value="{{ $value->media_manager_id }}">
 					</div>
 				</div>
-			
+				<div class="control-group">
+					<div class="controls">
+						<a class="btn btn-small btn-info" href="<?php echo url('admin/content-category');?>">Back</a>
+					</div>
+				</div>
 			@endforeach
 	</div>
 </div>

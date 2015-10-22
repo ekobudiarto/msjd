@@ -98,6 +98,11 @@
 						<input type="text" id="basicinput" placeholder="Schedule Publish" class="span8" name="schedule_publish" value="{{ $value->schedule_publish }}">
 					</div>
 				</div>
+				<div class="control-group">
+					<div class="controls">
+						<a class="btn btn-small btn-info" href="<?php echo url('admin/schedule');?>">Back</a>
+					</div>
+				</div>
 			
 			@endforeach
 	</div>

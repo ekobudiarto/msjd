@@ -18,7 +18,7 @@ class controller_schedule extends Controller
     {
         
          $data=array(
-            'schedule' => table_schedule::latest('schedule_id')->get(),
+            'schedule' => table_schedule::latest('schedule_id')->pagination(10),
          );
 
 

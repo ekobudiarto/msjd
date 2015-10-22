@@ -24,7 +24,7 @@
 
     <div class="module-head">
         <b>Media Manager</b>
-        <a href="/admin/media-manager/create" class="btn btn-info" style="float:right;">Add Data</a>
+        <a href="media-manager/create" class="btn btn-info" style="float:right;">Add Data</a>
 
     </div>
     <div class="module-body">
@@ -74,6 +74,7 @@
                         </td>
                     </tr>
                 @endforeach
+                @include('admin.include.pagination', ['paginator' => $data['media-manager']])
             </tbody>
         </table>
     </div>

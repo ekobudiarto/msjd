@@ -24,7 +24,7 @@
 
     <div class="module-head">
         <b>Users Group</b>
-        <a href="/admin/users-group/create" class="btn btn-info" style="float:right;">Add Data</a>
+        <a href="users-group/create" class="btn btn-info" style="float:right;">Add Data</a>
 
     </div>
     <div class="module-body">
@@ -70,6 +70,8 @@
                     </tr>
                     
                 @endforeach
+                @include('admin.include.pagination', ['paginator' => $data['users-group']])
+
             </tbody>
         </table>
     </div>

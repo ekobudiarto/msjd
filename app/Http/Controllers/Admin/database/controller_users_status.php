@@ -18,7 +18,7 @@ class controller_users_status extends Controller
     {
         
          $data=array(
-            'users_status' => table_users_status::latest('users_status_id')->get(),
+            'users_status' => table_users_status::latest('users_status_id')->pagination(10),
          );
 
 

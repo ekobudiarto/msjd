@@ -24,7 +24,7 @@
 
     <div class="module-head">
         <b>Content Category</b>
-        <a href="/admin/content-category/create" class="btn btn-info" style="float:right;">Add Data</a>
+        <a href="content-category/create" class="btn btn-info" style="float:right;">Add Data</a>
 
     </div>
     <div class="module-body">
@@ -70,6 +70,7 @@
                         </td>
                     </tr>
                 @endforeach
+                @include('admin.include.pagination', ['paginator' => $data['content_category']])
             </tbody>
         </table>
     </div>

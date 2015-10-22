@@ -19,7 +19,7 @@ class controller_media_manager extends Controller
     {
         
          $data=array(
-            'media-manager' => table_media_manager::latest('media_manager_id')->get(),
+            'media-manager' => table_media_manager::latest('media_manager_id')->paginate(10),
          );
 
 

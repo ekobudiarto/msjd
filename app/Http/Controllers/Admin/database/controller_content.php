@@ -18,7 +18,7 @@ class controller_content extends Controller
     {
         
          $data=array(
-            'content' => table_content::latest('content_id')->get(),
+            'content' => table_content::latest('content_id')->paginate(10),
          );
 
 

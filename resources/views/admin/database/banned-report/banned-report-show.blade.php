@@ -62,6 +62,11 @@
 						<textarea class="span8" rows="5" name="banned_report_message">{{ $value->banned_report_message }}</textarea>
 					</div>
 				</div>
+				<div class="control-group">
+					<div class="controls">
+						<a class="btn btn-small btn-info" href="<?php echo url('admin/banned-report');?>">Back</a>
+					</div>
+				</div>
 			
 			@endforeach
 	</div>

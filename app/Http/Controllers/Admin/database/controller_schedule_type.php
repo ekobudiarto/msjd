@@ -19,7 +19,7 @@ class controller_schedule_type extends Controller
     {
         
          $data=array(
-            'schedule-type' => table_schedule_type::latest('schedule_type_id')->get(),
+            'schedule-type' => table_schedule_type::latest('schedule_type_id')->pagination(10),
          );
 
 

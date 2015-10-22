@@ -18,7 +18,7 @@ class controller_content_category extends Controller
     {
         
          $data=array(
-            'content_category' => table_content_category::latest('content_category_id')->get(),
+            'content_category' => table_content_category::latest('content_category_id')->paginate(10),
          );
 
 

@@ -24,7 +24,7 @@
 
     <div class="module-head">
         <b>Schedule Type</b>
-        <a href="/admin/schedule-type/create" class="btn btn-info" style="float:right;">Add Data</a>
+        <a href="schedule-type/create" class="btn btn-info" style="float:right;">Add Data</a>
 
     </div>
     <div class="module-body">
@@ -65,6 +65,7 @@
                         </td>
                     </tr>
                 @endforeach
+                @include('admin.include.pagination', ['paginator' => $data['schedule-type']])
             </tbody>
         </table>
     </div>

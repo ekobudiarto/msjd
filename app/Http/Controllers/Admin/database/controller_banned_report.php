@@ -18,7 +18,7 @@ class controller_banned_report extends Controller
     {
         
          $data=array(
-            'banned_report' => table_banned_report::latest('banned_report_id')->get(),
+            'banned_report' => table_banned_report::latest('banned_report_id')->paginate(10),
          );
 
 

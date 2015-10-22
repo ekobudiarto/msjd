@@ -108,6 +108,11 @@
 						<input type="text" id="basicinput" placeholder="number" class="span8" name="content_repost_from" value="{{ $value->content_repost_from }}">
 					</div>
 				</div>
+				<div class="control-group">
+					<div class="controls">
+						<a class="btn btn-small btn-info" href="<?php echo url('admin/content');?>">Back</a>
+					</div>
+				</div>
 
 			</form>
 			@endforeach

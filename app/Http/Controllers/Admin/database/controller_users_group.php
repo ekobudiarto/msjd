@@ -18,7 +18,7 @@ class controller_users_group extends Controller
     {
         
          $data=array(
-            'users-group' => table_users_group::latest('users_group_id')->get(),
+            'users-group' => table_users_group::latest('users_group_id')->paginate(2),
          );
 
 

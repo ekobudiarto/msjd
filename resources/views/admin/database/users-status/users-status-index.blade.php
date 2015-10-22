@@ -66,6 +66,7 @@
                         </td>
                     </tr>
                 @endforeach
+                @include('admin.include.pagination', ['paginator' => $data['users_status']])
             </tbody>
         </table>
     </div>

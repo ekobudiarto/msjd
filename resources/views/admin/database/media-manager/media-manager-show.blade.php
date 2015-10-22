@@ -62,6 +62,11 @@
 						<input type="text" id="basicinput" placeholder="text" class="span8" name="media_manager_publish" value="{{ $value->media_manager_publish }}">
 					</div>
 				</div>
+				<div class="control-group">
+					<div class="controls">
+						<a class="btn btn-small btn-info" href="<?php echo url('admin/media-manager');?>">Back</a>
+					</div>
+				</div>
 			</form>
 			@endforeach
 	</div>
