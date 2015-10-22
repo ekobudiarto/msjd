@@ -7,10 +7,10 @@
 	<title>Masjid Apps</title>
 
 	<!-- template -->
-	<link type="text/css" href="/css-js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link type="text/css" href="/css-js/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link type="text/css" href="/css-js/css/theme.css" rel="stylesheet">
-    <link type="text/css" href="/css-js/images/icons/css/font-awesome.css" rel="stylesheet">
+	<link type="text/css" href="{{ URL::asset('css-js/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ URL::asset('css-js/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ URL::asset('css-js/css/theme.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ URL::asset('css-js/images/icons/css/font-awesome.css') }}" rel="stylesheet">
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -56,8 +56,8 @@
 	@yield('content')
 
 	<!-- Scripts -->
-	<script src="/css-js/scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-	<script src="/css-js/scripts/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-	<script src="/css-js/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="{{ URL::asset('css-js/scripts/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
+	<script src="{{ URL::asset('css-js/scripts/jquery-ui-1.10.1.custom.min.js') }}" type="text/javascript"></script>
+	<script src="{{ URL::asset('css-js/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
 </body>
 </html>
