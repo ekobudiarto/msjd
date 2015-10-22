@@ -114,7 +114,7 @@
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-small btn-success">Submit</button>
-						{!! Html::link('admin/content, 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
+						{!! Html::link('admin/content', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
 			{!! Form::close() !!}

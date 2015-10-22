@@ -43,13 +43,21 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Title</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="schedule_title" value="{{ $value->schedule_title }}">
+						<textarea class="span8" rows="5" placeholder="text" name="schedule_title">{{ $value->schedule_title }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="basicinput">Schedule Type ID</label>
+					<label class="control-label" for="basicinput">Schedule Type</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="Schedule Type ID" class="span8" name="schedule_type_id" value="{{ $value->schedule_type_id }}">
+						<select class="span8" name="schedule_type_id">
+						 	@foreach($data['schedule_type'] as $key => $st)
+						 		@if( $value->schedule_type_id == $st->schedule_type_id )
+						 			<option value="{{ $st->schedule_type_id }}" selected>{{ $st->schedule_type_name }}</option>
+						 		@else
+						 			<option value="{{ $st->schedule_type_id }}">{{ $st->schedule_type_name }}</option>
+						 		@endif
+						 	@endforeach
+						 </select>
 					</div>
 				</div>
 				<div class="control-group">
@@ -85,7 +93,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Headline</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="Schedule Headline" class="span8" name="schedule_headline" value="{{ $value->schedule_headline }}">
+						<textarea class="span8" rows="5" placeholder="Schedule Description" name="schedule_description">{{ $value->schedule_headline }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
@@ -97,7 +105,16 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Publish</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="Schedule Publish" class="span8" name="schedule_publish" value="{{ $value->schedule_publish }}">
+						<select class="span8" name="schedule_publish">
+						 		@if( $value->schedule_publish == 1 )
+						 			<option value="1">Yes</option>
+						 			<option value="0">No</option>
+						 		@else
+						 			<option value="0">No</option>
+						 			<option value="1">yes</option>
+						 		@endif
+						 	
+						 </select>
 					</div>
 				</div>
 				<div class="control-group">

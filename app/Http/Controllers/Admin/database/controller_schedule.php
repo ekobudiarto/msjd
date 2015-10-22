@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_schedule;
+use App\Models\table_schedule_type;
+use DB;
 
 class controller_schedule extends Controller
 {
@@ -19,6 +21,7 @@ class controller_schedule extends Controller
         
          $data=array(
             'schedule' => table_schedule::latest('schedule_id')->paginate(10),
+            'schedule_type' => table_schedule_type::select('schedule_type_id','schedule_type_name')->get(),
          );
 
 
@@ -32,7 +35,11 @@ class controller_schedule extends Controller
      */
     public function create()
     {
-       return view('admin.database.schedule.schedule-create');
+        $data=array(
+            //'schedule_type' => table_schedule_type::select('schedule_type_id','schedule_type_name')->get(), 
+            'schedule_type' => table_schedule_type::select('schedule_type_id','schedule_type_name')->get(),
+        );
+       return view('admin.database.schedule.schedule-create', compact('data'));
     }
 
     /**
@@ -73,6 +80,7 @@ class controller_schedule extends Controller
            
          $data = array(
                 'dataschedule' => table_schedule::where('schedule_id', '=', $id)->get(),
+                'schedule_type' => table_schedule_type::select('schedule_type_id','schedule_type_name')->get(),
          );     
         return view('admin.database.schedule.schedule-edit', compact('data'));
     }
