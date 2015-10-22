@@ -95,12 +95,12 @@
         </div>
 
 
-        <script src="{{ URL::asset('css-js/scripts/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
-        <script src="{{ URL::asset('css-js/scripts/jquery-ui-1.10.1.custom.min.js') }}" type="text/javascript"></script>
-        <script src="{{ URL::asset('css-js/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
-        <script src="{{ URL::asset('css-js/scripts/flot/jquery.flot.js') }}" type="text/javascript"></script>
-        <script src="{{ URL::asset('css-js/scripts/flot/jquery.flot.resize.js') }}" type="text/javascript"></script>
-        <script src="{{ URL::asset('css-js/scripts/datatables/jquery.dataTables.js') }}" type="text/javascript"></script>
-        <script src="{{ URL::asset('css-js/scripts/common.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/jquery-ui-1.10.1.custom.min.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/flot/jquery.flot.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/flot/jquery.flot.resize.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/datatables/jquery.dataTables.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/common.js') }}" type="text/javascript"></script>
       
     </body>
