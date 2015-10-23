@@ -54,7 +54,16 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">User Group Is Public</label>
 					<div class="controls">
-						{!! Form::select('users_group_is_public', ['0' => 'No','1' => 'Yes']) !!}
+						<select class="span8" name="users_group_is_public">
+						 		@if( $value->users_group_is_public == 1 )
+						 			<option value="1">Yes</option>
+						 			<option value="0">No</option>
+						 		@else
+						 			<option value="0">No</option>
+						 			<option value="1">yes</option>
+						 		@endif
+						 	
+						 </select>
 					</div>
 				</div>
 				<div class="control-group">

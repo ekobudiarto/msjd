@@ -62,7 +62,7 @@
 					<label class="control-label" for="basicinput">Media Manager publish</label>
 					<div class="controls">
 						<select class="span8" name="media_manager_publish">
-						 		@if( $value->schedule_publish == 1 )
+						 		@if( $value->media_manager_publish == 1 )
 						 			<option value="1">Yes</option>
 						 			<option value="0">No</option>
 						 		@else

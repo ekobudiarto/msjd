@@ -65,6 +65,7 @@ class controller_schedule extends Controller
     {
         $data = array(
                 'dataschedule' => table_schedule::where('schedule_id', '=', $id)->get(),
+                'schedule_type' => table_schedule_type::select('schedule_type_id','schedule_type_name')->get(),
          );     
         return view('admin.database.schedule.schedule-show', compact('data'));
     }

@@ -54,7 +54,13 @@
                         <td>{{$key + 1}}</td>
                         <td>{{ $value->users_group_name }}</td>
                         <td>{{ $value->users_group_description }}</td>
-                        <td>{{ $value->users_group_is_public }}</td>
+                        <td>
+                            @if( $value->users_group_is_public == 1 )
+                               Yes
+                            @else
+                               No
+                            @endif
+                        </td>
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>
                             <a class="btn btn-small btn-success" href="{{ URL('admin/users-group/' . $value->users_group_id) }}">View</a>

@@ -69,7 +69,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Date Start</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="datetime" class="span8" name="schedule_date_start">
+						<input type="date" id="basicinput" placeholder="datetime" class="span8" name="schedule_date_start">
 					</div>
 				</div>
 				<div class="control-group">
