@@ -65,6 +65,7 @@ class controller_content_category extends Controller
     {
         $data = array(
                 'dataContentCategory' => table_content_category::where('content_category_id', '=', $id)->get(),
+                'media_manager' => table_media_manager::select('media_manager_id','media_manager_title')->get(),
          );     
         return view('admin.database.content-category.content-category-show', compact('data'));
     }
@@ -80,6 +81,7 @@ class controller_content_category extends Controller
            
          $data = array(
                 'dataContentCategory' => table_content_category::where('content_category_id', '=', $id)->get(),
+                'media_manager' => table_media_manager::select('media_manager_id','media_manager_title')->get(),
          );     
         return view('admin.database.content-category.content-category-edit', compact('data'));
     }

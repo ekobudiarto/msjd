@@ -55,7 +55,15 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="media_manager_id" value="{{ $value->media_manager_id }}">
+						<select class="span8" name="media_manager_id">
+							@foreach($data['media_manager'] as $key => $mm)
+								@if($value->media_manager_id == $mm->media_manager_id)
+						 			<option value="{{ $mm->media_manager_id }}">{{ $mm->media_manager_title }}</option>
+						 		@else
+						 			<option value="{{ $mm->media_manager_id }}" selected>{{ $mm->media_manager_title }}</option>
+						 		@endif
+						 	@endforeach
+						</select>
 					</div>
 				</div>
 				<div class="control-group">
