@@ -53,7 +53,13 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="media_manager_id">
+						<select class="span8" name="media_manager_id">
+							<option value="">---pilih type---</option>
+						 	@foreach($data['media_manager'] as $key => $value)
+						 	<option value="{{ $value->media_manager_id }}">{{ $value->media_manager_title }}</option>
+						 	@endforeach
+						</select>
+						
 					</div>
 				</div>
 				<div class="control-group">
@@ -62,7 +68,7 @@
 						{!! Html::link('admin/content-category', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
-			{!! Form:close() !!}
+			{!! Form::close() !!}
 	</div>
 </div>
 

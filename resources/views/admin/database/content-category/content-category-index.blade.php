@@ -24,7 +24,7 @@
 
     <div class="module-head">
         <b>Content Category</b>
-		{!! Html::link('admin/content-category', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+		{!! Html::link('admin/content-category/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"
@@ -41,7 +41,7 @@
                         Description
                     </th>
                     <th>
-                        Media ID
+                        Media Manager
                     </th>
                     <th>
                         #
@@ -54,7 +54,7 @@
                         <td>{{ $value->content_category_id }}</td>
                         <td>{{ $value->content_category_title }}</td>
                             <td>{{ $value->content_category_description }}</td>
-                        <td>{{ $value->media_manager_id }}</td>
+                        <td>{{ $value->media_manager_title }}</td>
 
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>

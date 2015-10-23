@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_content_category;
+use DB;
+use App\Models\table_media_manager;
 
 class controller_content_category extends Controller
 {
@@ -16,9 +18,12 @@ class controller_content_category extends Controller
      */
     public function index()
     {
-        
+
          $data=array(
-            'content_category' => table_content_category::latest('content_category_id')->paginate(10),
+            //'content_category' => table_content_category::latest('content_category_id')->paginate(10),
+            'content_category' => DB::table('table_content_category as ct')
+                                    ->select('ct.*',DB::raw('(select media_manager_title from table_media_manager where media_manager_id = ct.media_manager_id) as media_manager_title') )
+                                    ->paginate(10),
          );
 
 
@@ -32,7 +37,10 @@ class controller_content_category extends Controller
      */
     public function create()
     {
-       return view('admin.database.content-category.content-category-create');
+        $data=array(
+            'media_manager' => table_media_manager::select('media_manager_id','media_manager_title')->get(),
+        );
+       return view('admin.database.content-category.content-category-create', compact('data'));
     }
 
     /**
