@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_content;
+use DB;
 
 class controller_content extends Controller
 {
@@ -19,6 +20,7 @@ class controller_content extends Controller
         
          $data=array(
             'content' => table_content::latest('content_id')->paginate(10),
+            'content_type' => DB::select('select content_category_id, content_category_title from table_content_category')
          );
 
 
@@ -32,7 +34,10 @@ class controller_content extends Controller
      */
     public function create()
     {
-       return view('admin.database.content.content-create');
+       $data=array(
+            'content_type' => DB::select('select content_category_id, content_category_title from table_content_category')
+         );
+       return view('admin.database.content.content-create', compact('data'));
     }
 
     /**
