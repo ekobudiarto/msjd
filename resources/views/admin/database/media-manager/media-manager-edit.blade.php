@@ -61,7 +61,16 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager publish</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="text" class="span8" name="media_manager_publish" value="{{ $value->media_manager_publish }}">
+						<select class="span8" name="media_manager_publish">
+						 		@if( $value->schedule_publish == 1 )
+						 			<option value="1">Yes</option>
+						 			<option value="0">No</option>
+						 		@else
+						 			<option value="0">No</option>
+						 			<option value="1">yes</option>
+						 		@endif
+						 	
+						 </select>
 					</div>
 				</div>
 				
@@ -72,7 +81,7 @@
 					</div>
 				</div>
 			
-			{!! Form:close() !!}
+			{!! Form::close() !!}
 			
 			@endforeach
 	</div>

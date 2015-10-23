@@ -59,7 +59,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager publish</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="text" class="span8" name="media_manager_publish">
+						{!! Form::select('media_manager_publish', ['0' => 'No','1' => 'Yes']) !!}
 					</div>
 				</div>
 				

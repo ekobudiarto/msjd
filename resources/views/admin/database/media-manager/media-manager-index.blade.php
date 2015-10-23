@@ -58,7 +58,14 @@
                         <td>{{ $value->media_manager_title }}</td>
                         <td>{{ $value->media_manager_type }}</td>
                         <td>{{ $value->media_manager_filename }}</td>
-                        <td>{{ $value->media_manager_publish }}</td>
+                        <td>
+                                @if( $value->media_manager_publish == 1 )
+                                    Yes
+                                @else
+                                    No
+                                @endif
+
+                        </td>
 
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>
