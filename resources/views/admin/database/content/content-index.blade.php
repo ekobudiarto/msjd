@@ -57,8 +57,12 @@
                         <td>{{ $value->content_id }}</td>
                         <td>{{ $value->content_title }}</td>
                         <td>{{ $value->content_media_id }}</td>
-                        <td>{{ $value->content_publish }}</td>
-                        <td>{{ $value->content_category_id }}</td>
+                        <td> @if( $value->content_publish == 1 )
+                               Yes
+                            @else
+                               No
+                            @endif</td>
+                        <td>{{ $value->content_category_title }}</td>
 
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>

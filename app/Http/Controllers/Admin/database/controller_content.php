@@ -20,7 +20,10 @@ class controller_content extends Controller
         
          $data=array(
             'content' => table_content::latest('content_id')->paginate(10),
-            'content_type' => DB::select('select content_category_id, content_category_title from table_content_category')
+            'content' => DB::table('table_content as ct')
+                                    ->select('ct.*',DB::raw('(select content_category_title from table_content_category where content_category_id = ct.content_category_id) as content_category_title') 
+                                            )
+                                    ->paginate(10),
          );
 
 
