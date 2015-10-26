@@ -2,6 +2,10 @@
 
 @section('content')
 
+<style>
+
+
+</style>
 <div class="module">
 	<div class="module-head">
 		<h3>Forms Banned Report</h3>
@@ -40,19 +44,19 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users by</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_by">
+						<input type="text" id="autouser1"  onchange="getid(this)" placeholder="it should user id" class="autouser" name="users_by" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="content_id">
+						<input type="text" id="basicinput" onchange="getid(this)" placeholder="number" class="autocontent" name="content_id" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users Destination</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_dest">
+						<input type="text" id="autouser2" onchange="getuserid(this)" placeholder="it should user id" class="autouser" name="users_dest" required>
 					</div>
 				</div>
 				<div class="control-group">
@@ -71,4 +75,32 @@
 	</div>
 </div>
 
+<!-- autocomplete. why use this? because the system will be slow if dropdown for user has too many or large database -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('input:text').bind({
+
+		});
+	
+		$(".autouser").autocomplete({
+			minLength:2,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getusername") }}',
+		});
+		$(".autocontent").autocomplete({
+			minLength:3,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getcontenttitle") }}',
+		});
+
+	});
+	function getid(obj){
+    
+		var valuee = obj.value;
+		var res = valuee.split(" ");
+		obj.value = res[0];
+	}
+
+
+</script>
 @endsection

@@ -21,8 +21,9 @@ class controller_banned_report extends Controller
          $data=array(
           
             'banned_report' => DB::table('table_banned_report as br')
-                                    ->select('br.*',DB::raw('(select users_name from table_users_detail where users_id = br.users_by) as users_name_by') 
-                                                   ,DB::raw('(select users_name from table_users_detail where users_id = br.users_dest) as users_name_dest') 
+                                    ->select('br.*',DB::raw('(select users_name from table_users_detail where users_id = br.users_by) as users_name_by'), 
+                                                   DB::raw('(select users_name from table_users_detail where users_id = br.users_dest) as users_name_dest'),
+                                                   DB::raw('(select content_title from table_content where content_id = br.content_id) as content_title') 
                                             )
                                     ->paginate(10),
          );

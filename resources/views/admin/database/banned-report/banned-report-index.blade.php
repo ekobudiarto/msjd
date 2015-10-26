@@ -56,7 +56,7 @@
                     <tr>
                         <td>{{ $value->banned_report_id }}</td>
                         <td>{{ $value->users_name_by }}</td>
-                        <td>{{ $value->content_id }}</td>
+                        <td>{{ $value->content_title }}</td>
                         <td>{{ $value->users_name_dest }}</td>
                         <td>{{ $value->banned_report_message }}</td>
 

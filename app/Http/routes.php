@@ -61,3 +61,8 @@ Route::group(array('prefix'=>'api/v1'), function(){
   Route::get('set-schedule', array('uses'=>'Api\set_schedule@index'));
   Route::get('settings-profile', array('uses'=>'Api\settings_profile@index'));
 });
+
+
+//for auto complete 
+Route::get('admin/autocomplete/getusername', 'Admin\database\autocomplete@getUsername');
+Route::get('admin/autocomplete/getcontenttitle', 'Admin\database\autocomplete@getContentTitle');
