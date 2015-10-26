@@ -34,36 +34,16 @@
 			    </ul>
 			@endif
 
-			@foreach($data['dataContentCategory'] as $key => $value)
+			@foreach($data['hashtag'] as $key => $value)
 			
-			{!! Form::open(array('url' => 'admin/content-category/'.$value->content_category_id, 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
+			{!! Form::open(array('url' => 'admin/hashtag/'.$value->hashtag_id, 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
 			
 				<input name="_method" type="hidden" value="PUT">
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 				<div class="control-group">
-					<label class="control-label" for="basicinput">Content Category Title</label>
+					<label class="control-label" for="basicinput">Hashtag</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="content_category_title" value="{{ $value->content_category_title }}">
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="basicinput">Content Category Description</label>
-					<div class="controls">
-						<textarea class="span8" rows="5" name="content_category_description">{{ $value->content_category_description }}</textarea>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="basicinput">Media Manager ID</label>
-					<div class="controls">
-						<select class="span8" name="media_manager_id">
-							@foreach($data['media_manager'] as $key => $mm)
-								@if($value->media_manager_id == $mm->media_manager_id)
-						 			<option value="{{ $mm->media_manager_id }}">{{ $mm->media_manager_title }}</option>
-						 		@else
-						 			<option value="{{ $mm->media_manager_id }}" selected>{{ $mm->media_manager_title }}</option>
-						 		@endif
-						 	@endforeach
-						</select>
+						<input type="text" id="basicinput" placeholder="number" class="span8" name="hashtag_title" value="{{ $value->hashtag_title }}">
 					</div>
 				</div>
 				

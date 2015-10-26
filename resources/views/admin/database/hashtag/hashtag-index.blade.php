@@ -24,7 +24,7 @@
 
     <div class="module-head">
         <b>Content Category</b>
-		{!! Html::link('admin/content-category/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+		{!! Html::link('admin/hashtag/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"
@@ -43,24 +43,24 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($data['content_category'] as $key => $value)
+                @foreach($data['hashtag'] as $key => $value)
                     <tr>
-                        <td>{{ $value->content_category_id }}</td>
-                        <td>{{ $value->content_category_title }}</td>
+                        <td>{{ $value->hashtag_id }}</td>
+                        <td>{{ $value->hashtag_title }}</td>
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>
-                            <a class="btn btn-small btn-success" href="{{ URL('admin/content-category/' . $value->content_category_id) }}">View</a>
+                            <a class="btn btn-small btn-success" href="{{ URL('admin/hashtag/' . $value->hashtag_id) }}">View</a>
 
-                            <a class="btn btn-small btn-warning" href="{{ URL('admin/content-category/' . $value->content_category_id . '/edit') }}">Edit</a>
+                            <a class="btn btn-small btn-warning" href="{{ URL('admin/hashtag/' . $value->hashtag_id . '/edit') }}">Edit</a>
 
-                            {!! Form::open(['method' => 'DELETE', 'url' => 'admin/content-category/' . $value->content_category_id, 'class' => 'pull-right', 'onsubmit' => 'return confirm("Are you sure you want to delete this item?");']) !!}
+                            {!! Form::open(['method' => 'DELETE', 'url' => 'admin/hashtag/' . $value->hashtag_id, 'class' => 'pull-right', 'onsubmit' => 'return confirm("Are you sure you want to delete this item?");']) !!}
                                 {!! Form::submit('Delete', ['class' => 'btn btn-small btn-danger']) !!}
                             {!! Form::close() !!}
 
                         </td>
                     </tr>
                 @endforeach
-                @include('admin.include.pagination', ['paginator' => $data['content_category']])
+                @include('admin.include.pagination', ['paginator' => $data['hashtag']])
             </tbody>
         </table>
     </div>

@@ -7,7 +7,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_hashtag;
 use DB;
-use App\Models\table_hashtag;
 
 class controller_hashtag extends Controller
 {
@@ -20,7 +19,7 @@ class controller_hashtag extends Controller
     {
 
          $data=array(
-            'content_category' => table_hashtag::latest('hashtag_id')->paginate(10),
+            'hashtag' => table_hashtag::latest('hashtag_id')->paginate(10),
          );
 
 

@@ -34,7 +34,7 @@
 			    </ul>
 			@endif
 
-			@foreach($data['dataContentCategory'] as $key => $value)
+			@foreach($data['hashtag'] as $key => $value)
 			
 			{!! Form::open(array('url' => 'admin/hashtag/'.$value->hashtag_id, 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
 			
