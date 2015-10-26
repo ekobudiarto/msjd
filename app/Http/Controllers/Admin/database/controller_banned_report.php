@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_banned_report;
+use DB;
 
 class controller_banned_report extends Controller
 {
@@ -18,7 +19,12 @@ class controller_banned_report extends Controller
     {
         
          $data=array(
-            'banned_report' => table_banned_report::latest('banned_report_id')->paginate(10),
+          
+            'banned_report' => DB::table('table_banned_report as br')
+                                    ->select('br.*',DB::raw('(select users_name from table_users_detail where users_id = br.users_by) as users_name_by') 
+                                                   ,DB::raw('(select users_name from table_users_detail where users_id = br.users_dest) as users_name_dest') 
+                                            )
+                                    ->paginate(10),
          );
 
 

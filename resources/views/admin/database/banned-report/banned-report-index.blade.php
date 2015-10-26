@@ -55,9 +55,9 @@
                 @foreach($data['banned_report'] as $key => $value)
                     <tr>
                         <td>{{ $value->banned_report_id }}</td>
-                        <td>{{ $value->users_by }}</td>
+                        <td>{{ $value->users_name_by }}</td>
                         <td>{{ $value->content_id }}</td>
-                        <td>{{ $value->users_dest }}</td>
+                        <td>{{ $value->users_name_dest }}</td>
                         <td>{{ $value->banned_report_message }}</td>
 
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
