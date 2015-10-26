@@ -29,7 +29,7 @@ class autocomplete extends Controller
         $term = strtolower(input::get('term'));
         $data = DB::table('table_users_detail')->select('users_id','users_name')->where('users_name', 'LIKE', $term.'%')->take(10)->get();
         foreach($data as $v){
-            $return_array[] = array('value' => $v->users_id.' '.$v->users_name);
+            $return_array[] = array('value' => '['.$v->users_id.'] '.$v->users_name);
         }
         return (new Response($return_array,200))->header('Content-Type', "json");
 
@@ -41,7 +41,7 @@ class autocomplete extends Controller
         $term = strtolower(input::get('term'));
         $data = DB::table('table_content')->select('content_id','content_title')->where('content_title', 'LIKE', $term.'%')->take(10)->get();
         foreach($data as $v){
-            $return_array[] = array('value' => $v->content_id.' '.$v->content_title);
+            $return_array[] = array('value' => '['.$v->content_id.'] '.$v->content_title);
         }
         return (new Response($return_array,200))->header('Content-Type', "json");
 

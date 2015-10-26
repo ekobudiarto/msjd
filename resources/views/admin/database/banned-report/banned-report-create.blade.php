@@ -98,7 +98,9 @@
     
 		var valuee = obj.value;
 		var res = valuee.split(" ");
-		obj.value = res[0];
+		var nilai = res[0].replace('[','');
+		var nilai = nilai.replace(']','');
+		obj.value = nilai;
 	}
 
 
