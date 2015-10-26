@@ -44,19 +44,19 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users by</label>
 					<div class="controls">
-						<input type="text" id="autouser1"  onchange="getid(this)" placeholder="it should user id, but you can seerch by name" class="autouser" name="users_by" style="width: 65.812%;" required>
+						<input type="text" id="autouser1"  onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" name="users_by" style="width: 65.812%;" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" onchange="getid(this)" placeholder="it should content id, but you can seerch by name" class="autocontent" style="width: 65.812%;" name="content_id" required>
+						<input type="text" id="basicinput" onchange="getid(this)" placeholder="it should content id, but you can search by name" class="autocontent" style="width: 65.812%;" name="content_id" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users Destination</label>
 					<div class="controls">
-						<input type="text" id="autouser2" onchange="getuserid(this)" placeholder="it should user id, but you can seerch by name" class="autouser" style="width: 65.812%;" name="users_dest" required>
+						<input type="text" id="autouser2" onchange="getuserid(this)" placeholder="it should user id, but you can search by name" class="autouser" style="width: 65.812%;" name="users_dest" required>
 					</div>
 				</div>
 				<div class="control-group">
