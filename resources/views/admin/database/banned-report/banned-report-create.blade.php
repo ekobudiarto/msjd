@@ -56,7 +56,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users Destination</label>
 					<div class="controls">
-						<input type="text" id="autouser2" onchange="getuserid(this)" placeholder="it should user id, but you can search by name" class="autouser" style="width: 65.812%;" name="users_dest" required>
+						<input type="text" id="autouser2" onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" style="width: 65.812%;" name="users_dest" required>
 					</div>
 				</div>
 				<div class="control-group">
