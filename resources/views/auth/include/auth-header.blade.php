@@ -33,19 +33,18 @@
 				
 					<ul class="nav pull-right">
 						<?php if(Request::url() == url()."/auth/login"){?>
-							<li><a href="/auth/register">Register</a></li>
-							<li><a href="/password/email">Forgot your password?</a></li>
+							<li><a href="{{ url('auth/register') }}">Register</a></li>
+							<li><a href="{{ url('password/email') }}">Forgot your password?</a></li>
 						<?php } ?>
 
 						<?php if(Request::url() == url()."/auth/register"){?>
-							<li><a href="/auth/login">Login</a></li>
-							<li><a href="/password/email">Forgot your password?</a></li>
+							<li><a href="{{ url('auth/login') }}">Login</a></li>
+							<li><a href="{{ url('password/email') }}">Forgot your password?</a></li>
 						<?php } ?>
 
 						<?php if(Request::url() == url()."/password/email"){?>
-							<li><a href="/auth/login">Login</a></li>
-							<li><a href="/auth/register">Register</a></li>
-						<?php } ?>
+							<li><a href="{{ url('auth/login') }}">Login</a></li>
+							<li><a href="{{ url('auth/register') }}">Register</a></li>
 
 					</ul>
 				</div><!-- /.nav-collapse -->
