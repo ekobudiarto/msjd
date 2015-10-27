@@ -26,7 +26,6 @@ Route::get('home', 'HomeController@index');
 		Route::resource('admin/media-manager', 'Admin\database\controller_media_manager');
 		Route::resource('admin/schedule', 'Admin\database\controller_schedule');
 		Route::resource('admin/schedule-type', 'Admin\database\controller_schedule_type');
-		Route::resource('admin/users', 'Admin\database\controller_users');
 		Route::resource('admin/users-group', 'Admin\database\controller_users_group');
 		Route::resource('admin/users-status', 'Admin\database\controller_users_status');
 		Route::resource('admin/hashtag', 'Admin\database\controller_hashtag');
