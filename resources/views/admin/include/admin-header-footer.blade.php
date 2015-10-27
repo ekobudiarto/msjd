@@ -12,11 +12,6 @@
     <link type="text/css" href="{{ URL::asset('public/css-js/css/theme.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ URL::asset('public/css-js/images/icons/css/font-awesome.css') }}" rel="stylesheet">
 
-    <link type="text/css" href="{{ URL::asset('public/css-js/jquery-ui-1.11.4/jquery-ui.min.css') }}" rel="stylesheet">
-    <script src="{{ URL::asset('public/css-js/scripts/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
-    <script src="{{ URL::asset('public/css-js/jquery-ui-1.11.4/jquery-ui.js') }}" type="text/javascript"></script> 
-   
-        
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
@@ -69,13 +64,13 @@
                                         <li><a href="<?PHP echo url()?>/admin/banned-report"><i class="icon-inbox"></i>Banned Report </a></li>
                                         <li><a href="<?PHP echo url()?>/admin/content"><i class="icon-inbox"></i>Content </a></li>
                                         <li><a href="<?PHP echo url()?>/admin/content-category"><i class="icon-inbox"></i>Content Category </a></li>
-                                        <li><a href="<?PHP echo url()?>/admin/hashtag"><i class="icon-inbox"></i>hashtag</a></li>
                                         <li><a href="<?PHP echo url()?>/admin/media-manager"><i class="icon-inbox"></i>Media Manager </a></li>
                                         <li><a href="<?PHP echo url()?>/admin/schedule"><i class="icon-inbox"></i>Schedule </a></li>
                                         <li><a href="<?PHP echo url()?>/admin/schedule-type"><i class="icon-inbox"></i>Schedule Type</a></li>
                                         <li><a href="<?PHP echo url()?>/admin/users"><i class="icon-inbox"></i>Users </a></li>
                                         <li><a href="<?PHP echo url()?>/admin/users-group"><i class="icon-inbox"></i>Users Group </a></li>
                                         <li><a href="<?PHP echo url()?>/admin/users-status"><i class="icon-inbox"></i>Users Status </a></li>
+                                        <li><a href="<?PHP echo url()?>/admin/users-detail"><i class="icon-inbox"></i>Users Detail </a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -101,6 +96,8 @@
         </div>
 
 
+        <script src="{{ URL::asset('public/css-js/scripts/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
+        <script src="{{ URL::asset('public/css-js/scripts/jquery-ui-1.10.1.custom.min.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('public/css-js/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('public/css-js/scripts/flot/jquery.flot.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('public/css-js/scripts/flot/jquery.flot.resize.js') }}" type="text/javascript"></script>
