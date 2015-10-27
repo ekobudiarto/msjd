@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_banned_report;
+use App\Library\authentication;
 
 class controller_admin_dashboard extends Controller
 {

@@ -54,7 +54,7 @@
             <tbody>
                 @foreach($data['media-manager'] as $key => $value)
                     <tr>
-                        <td>{{ $value->media_manager_id }}</td>
+                        <td>{{ $key + 1 }}</td>
                         <td>{{ $value->media_manager_title }}</td>
                         <td>{{ $value->media_manager_type }}</td>
                         <td>{{ $value->media_manager_filename }}</td>

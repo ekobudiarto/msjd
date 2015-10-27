@@ -51,7 +51,7 @@
             <tbody>
                 @foreach($data['content_category'] as $key => $value)
                     <tr>
-                        <td>{{ $value->content_category_id }}</td>
+                        <td>{{ $key + 1 }}</td>
                         <td>{{ $value->content_category_title }}</td>
                             <td>{{ $value->content_category_description }}</td>
                         <td>{{ $value->media_manager_title }}</td>

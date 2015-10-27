@@ -57,7 +57,7 @@
             <tbody>
                 @foreach($data['content'] as $key => $value)
                     <tr>
-                        <td>{{ $value->content_id }}</td>
+                        <td>{{ $key + 1 }}</td>
                         <td>{{ $value->content_title }}</td>
                         <td>{{ $value->content_media_id }}</td>
                         <td> @if( $value->content_publish == 1 )

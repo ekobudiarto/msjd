@@ -54,7 +54,7 @@
             <tbody>
                 @foreach($data['banned_report'] as $key => $value)
                     <tr>
-                        <td>{{ $value->banned_report_id }}</td>
+                        <td>{{ $key + 1 }}</td>
                         <td>{{ $value->users_name_by }}</td>
                         <td>{{ $value->content_title }}</td>
                         <td>{{ $value->users_name_dest }}</td>

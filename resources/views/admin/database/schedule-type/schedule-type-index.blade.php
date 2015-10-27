@@ -48,7 +48,7 @@
             <tbody>
                 @foreach($data['schedule-type'] as $key => $value)
                     <tr>
-                        <td>{{ $value->schedule_type_id }}</td>
+                        <td>{{ $key + 1 }}</td>
                         <td>{{ $value->schedule_type_name }}</td>
                         <td>{{ $value->media_manager_id }}</td>
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->

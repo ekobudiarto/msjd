@@ -31,6 +31,9 @@
             width="100%">
             <thead>
                 <tr>
+                	<th>
+                		No
+                	</th>
                     <th>
                         Schedule Title
                     </th>
@@ -57,6 +60,7 @@
             <tbody>
                 @foreach($data['schedule'] as $key => $value)
                     <tr>
+                    	<td>{{ $key + 1 }}</td>
                         <td>{{ $value->schedule_title }}</td>
 						<td>{{ $value->schedule_type_name }}</td>
                         <td>{{ $value->schedule_date_start }}</td>

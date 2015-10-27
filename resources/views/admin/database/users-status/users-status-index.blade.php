@@ -49,7 +49,7 @@
             <tbody>
                 @foreach($data['users_status'] as $key => $value)
                     <tr>
-                        <td>{{ $value->users_status_id }}</td>
+                        <td>{{ $key + 1 }}</td>
                         <td>{{ $value->users_status_title }}</td>
                         <td>{{ $value->users_status_desc }}</td>
 

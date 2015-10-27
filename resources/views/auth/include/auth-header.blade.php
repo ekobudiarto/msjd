@@ -26,7 +26,7 @@
 				</a>
 
 			  	<a class="brand" href="index.html">
-			  		MasjidApps
+			  		Muslim Daily
 			  	</a>
 
 				<div class="nav-collapse collapse navbar-inverse-collapse">
