@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_banned_report;
 use DB;
+use App\Library\authentication;
+use Auth;
 
 class controller_banned_report extends Controller
 {
@@ -15,6 +17,28 @@ class controller_banned_report extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $compare = authentication::cekAdmin();
+        if($compare){
+            echo "berhasil";
+        }
+        else{
+            echo "gagal";
+        }
+        die();
+
+        // $user_id = Auth::id();
+        // //$email = Auth::user()->email;
+        // $cek = DB::table('table_users_detail')->where('users_id', '=', $user_id)->first();
+        // if($cek->users_group_id != 1 || $cek->users_group_id != 2 ){
+            
+        // }    
+        
+
+    }
+
     public function index()
     {
         

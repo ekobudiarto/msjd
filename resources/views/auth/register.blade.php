@@ -16,7 +16,7 @@
 							</ul>
 						</div>
 					@endif
-					<form class="form-vertical" role="form" method="POST" action="{{ url('auth/login') }}">
+					<form class="form-vertical" role="form" method="POST" action="{{ url('auth/register') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="module-head">
