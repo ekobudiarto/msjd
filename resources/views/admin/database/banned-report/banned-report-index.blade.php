@@ -24,7 +24,18 @@
 
     <div class="module-head">
         <b>Banned Report</b>
-		{!! Html::link('admin/banned-report/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+        {!! Html::link('admin/banned-report/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+    </div>
+    <div>
+        <form action="{{ url("admin/banned-report/search") }}" method="get">
+            <select name="select">
+                <option value="content_title">content</option>
+                <option value="users_name_by">user</option>
+                <option value="users_name_dest">user Target</option>
+            </select>
+            <input type="text" name="query" />
+            <input type="submit" value="Search" />
+        </form>
     </div>
     <div class="module-body">
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"

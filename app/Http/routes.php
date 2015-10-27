@@ -19,7 +19,12 @@ Route::get('home', 'HomeController@index');
 //admin
 	//dashboard
 		Route::resource('admin/dashboard', 'Admin\dashboard\controller_admin_dashboard');
+
 	//database
+		//for search
+		Route::get('admin/banned-report/search', 'Admin\database\controller_search@getSearchBannedReport');
+
+		//for all table
 		Route::resource('admin/banned-report', 'Admin\database\controller_banned_report');
 		Route::resource('admin/content', 'Admin\database\controller_content');
 		Route::resource('admin/content-category', 'Admin\database\controller_content_category');
