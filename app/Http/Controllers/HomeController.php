@@ -1,4 +1,7 @@
-<?php namespace App\Http\Controllers;
+<?php 
+namespace App\Http\Controllers;
+use DB;
+use Auth;
 
 class HomeController extends Controller {
 
@@ -30,7 +33,32 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('admin/dashboard/dashboard');
+			$user_id = Auth::id();
+			$cek = DB::table('table_users_detail')->where('users_id', '=', $user_id)->first();
+	        if($cek->users_group_id == 1 ){
+	        	return redirect('admin/dashboard');    
+	        }
+	        else if($cek->users_group_id == 2 ){
+	        	return redirect('admin/dashboard'); 
+	        }
+	        else if($cek->users_group_id == 3 ){
+	        	echo "You are logged in as Content Writer. Your page is under construction";
+	        	die();
+	        }
+	        else if($cek->users_group_id == 4 ){
+	        	echo "You are logged in as Jamaah. Your page is under construction";
+	        	die();
+	        }
+	        else if($cek->users_group_id == 5 ){
+	        	echo "You are logged in as Ustadz. Your page is under construction";
+	        	die();
+	        }
+	        else if($cek->users_group_id == 6 ){
+	        	echo "You are logged in as Masjid. Your page is under construction";
+	        	die();
+	        }
+
+				
 	}
 
 }

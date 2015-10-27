@@ -19,7 +19,7 @@ class autocomplete extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        echo "haha";
+        echo "not a function";
         die();
     }
 
