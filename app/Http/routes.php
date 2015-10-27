@@ -67,3 +67,6 @@ Route::group(array('prefix'=>'api/v1'), function(){
 //for auto complete 
 Route::get('admin/autocomplete/getusername', 'Admin\database\autocomplete@getUsername');
 Route::get('admin/autocomplete/getcontenttitle', 'Admin\database\autocomplete@getContentTitle');
+Route::get('admin/autocomplete/getmediaid', 'Admin\database\autocomplete@getMediaId');
+Route::get('admin/autocomplete/getcategoryid', 'Admin\database\autocomplete@getCategoryId');
+Route::get('admin/autocomplete/getscheduletype', 'Admin\database\autocomplete@getScheduleType');

@@ -60,19 +60,20 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Media ID</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="content_media_id" placeholder="text">{{ $value->content_media_id }}</textarea>
+						<input type="text" class="automedia" onchange="getidAll(this)" placeholder="it should media id, but you can search by name media" style="width: 65.812%;">
+						<input type="text" class="tempmediaid" name="content_media_id" value="{{ $value->content_media_id }}" style="width: 65.812%;margin-top:10px;" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content users uploader</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="integer" class="span8" name="content_users_uploader" value="{{ $value->content_users_uploader }}">
+						<input type="text" id="autouser"  onchange="getid(this)" value="{{ $value->content_users_uploader }}" placeholder="it should user id, but you can search by name" class="autouser" name="content_users_uploader" style="width: 65.812%;" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Last Editor</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="integer" class="span8" name="content_last_editor" value="{{ $value->content_last_editor }}">
+						<input type="text" id="autouser2"  onchange="getid(this)" value="{{ $value->content_last_editor }}" placeholder="it should user id, but you can search by name" class="autouser" name="content_last_editor" style="width: 65.812%;" required>
 					</div>
 				</div>
 				<div class="control-group">
@@ -96,13 +97,13 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Category</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="integer" class="span8" name="content_category_id" value="{{ $value->content_category_id }}">
+						<input type="text" id="autocontencategory"  onchange="getid(this)" value="{{ $value->content_category_id }}" placeholder="you can search by content category name" class="autocontencategory" name="content_category_id" style="width: 65.812%;" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content repost from</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="integer" class="span8" name="content_repost_from" value="{{ $value->content_repost_from }}">
+						<input type="text" id="autoconten"  onchange="getid(this)" value="{{ $value->content_repost_from }}" placeholder="it should content id, but you can search by name" class="autocontent" name="content_repost_from" style="width: 65.812%;" required>
 					</div>
 				</div>
 				<div class="control-group">
@@ -135,5 +136,58 @@
 			@endforeach
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('input:text').bind({
 
+		});
+	
+		$(".automedia").autocomplete({
+			minLength:1,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getmediaid") }}',
+		});
+		$(".autocontent").autocomplete({
+			minLength:1,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getcontenttitle") }}',
+		});
+		$(".autouser").autocomplete({
+			minLength:1,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getusername") }}',
+		});
+		$(".autocontencategory").autocomplete({
+			minLength:1,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getcategoryid") }}',
+		});
+		
+	});
+	function getid(obj){
+    
+		var valuee = obj.value;
+		var res = valuee.split(" ");
+		var nilai = res[0].replace('[','');
+		var nilai = nilai.replace(']','');
+		obj.value = nilai;
+	}
+	
+	function getidAll(obj){
+		var valuee = obj.value;
+		var res = valuee.split(" ");
+		var nilai = res[0].replace('[','');
+		var nilai = nilai.replace(']','');
+		var temp = $(".tempmediaid").val();
+		if (temp == "") {
+            $(".tempmediaid").val(nilai);
+        }
+		else{
+			$(".tempmediaid").val(temp+","+nilai);
+		}
+		obj.value = "";
+	}
+
+
+</script>
 @endsection

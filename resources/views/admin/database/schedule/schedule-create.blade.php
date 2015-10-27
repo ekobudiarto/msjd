@@ -46,36 +46,31 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Type</label>
 					<div class="controls">
-						<select class="span8" name="schedule_type_id">
-							<option value="">---pilih type---</option>
-						 	@foreach($data['schedule_type'] as $key => $value)
-						 	<option value="{{ $value->schedule_type_id }}">{{ $value->schedule_type_name }}</option>
-						 	@endforeach
-						</select>
+						<input type="text" id="autoscheduletype" name="schedule_type_id" class="autoscheduletype" onchange="getid(this)" placeholder="it should schedule type id, but you can search by name" style="width: 65.812%;" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Users Creator</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="integer" class="span8" name="schedule_users_creator">
+						<input type="text" id="autouser" name="schedule_users_creator" onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" style="width: 65.812%;" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Users Source</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="integer" class="span8" name="schedule_users_source">
+						<input type="text" id="autouser2" name="schedule_users_source" onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" style="width: 65.812%;" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Date Start</label>
 					<div class="controls">
-						<input type="date" id="basicinput" placeholder="datetime" class="span8" name="schedule_date_start">
+						<input type="date" id="basicinput" placeholder="datetime" class="span8" name="schedule_date_start" value="<?php echo date('Y-m-d h:i:s');?>">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Date End</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="datetime" class="span8" name="schedule_date_end">
+						<input type="text" id="basicinput" placeholder="datetime" class="span8" name="schedule_date_end" value="<?php echo date('Y-m-d h:i:s');?>">
 					</div>
 				</div>
 				<div class="control-group">
@@ -93,7 +88,8 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Media ID</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" placeholder="text" name="schedule_media_id"></textarea>
+						<input type="text" class="automedia" onchange="getidAll(this)" placeholder="it should media id, but you can search by name media" style="width: 65.812%;">
+						<input type="text" class="tempmediaid" name="schedule_media_id" style="width: 65.812%;margin-top:10px;" required>
 					</div>
 				</div>
 				<div class="control-group">
@@ -111,5 +107,64 @@
 			{!! Form::close() !!}
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('input:text').bind({
+
+		});
+	
+		$(".automedia").autocomplete({
+			minLength:1,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getmediaid") }}',
+		});
+		$(".autocontent").autocomplete({
+			minLength:1,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getcontenttitle") }}',
+		});
+		$(".autouser").autocomplete({
+			minLength:1,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getusername") }}',
+		});
+		$(".autocontencategory").autocomplete({
+			minLength:1,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getcategoryid") }}',
+		});
+		$(".autoscheduletype").autocomplete({
+			minLength:1,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getscheduletype") }}',
+		});
+		
+	});
+	function getid(obj){
+    
+		var valuee = obj.value;
+		var res = valuee.split(" ");
+		var nilai = res[0].replace('[','');
+		var nilai = nilai.replace(']','');
+		obj.value = nilai;
+	}
+	
+	function getidAll(obj){
+		var valuee = obj.value;
+		var res = valuee.split(" ");
+		var nilai = res[0].replace('[','');
+		var nilai = nilai.replace(']','');
+		var temp = $(".tempmediaid").val();
+		if (temp == "") {
+            $(".tempmediaid").val(nilai);
+        }
+		else{
+			$(".tempmediaid").val(temp+","+nilai);
+		}
+		obj.value = "";
+	}
+
+
+</script>
 
 @endsection

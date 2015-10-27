@@ -46,6 +46,9 @@
                     <th>
                         Category
                     </th>
+					<th>
+                        Content Repost From
+                    </th>
                     <th>
                         #
                     </th>
@@ -63,7 +66,7 @@
                                No
                             @endif</td>
                         <td>{{ $value->content_category_title }}</td>
-
+						<td>{{ $value->content_repost }}</td>
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>
                             <a class="btn btn-small btn-success" href="{{ URL('admin/content/' . $value->content_id) }}">View</a>

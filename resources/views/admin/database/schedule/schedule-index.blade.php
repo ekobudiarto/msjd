@@ -35,16 +35,19 @@
                         Schedule Title
                     </th>
                     <th>
+                        Schedule Type Name
+                    </th>
+					<th>
                         Schedule Date Start
                     </th>
                     <th>
                         Schedule Date End
                     </th>
                     <th>
-                        Schedule Description
+                        Schedule Media Name
                     </th>
                     <th>
-                        Schedule Headline
+                        Schedule Users Creator
                     </th>
                     <th>
                         #
@@ -55,10 +58,11 @@
                 @foreach($data['schedule'] as $key => $value)
                     <tr>
                         <td>{{ $value->schedule_title }}</td>
+						<td>{{ $value->schedule_type_name }}</td>
                         <td>{{ $value->schedule_date_start }}</td>
                         <td>{{ $value->schedule_date_end }}</td>
-                        <td>{{ $value->schedule_description }}</td>
-                        <td>{{ $value->schedule_headline }}</td>
+                        <td>{{ $value->schedule_media_id }}</td>
+                        <td>{{ $value->users_name_creator }}</td>
 
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>

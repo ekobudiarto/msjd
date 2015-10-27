@@ -18,10 +18,15 @@ class controller_schedule extends Controller
      */
     public function index()
     {
-        
          $data=array(
             'schedule' => table_schedule::latest('schedule_id')->paginate(10),
-            'schedule_type' => table_schedule_type::select('schedule_type_id','schedule_type_name')->get(),
+            'schedule' => DB::table('table_schedule as sch')
+                                    ->select('sch.*',DB::raw('(select users_name from table_users_detail where users_id = sch.schedule_users_creator) as users_name_creator'),
+                                             DB::raw('(select users_name from table_users_detail where users_id = sch.schedule_users_source) as users_name_source'),
+                                             DB::raw('(select schedule_type_name from table_schedule_type where schedule_type_id = sch.schedule_type_id) as schedule_type_name'),
+                                             DB::raw('(select media_manager_title from table_media_manager where media_manager_id = sch.schedule_media_id) as media_manager_title')
+                                            )
+                                    ->paginate(10),
          );
 
 
