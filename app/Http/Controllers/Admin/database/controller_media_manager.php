@@ -4,11 +4,13 @@
 namespace App\Http\Controllers\Admin\database;
 
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_media_manager;
 use App\Library\authentication;
 use Auth;
+use Validator;
 
 class controller_media_manager extends Controller
 {
@@ -51,10 +53,43 @@ class controller_media_manager extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function test()
+    {
+        echo 'haha';
+        die();
+    }
     public function store(Request $request)
     {
-       
-        table_media_manager::create(Request::all());
+        
+        $title = input::get('media_manager_title');
+        $publish = input::get('media_manager_publish');
+        
+        if (Input::hasFile('file'))
+        {
+
+            $rules = array('file' => 'mimes:pdf,png,jpeg,jpg,bmp,doc,docx,xls,xlsx,csv,mp4,flv');
+            $validator = Validator::make(input::all(), $rules);
+            if ($validator->fails()) {
+                return redirect('admin/media-manager')->with('failed', 'file that allowed to upload are pdf, png, jpeg, jpg, bmp, doc, docx, xls, xlsx, csv, mp4, or flv ');
+            }
+            else{
+                $file     = Input::file('file');
+                $filename = date("Y-m-d").'-'.str_random(8).'-'.$file->getClientOriginalName();
+                $destinationPath = 'UPLOADED';
+                $file->move($destinationPath, $filename);
+                $type = $file->getClientOriginalExtension();
+                
+                $field_media_manager = array(
+                    'media_manager_title' => $title,
+                    'media_manager_type' => $type,
+                    'media_manager_filename' => $filename,
+                    'media_manager_publish' => $publish,
+                );
+                $user = table_media_manager::create($field_media_manager);
+            }
+   
+        }
+        
         return redirect('admin/media-manager')->with('success', 'Data berhasil ditambahkan!');
     }
 

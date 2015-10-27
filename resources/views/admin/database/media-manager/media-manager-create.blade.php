@@ -34,7 +34,7 @@
 			    </ul>
 			@endif
 			
-			{!! Form::open(array('url' => 'admin/media-manager', 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
+			{!! Form::open(array('url' => 'admin/media-manager', 'files' => false, 'class' => 'form-horizontal row-fluid', 'enctype' => 'multipart/form-data')) !!}
 			
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
@@ -45,6 +45,12 @@
 					</div>
 				</div>
 				<div class="control-group">
+					<label class="control-label" for="basicinput">Upload File</label>
+					<div class="controls">
+						<input type="file" id="basicinput" placeholder="text" class="span8" name="file">
+					</div>
+				</div>
+				<!-- <div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager Type</label>
 					<div class="controls">
 						<input type="text" id="basicinput" placeholder="text" class="span8" name="media_manager_type">
@@ -55,7 +61,7 @@
 					<div class="controls">
 						<textarea class="span8" rows="5" name="media_manager_filename"></textarea>
 					</div>
-				</div>
+				</div> -->
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager publish</label>
 					<div class="controls">
