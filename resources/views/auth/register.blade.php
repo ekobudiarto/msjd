@@ -16,7 +16,7 @@
 							</ul>
 						</div>
 					@endif
-					<form class="form-vertical" role="form" method="POST" action="/auth/register">
+					<form class="form-vertical" role="form" method="POST" action="{{ url('auth/login') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 						<div class="module-head">
@@ -66,12 +66,4 @@
 			</div>
 		</div>
 	</div><!--/.wrapper-->
-
-	<div class="footer">
-		<div class="container">
-			 
-
-			<b class="copyright">&copy; 2015 Mesjid Apps </b> All rights reserved.
-		</div>
-	</div>
 @endsection

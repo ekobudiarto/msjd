@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Masjid Apps</title>
+	<title>MasjidApps</title>
 
 	<!-- template -->
 	<link type="text/css" href="{{ URL::asset('public/css-js/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -26,7 +26,7 @@
 				</a>
 
 			  	<a class="brand" href="index.html">
-			  		Mesjid Apps
+			  		MasjidApps
 			  	</a>
 
 				<div class="nav-collapse collapse navbar-inverse-collapse">
@@ -45,6 +45,7 @@
 						<?php if(Request::url() == url()."/password/email"){?>
 							<li><a href="{{ url('auth/login') }}">Login</a></li>
 							<li><a href="{{ url('auth/register') }}">Register</a></li>
+						<?php } ?>
 
 					</ul>
 				</div><!-- /.nav-collapse -->
@@ -53,6 +54,14 @@
 	</div><!-- /navbar -->
 
 	@yield('content')
+
+	<div class="footer">
+		<div class="container">
+			 
+
+			<b class="copyright">&copy; 2015 MasjidApps </b> All rights reserved.
+		</div>
+	</div>
 
 	<!-- Scripts -->
 	<script src="{{ URL::asset('public/css-js/scripts/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
