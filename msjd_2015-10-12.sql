@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 27, 2015 at 04:48 AM
+-- Generation Time: Oct 27, 2015 at 06:47 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.6.14
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `table_banned_report` (
   `users_dest` int(11) NOT NULL,
   `banned_report_message` text NOT NULL,
   PRIMARY KEY (`banned_report_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `table_banned_report`
@@ -83,7 +83,14 @@ CREATE TABLE IF NOT EXISTS `table_banned_report` (
 INSERT INTO `table_banned_report` (`banned_report_id`, `users_by`, `content_id`, `users_dest`, `banned_report_message`) VALUES
 (1, 26, 2, 0, '3'),
 (2, 1, 2, 4, '3'),
-(10, 27, 1, 26, '');
+(10, 27, 1, 26, ''),
+(11, 26, 1, 27, 'test4'),
+(12, 26, 2, 27, 'test5'),
+(13, 26, 1, 27, 'test6'),
+(14, 27, 1, 26, 'test7'),
+(15, 27, 2, 26, 'test8'),
+(16, 27, 2, 26, 'test9'),
+(17, 26, 1, 27, 'test10');
 
 -- --------------------------------------------------------
 
@@ -107,14 +114,15 @@ CREATE TABLE IF NOT EXISTS `table_content` (
   `hashtag_id` text NOT NULL,
   `content_repost_from` int(11) NOT NULL,
   PRIMARY KEY (`content_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `table_content`
 --
 
 INSERT INTO `table_content` (`content_id`, `content_title`, `content_headline`, `content_detail`, `content_media_id`, `content_users_uploader`, `content_last_editor`, `content_date_insert`, `content_date_update`, `content_date_expired`, `content_publish`, `content_category_id`, `hashtag_id`, `content_repost_from`) VALUES
-(1, 'Content 1', '', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0', 1, '', 0);
+(1, 'Content 1', '', '', '', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0', 1, '', 0),
+(2, 'Content 2', 'Content 2', 'Content 2', '1', 26, 26, '2015-10-27 05:05:24', '2015-10-27 05:05:24', '2015-10-30 05:05:24', '1', 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -251,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `table_users_detail` (
   `users_status_id` int(11) NOT NULL,
   `users_password_recovery` text NOT NULL,
   PRIMARY KEY (`users_detail_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `table_users_detail`
@@ -259,7 +267,8 @@ CREATE TABLE IF NOT EXISTS `table_users_detail` (
 
 INSERT INTO `table_users_detail` (`users_detail_id`, `users_id`, `users_name`, `users_fullname`, `users_password`, `users_group_id`, `users_email`, `users_telp`, `users_json_following`, `users_description`, `media_manager_id`, `users_avatar`, `users_status_id`, `users_password_recovery`) VALUES
 (2, 26, 'ubay', 'bayu', '', 6, 'sdfsfddffsfata@data.com', '', '', '', '', 0, 0, ''),
-(3, 27, 'ubayu', 'bayu', '', 6, 'data@data.com', '', '26,25,', '', '', 0, 0, '');
+(3, 27, 'ubayu', 'bayu', '', 6, 'data@data.com', '', '26,25,', '', '', 0, 0, ''),
+(4, 28, 'admin', '', '', 1, '', '', '', '', '', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -326,15 +335,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'Rheza2', 'admin@admin.com', '$2y$10$jE84xQoX/HjmXa5lCOKb5OTMOXoINK/QcBanjXF6NYc9bOPnend4i', 'n7aXJrTRqpeLeQFnRtyyi4lHTLslUXgSfvyxPZs0wJeoQt9U8A1gmTxqlMPl', '2015-10-15 09:37:38', '2015-10-15 09:44:29'),
-(27, 'ubay', 'data@data.com', '$2y$10$nipTEi5yPMPtJiWBdHxidONj6CItXq2KyGhNwA7ihisYqM6vNqiL6', NULL, '2015-10-21 06:49:57', '2015-10-21 06:49:57');
+(27, 'ubay', 'data@data.com', '$2y$10$nipTEi5yPMPtJiWBdHxidONj6CItXq2KyGhNwA7ihisYqM6vNqiL6', NULL, '2015-10-21 06:49:57', '2015-10-21 06:49:57'),
+(28, 'admin', 'admin@admin.com', '$2y$10$lsk6HPVexV0ymokWaPYMI./Fhgodlrg7jQLRnWghMIgZoL57P9PMS', NULL, '2015-10-27 10:27:55', '2015-10-27 10:27:55');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
