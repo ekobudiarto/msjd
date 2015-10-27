@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_content;
 use DB;
+use App\Library\authentication;
+use Auth;
 
 class controller_content extends Controller
 {

@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Models\table_schedule;
 use App\Models\table_schedule_type;
 use DB;
+use App\Library\authentication;
+use Auth;
 
 class controller_schedule extends Controller
 {

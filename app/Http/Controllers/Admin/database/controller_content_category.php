@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Models\table_content_category;
 use DB;
 use App\Models\table_media_manager;
+use App\Library\authentication;
+use Auth;
 
 class controller_content_category extends Controller
 {

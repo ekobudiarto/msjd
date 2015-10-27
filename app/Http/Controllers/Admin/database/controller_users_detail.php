@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_users_detail;
+use App\Library\authentication;
+use Auth;
 
 class controller_users_detail extends Controller
 {

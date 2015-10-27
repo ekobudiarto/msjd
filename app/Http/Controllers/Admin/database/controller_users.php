@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\table_users;
+use App\Library\authentication;
+use Auth;
 
 class controller_users extends Controller
 {

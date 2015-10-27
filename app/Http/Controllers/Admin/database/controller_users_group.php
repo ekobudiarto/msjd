@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_users_group;
+use App\Library\authentication;
+use Auth;
 
 class controller_users_group extends Controller
 {

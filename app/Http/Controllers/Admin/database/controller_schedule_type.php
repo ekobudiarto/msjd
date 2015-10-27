@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_schedule_type;
+use App\Library\authentication;
+use Auth;
 
 class controller_schedule_type extends Controller
 {

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_media_manager;
+use App\Library\authentication;
+use Auth;
 
 class controller_media_manager extends Controller
 {
