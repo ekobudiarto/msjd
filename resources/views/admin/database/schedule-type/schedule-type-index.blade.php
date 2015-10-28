@@ -34,7 +34,7 @@
                 <option value="media_manager_title">Media Manager</option>
             </select>
             <input type="text" name="query" />
-            <input type="submit" value="Search" />
+            <input type="submit" class="btn" style="margin-bottom:10px" value="Search" />
         </form>
         </div>
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"
