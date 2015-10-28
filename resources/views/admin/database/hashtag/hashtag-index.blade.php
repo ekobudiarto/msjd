@@ -27,6 +27,15 @@
 		{!! Html::link('admin/hashtag/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
+        <div>
+        <form action="{{ url("admin/hashtag/search") }}" method="get">
+            <select name="select">
+                <option value="hashtag_title">Hashtag</option>
+            </select>
+            <input type="text" name="query" />
+            <input type="submit" class="btn" style="margin-bottom:10px" value="Search" />
+        </form>
+        </div>
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"
             width="100%">
             <thead>

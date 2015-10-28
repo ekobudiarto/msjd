@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', 'HomeController@index');
 Route::get('home', 'HomeController@index');
 
 //admin
@@ -24,6 +25,7 @@ Route::get('home', 'HomeController@index');
 		Route::get('admin/banned-report/search', 'Admin\database\controller_search@getSearchBannedReport');
 		Route::get('admin/content/search', 'Admin\database\controller_search@getSearchContent');
 		Route::get('admin/content-category/search', 'Admin\database\controller_search@getSearchContentCategory');
+		Route::get('admin/hashtag/search', 'Admin\database\controller_search@getSearchHashtag');
 		Route::get('admin/media-manager/search', 'Admin\database\controller_search@getSearchMediaManager');
 		Route::get('admin/schedule/search', 'Admin\database\controller_search@getSearchSchedule');
 		Route::get('admin/schedule-type/search', 'Admin\database\controller_search@getSearchScheduleType');
@@ -34,12 +36,12 @@ Route::get('home', 'HomeController@index');
 		Route::resource('admin/banned-report', 'Admin\database\controller_banned_report');
 		Route::resource('admin/content', 'Admin\database\controller_content');
 		Route::resource('admin/content-category', 'Admin\database\controller_content_category');
+		Route::resource('admin/hashtag', 'Admin\database\controller_hashtag');
 		Route::resource('admin/media-manager', 'Admin\database\controller_media_manager');
 		Route::resource('admin/schedule', 'Admin\database\controller_schedule');
 		Route::resource('admin/schedule-type', 'Admin\database\controller_schedule_type');
 		Route::resource('admin/users-group', 'Admin\database\controller_users_group');
 		Route::resource('admin/users-status', 'Admin\database\controller_users_status');
-		Route::resource('admin/hashtag', 'Admin\database\controller_hashtag');
 		Route::resource('admin/users-detail', 'Admin\database\controller_users_detail');
 
 

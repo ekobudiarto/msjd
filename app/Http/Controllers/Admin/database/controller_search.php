@@ -89,6 +89,20 @@ class controller_search extends Controller
 
         return view('admin.database.content-category.content-category-index', compact('data'));
     }
+    public function getSearchHashtag()
+    {
+        $select = input::get('select');
+        $query = input::get('query');
+        
+        $query =  DB::select("select * FROM `table_hashtag`
+                            where ".$select." like '%".$query."%' limit 10 offset 0");
+        
+        $data = array(
+            'hashtag' => new \Illuminate\Pagination\LengthAwarePaginator($query, count($query), 2)
+        );
+
+        return view('admin.database.hashtag.hashtag-index', compact('data'));
+    }
     
     public function getSearchMediaManager()
     {
