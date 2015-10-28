@@ -32,7 +32,6 @@
             <select name="select">
                 <option value="media_manager_title">Title</option>
                 <option value="media_manager_type">Type</option>
-                <option value="media_manager_filename">Filename</option>
             </select>
             <input type="text" name="query" />
             <input type="submit" class="btn" style="margin-bottom:10px" value="Search" />
@@ -52,7 +51,7 @@
                         Type
                     </th>
                     <th>
-                        Filename
+                        file
                     </th>
                     <th>
                         Publish
@@ -67,8 +66,16 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $value->media_manager_title }}</td>
-                        <td>{{ $value->media_manager_type }}</td>
-                        <td>{{ $value->media_manager_filename }}</td>
+                        <td>{{ $media = $value->media_manager_type }}</td>
+                        <td> 
+                        <center>
+                            @if($media == 'png' || $media == 'jpeg'|| $media == 'jpg' )
+                            <img src="{{url()}}/UPLOADED/{{ $value->media_manager_filename }}" width="100px" />
+                            @else
+                                <a href="{{url()}}/UPLOADED/{{ $value->media_manager_filename }}" class="btn btn-success">Download</a>
+                            @endif
+                            </center>
+                        </td>
                         <td>
                                 @if( $value->media_manager_publish == 1 )
                                     Yes

@@ -89,6 +89,9 @@ class controller_media_manager extends Controller
             }
    
         }
+        else{
+           return redirect('admin/media-manager')->with('failed', 'You did not select anything to upload!'); 
+        }
         
         return redirect('admin/media-manager')->with('success', 'Data berhasil ditambahkan!');
     }
