@@ -67,10 +67,10 @@ class controller_media_manager extends Controller
         if (Input::hasFile('file'))
         {
 
-            $rules = array('file' => 'mimes:pdf,png,jpeg,jpg,bmp,doc,docx,xls,xlsx,csv,mp4,flv');
+            $rules = array('file' => 'mimes:pdf,png,jpeg,jpg,bmp,doc,docx,xls,xlsx,csv,mp4,mp3,flv,');
             $validator = Validator::make(input::all(), $rules);
             if ($validator->fails()) {
-                return redirect('admin/media-manager')->with('failed', 'file that allowed to upload are pdf, png, jpeg, jpg, bmp, doc, docx, xls, xlsx, csv, mp4, or flv ');
+                return redirect('admin/media-manager')->with('failed', 'file that allowed to upload are pdf, png, jpeg, jpg, bmp, doc, docx, xls, xlsx, csv, mp4, mp3, or flv ');
             }
             else{
                 $file     = Input::file('file');
