@@ -21,7 +21,6 @@
     </div>
     @endif
 
-
     <div class="module-head">
         <b>Banned Report</b>
         {!! Html::link('admin/banned-report/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}

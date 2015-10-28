@@ -4,19 +4,13 @@ namespace App\Http\Controllers\Admin\database;
 
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Library\authentication;
 use Auth;
-use App\Models\table_banned_report;
-use App\Models\table_content;
-use App\Models\table_content_category;
-use App\Models\table_media_manager;
-use App\Models\table_schedule;
-use App\Models\table_schedule_type;
-use App\Models\table_users_group;
-use App\Models\table_users_status;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class controller_search extends Controller
 {
@@ -34,10 +28,11 @@ class controller_search extends Controller
 
     public function getSearchBannedReport()
     {
+
         $select = input::get('select');
-        $query = input::get('query');
+        $query = input::get('query');      
         
-        $query =  DB::select("select * FROM
+        $applicants =  DB::select("select * FROM
                             (SELECT `br`.*, 
                             (select users_name from table_users_detail where users_id = br.users_by) as users_name_by, 
                             (select users_name from table_users_detail where users_id = br.users_dest) as users_name_dest, 
@@ -45,9 +40,17 @@ class controller_search extends Controller
                             from `table_banned_report` as `br` ) as search
                             where ".$select." like '%".$query."%' limit 10 offset 0");
         
+        $pageNumber = Input::get('page', 1);
+        $perpage = 4;
+        $slice = array_slice($applicants, $perpage * ($pageNumber - 1), $perpage);
+        $applicants = new \Illuminate\Pagination\LengthAwarePaginator($slice, count($applicants), $perpage);
+        $applicants->setPath('search?select='.$select.'&query='.$query.'%%%');
+
         $data = array(
-            'banned_report' => new \Illuminate\Pagination\LengthAwarePaginator($query, count($query), 2)
+            //'banned_report' => new \Illuminate\Pagination\LengthAwarePaginator($query, count($query), 2),
+            'banned_report'   => $applicants
         );
+
 
         return view('admin.database.banned-report.banned-report-index', compact('data'));
     }
