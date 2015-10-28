@@ -41,13 +41,19 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager Title</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="text" class="span8" name="media_manager_title">
+						<input type="text" id="basicinput" placeholder="text" class="span8" name="media_manager_title" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Upload File</label>
 					<div class="controls">
-						<input type="file" id="basicinput" placeholder="text" class="span8" name="file">
+						<select id="type_upload" onchange="javascript:typeUpload()">
+							<option value="file">Upload</option>
+							<option value="link">Link</option>
+						</select>
+						<br/><br/>
+						<input type="file" style="display:block" id="inputfile" placeholder="text" class="span8" name="file">
+						<input type="text" style="display:none" id="inputlink" placeholder="http://linkyourfile.com/yourfile.extension" class="span8" name="media_manager_link">
 					</div>
 				</div>
 				<!-- <div class="control-group">
@@ -78,5 +84,23 @@
 			{!! Form::close() !!}
 	</div>
 </div>
+
+<script type="text/javascript">
+	function typeUpload(){
+		var choose = $('#type_upload').val();
+
+		if(choose == 'file'){
+			$('#inputlink').val('');
+			document.getElementById('inputlink').style.display = 'none';
+			document.getElementById('inputfile').style.display = 'block';
+		}
+		else{
+			$('#inputfile').val('');
+			document.getElementById('inputfile').style.display = 'none';
+			document.getElementById('inputlink').style.display = 'block';
+		}
+		
+	}
+</script>
 
 @endsection

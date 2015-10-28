@@ -63,6 +63,7 @@ class controller_media_manager extends Controller
         
         $title = input::get('media_manager_title');
         $publish = input::get('media_manager_publish');
+        $link = input::get('media_manager_link');
         
         if (Input::hasFile('file'))
         {
@@ -89,8 +90,17 @@ class controller_media_manager extends Controller
             }
    
         }
+        elseif($link != ''){
+            $field_media_manager = array(
+                    'media_manager_title' => $title,
+                    'media_manager_type' => 'url',
+                    'media_manager_filename' => $link,
+                    'media_manager_publish' => $publish,
+            );
+            $user = table_media_manager::create($field_media_manager);
+        }
         else{
-           return redirect('admin/media-manager')->with('failed', 'You did not select anything to upload!'); 
+            return redirect('admin/media-manager')->with('failed', 'You did not select anything to upload!'); 
         }
         
         return redirect('admin/media-manager')->with('success', 'Data berhasil ditambahkan!');

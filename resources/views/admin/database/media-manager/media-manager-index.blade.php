@@ -71,9 +71,12 @@
                         <center>
                             @if($media == 'png' || $media == 'jpeg'|| $media == 'jpg' )
                             <img src="{{url()}}/UPLOADED/{{ $value->media_manager_filename }}" width="100px" />
+                            @elseif($media == 'url')
+                                <a href="{{ $value->media_manager_filename }}" target="_blank" class="btn btn-info">Go to Resource</a>
                             @else
                                 <a href="{{url()}}/UPLOADED/{{ $value->media_manager_filename }}" class="btn btn-success">Download</a>
                             @endif
+
                             </center>
                         </td>
                         <td>
