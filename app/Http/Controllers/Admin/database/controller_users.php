@@ -53,7 +53,7 @@ class controller_users extends Controller
         //
         table_users::create($request->all());
 
-        return redirect('users')->with('message', 'Data berhasil ditambahkan!');
+        return redirect('users')->with('message', 'Data saved successfully!');
     }
 
     /**
@@ -94,7 +94,7 @@ class controller_users extends Controller
         $dataUpdate = Request::all();
         $data = table_users::find($id);
         $data->update($dataUpdate);
-        return redirect('users')->with('message', 'Data berhasil dirubah!');
+        return redirect('users')->with('message', 'Data successfully changed!');
     
     }
 
@@ -108,7 +108,7 @@ class controller_users extends Controller
     {
         table_users::find($id)->delete();
 
-        return redirect('users')->with('message', 'Data berhasil dihapus!');
+        return redirect('users')->with('message', 'Data have been removed!');
     
     }
 }

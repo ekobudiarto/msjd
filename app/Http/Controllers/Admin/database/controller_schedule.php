@@ -66,7 +66,7 @@ class controller_schedule extends Controller
     {
        
         table_schedule::create(Request::all());
-        return redirect('admin/schedule')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('admin/schedule')->with('success', 'Data saved successfully!');
     }
 
     /**
@@ -113,7 +113,7 @@ class controller_schedule extends Controller
         $dataUpdate = Request::all();
         $data = table_schedule::find($id);
         $data->update($dataUpdate);
-        return redirect('admin/schedule')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/schedule')->with('message', 'Data successfully changed!');
     
     }
 
@@ -126,7 +126,7 @@ class controller_schedule extends Controller
     public function destroy($id)
     {
         table_schedule::find($id)->delete();
-        return redirect('admin/schedule')->with('warning', 'Data berhasil dihapus!');
+        return redirect('admin/schedule')->with('warning', 'Data have been removed!');
     
     }
 }

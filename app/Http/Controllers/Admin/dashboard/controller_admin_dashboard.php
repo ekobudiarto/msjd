@@ -54,7 +54,7 @@ class controller_admin_dashboard extends Controller
     {
        
         table_banned_report::create(Request::all());
-        return redirect('admin/banned-report')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('admin/banned-report')->with('success', 'Data saved successfully!');
     }
 
     /**
@@ -99,7 +99,7 @@ class controller_admin_dashboard extends Controller
         $dataUpdate = Request::all();
         $data = table_banned_report::find($id);
         $data->update($dataUpdate);
-        return redirect('admin/banned-report')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/banned-report')->with('message', 'Data successfully changed!');
     
     }
 
@@ -112,7 +112,7 @@ class controller_admin_dashboard extends Controller
     public function destroy($id)
     {
         table_banned_report::find($id)->delete();
-        return redirect('admin/banned-report')->with('warning', 'Data berhasil dihapus!');
+        return redirect('admin/banned-report')->with('warning', 'Data have been removed!');
     
     }
 }

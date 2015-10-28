@@ -53,7 +53,7 @@ class controller_users_status extends Controller
     public function store(Request $request)
     {
         table_users_status::create(Request::all());
-        return redirect('admin/users-status')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('admin/users-status')->with('success', 'Data saved successfully!');
     }
 
     /**
@@ -98,7 +98,7 @@ class controller_users_status extends Controller
         $dataUpdate = Request::all();
         $data = table_users_status::find($id);
         $data->update($dataUpdate);
-        return redirect('admin/users-status')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/users-status')->with('message', 'Data successfully changed!');
     
     }
 
@@ -111,7 +111,7 @@ class controller_users_status extends Controller
     public function destroy($id)
     {
         table_users_status::find($id)->delete();
-        return redirect('admin/users-status')->with('warning', 'Data berhasil dihapus!');
+        return redirect('admin/users-status')->with('warning', 'Data have been removed!');
     
     }
 }

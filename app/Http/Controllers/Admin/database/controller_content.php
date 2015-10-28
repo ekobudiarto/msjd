@@ -64,7 +64,7 @@ class controller_content extends Controller
     {
        
         table_content::create(Request::all());
-        return redirect('admin/content')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('admin/content')->with('success', 'Data saved successfully!');
     }
 
     /**
@@ -109,7 +109,7 @@ class controller_content extends Controller
         $dataUpdate = Request::all();
         $data = table_content::find($id);
         $data->update($dataUpdate);
-        return redirect('admin/content')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/content')->with('message', 'Data successfully changed!');
     
     }
 
@@ -122,7 +122,7 @@ class controller_content extends Controller
     public function destroy($id)
     {
         table_content::find($id)->delete();
-        return redirect('admin/content')->with('warning', 'Data berhasil dihapus!');
+        return redirect('admin/content')->with('warning', 'Data have been removed!');
     
     }
 }

@@ -53,11 +53,6 @@ class controller_media_manager extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function test()
-    {
-        echo 'haha';
-        die();
-    }
     public function store(Request $request)
     {
         
@@ -103,7 +98,7 @@ class controller_media_manager extends Controller
             return redirect('admin/media-manager')->with('failed', 'You did not select anything to upload!'); 
         }
         
-        return redirect('admin/media-manager')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('admin/media-manager')->with('success', 'Data saved successfully!');
     }
 
     /**
@@ -144,11 +139,76 @@ class controller_media_manager extends Controller
      */
     public function update(Request $request, $id)
     {
+        $currentfile = table_media_manager::find($id);
+        $currentfile = $currentfile->media_manager_filename;
 
-        $dataUpdate = Request::all();
-        $data = table_media_manager::find($id);
-        $data->update($dataUpdate);
-        return redirect('admin/media-manager')->with('message', 'Data berhasil dirubah!');
+        // $dataUpdate = Request::all();
+        // $data = table_media_manager::find($id);
+        // $data->update($dataUpdate);
+        // return redirect('admin/media-manager')->with('message', 'Data successfully changed!');
+
+        $title = input::get('media_manager_title');
+        $publish = input::get('media_manager_publish');
+        $link = input::get('media_manager_link');
+        
+        if (Input::hasFile('file'))
+        {
+
+            $rules = array('file' => 'mimes:pdf,png,jpeg,jpg,bmp,doc,docx,xls,xlsx,csv,mp4,mp3,flv,');
+            $validator = Validator::make(input::all(), $rules);
+            if ($validator->fails()) {
+                return redirect('admin/media-manager')->with('failed', 'file that allowed to upload are pdf, png, jpeg, jpg, bmp, doc, docx, xls, xlsx, csv, mp4, mp3, or flv ');
+            }
+            else{
+                $file     = Input::file('file');
+                $filename = date("Y-m-d").'-'.str_random(8).'-'.$file->getClientOriginalName();
+                $destinationPath = 'UPLOADED';
+                $file->move($destinationPath, $filename);
+                $type = $file->getClientOriginalExtension();
+                
+                $dataUpdate = array(
+                    'media_manager_title' => $title,
+                    'media_manager_type' => $type,
+                    'media_manager_filename' => $filename,
+                    'media_manager_publish' => $publish,
+                );
+                $data = table_media_manager::find($id);
+                $data->update($dataUpdate);
+                
+                if(file_exists('./UPLOADED/'.$currentfile))
+                {
+                    unlink('./UPLOADED/'.$currentfile);
+                }
+
+            }
+   
+        }
+        elseif($link != ''){
+            $dataUpdate = array(
+                    'media_manager_title' => $title,
+                    'media_manager_type' => 'url',
+                    'media_manager_filename' => $link,
+                    'media_manager_publish' => $publish,
+            );
+            $data = table_media_manager::find($id);
+            $data->update($dataUpdate);
+            if(file_exists('./UPLOADED/'.$currentfile))
+            {
+                unlink('./UPLOADED/'.$currentfile);
+            }
+
+        }
+        else{
+            $dataUpdate = array(
+                    'media_manager_title' => $title,
+                    'media_manager_publish' => $publish,
+            );
+            $data = table_media_manager::find($id);
+            $data->update($dataUpdate);
+            return redirect('admin/media-manager')->with('warning', 'Data successfully changed, You did not change the resource!'); 
+        }
+        
+        return redirect('admin/media-manager')->with('success', 'Data successfully changed');
     
     }
 
@@ -160,8 +220,16 @@ class controller_media_manager extends Controller
      */
     public function destroy($id)
     {
+        $currentfile = table_media_manager::find($id);
+        $currentfile = $currentfile->media_manager_filename;
+        if(file_exists('./UPLOADED/'.$currentfile))
+        {
+            unlink('./UPLOADED/'.$currentfile);
+        }
+
         table_media_manager::find($id)->delete();
-        return redirect('admin/media-manager')->with('warning', 'Data berhasil dihapus!');
+
+        return redirect('admin/media-manager')->with('warning', 'Data have been removed!');
     
     }
 }

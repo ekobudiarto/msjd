@@ -55,7 +55,7 @@ class controller_schedule_type extends Controller
     {
        
         table_schedule_type::create(Request::all());
-        return redirect('admin/schedule-type')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('admin/schedule-type')->with('success', 'Data saved successfully!');
     }
 
     /**
@@ -100,7 +100,7 @@ class controller_schedule_type extends Controller
         $dataUpdate = Request::all();
         $data = table_schedule_type::find($id);
         $data->update($dataUpdate);
-        return redirect('admin/schedule-type')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/schedule-type')->with('message', 'Data successfully changed!');
     
     }
 
@@ -113,7 +113,7 @@ class controller_schedule_type extends Controller
     public function destroy($id)
     {
         table_schedule_type::find($id)->delete();
-        return redirect('admin/schedule-type')->with('warning', 'Data berhasil dihapus!');
+        return redirect('admin/schedule-type')->with('warning', 'Data have been removed!');
     
     }
 }

@@ -52,7 +52,7 @@ class controller_users_detail extends Controller
     public function store(Request $request)
     {
         table_users_detail::create(Request::all());
-        return redirect('admin/users-detail')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('admin/users-detail')->with('success', 'Data saved successfully!');
     }
 
     /**
@@ -95,7 +95,7 @@ class controller_users_detail extends Controller
         $dataUpdate = Request::all();
         $data = table_users_detail::find($id);
         $data->update($dataUpdate);
-        return redirect('admin/users-detail')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/users-detail')->with('message', 'Data successfully changed!');
     }
 
     /**
@@ -107,6 +107,6 @@ class controller_users_detail extends Controller
     public function destroy($id)
     {
         table_users_detail::find($id)->delete();
-        return redirect('admin/users-detail')->with('warning', 'Data berhasil dihapus!');
+        return redirect('admin/users-detail')->with('warning', 'Data have been removed!');
     }
 }

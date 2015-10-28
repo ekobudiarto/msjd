@@ -61,7 +61,7 @@ class controller_content_category extends Controller
     public function store(Request $request)
     {
         table_content_category::create(Request::all());
-        return redirect('admin/content-category')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('admin/content-category')->with('success', 'Data saved successfully!');
     }
 
     /**
@@ -108,7 +108,7 @@ class controller_content_category extends Controller
         $dataUpdate = Request::all();
         $data = table_content_category::find($id);
         $data->update($dataUpdate);
-        return redirect('admin/content-category')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/content-category')->with('message', 'Data successfully changed!');
     
     }
 
@@ -121,7 +121,7 @@ class controller_content_category extends Controller
     public function destroy($id)
     {
         table_content_category::find($id)->delete();
-        return redirect('admin/content-category')->with('warning', 'Data berhasil dihapus!');
+        return redirect('admin/content-category')->with('warning', 'Data have been removed!');
     
     }
 }

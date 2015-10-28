@@ -54,7 +54,7 @@ class controller_hashtag extends Controller
     public function store(Request $request)
     {
         table_hashtag::create(Request::all());
-        return redirect('admin/hashtag')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('admin/hashtag')->with('success', 'Data saved successfully!');
     }
 
     /**
@@ -99,7 +99,7 @@ class controller_hashtag extends Controller
         $dataUpdate = Request::all();
         $data = table_hashtag::find($id);
         $data->update($dataUpdate);
-        return redirect('admin/hashtag')->with('message', 'Data berhasil dirubah!');
+        return redirect('admin/hashtag')->with('message', 'Data successfully changed!');
     
     }
 
@@ -112,7 +112,7 @@ class controller_hashtag extends Controller
     public function destroy($id)
     {
         table_hashtag::find($id)->delete();
-        return redirect('admin/hashtag')->with('warning', 'Data berhasil dihapus!');
+        return redirect('admin/hashtag')->with('warning', 'Data have been removed!');
     
     }
 }
