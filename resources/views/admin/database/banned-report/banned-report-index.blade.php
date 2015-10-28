@@ -29,9 +29,9 @@
     <div>
         <form action="{{ url("admin/banned-report/search") }}" method="get">
             <select name="select">
-                <option value="content_title">content</option>
-                <option value="users_name_by">user</option>
-                <option value="users_name_dest">user Target</option>
+                <option value="content_title">Content</option>
+                <option value="users_name_by">User</option>
+                <option value="users_name_dest">User Target</option>
             </select>
             <input type="text" name="query" />
             <input type="submit" value="Search" />

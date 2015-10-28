@@ -24,7 +24,17 @@
 
     <div class="module-head">
         <b>Schedule Type</b>
-		{!! Html::link('admin/schedule-type/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+        {!! Html::link('admin/schedule-type/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+    </div>
+    <div>
+        <form action="{{ url("admin/schedule-type/search") }}" method="get">
+            <select name="select">
+                <option value="schedule_type_name">Title</option>
+                <option value="media_manager_title">Media Manager</option>
+            </select>
+            <input type="text" name="query" />
+            <input type="submit" value="Search" />
+        </form>
     </div>
     <div class="module-body">
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"

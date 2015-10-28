@@ -24,7 +24,18 @@
 
     <div class="module-head">
         <b>Content</b>
-		{!! Html::link('admin/content/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+        {!! Html::link('admin/content/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+    </div>
+    <div>
+        <form action="{{ url("admin/content/search") }}" method="get">
+            <select name="select">
+                <option value="content_title">Content</option>
+                <option value="media_manager_title">Media Manager</option>
+                <option value="content_category_title">Content Category Title</option>
+            </select>
+            <input type="text" name="query" />
+            <input type="submit" value="Search" />
+        </form>
     </div>
     <div class="module-body">
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"
@@ -38,7 +49,7 @@
                         Title
                     </th>
                     <th>
-                        Media ID
+                        Media Manager
                     </th>
                     <th>
                         Publish
@@ -46,7 +57,7 @@
                     <th>
                         Category
                     </th>
-					<th>
+                    <th>
                         Content Repost From
                     </th>
                     <th>
@@ -59,14 +70,14 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $value->content_title }}</td>
-                        <td>{{ $value->content_media_id }}</td>
+                        <td>{{ $value->media_manager_title }}</td>
                         <td> @if( $value->content_publish == 1 )
                                Yes
                             @else
                                No
                             @endif</td>
                         <td>{{ $value->content_category_title }}</td>
-						<td>{{ $value->content_repost }}</td>
+                        <td>{{ $value->content_repost }}</td>
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>
                             <a class="btn btn-small btn-success" href="{{ URL('admin/content/' . $value->content_id) }}">View</a>

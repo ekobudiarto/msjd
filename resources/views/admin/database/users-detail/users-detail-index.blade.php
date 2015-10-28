@@ -27,6 +27,16 @@
         {!! Html::link('admin/users-detail/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
 
     </div>
+    <div>
+        <form action="{{ url("admin/users-detail/search") }}" method="get">
+            <select name="select">
+                <option value="users_name">Users Name</option>
+                <option value="users_email">Users Email</option>
+            </select>
+            <input type="text" name="query" />
+            <input type="submit" value="Search" />
+        </form>
+    </div>
     <div class="module-body">
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"
             width="100%">
@@ -36,10 +46,10 @@
                         No
                     </th>
                     <th>
-                        Status Title
+                        User Name
                     </th>
                     <th>
-                        Status Desc
+                        User Email
                     </th>
                     <th>
                         #

@@ -24,7 +24,18 @@
 
     <div class="module-head">
         <b>Content Category</b>
-		{!! Html::link('admin/content-category/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+        {!! Html::link('admin/content-category/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+    </div>
+    <div>
+        <form action="{{ url("admin/content-category/search") }}" method="get">
+            <select name="select">
+                <option value="content_category_title">Title</option>
+                <option value="content_category_description">Description</option>
+                <option value="media_manager_title">Media Manager</option>
+            </select>
+            <input type="text" name="query" />
+            <input type="submit" value="Search" />
+        </form>
     </div>
     <div class="module-body">
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"

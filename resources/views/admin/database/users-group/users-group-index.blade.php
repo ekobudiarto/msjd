@@ -24,7 +24,17 @@
 
     <div class="module-head">
         <b>Users Group</b>
-		{!! Html::link('admin/users-group/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+        {!! Html::link('admin/users-group/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+    </div>
+    <div>
+        <form action="{{ url("admin/users-group/search") }}" method="get">
+            <select name="select">
+                <option value="users_group_name">Name</option>
+                <option value="users_group_description">Description</option>
+            </select>
+            <input type="text" name="query" />
+            <input type="submit" value="Search" />
+        </form>
     </div>
     <div class="module-body">
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"
@@ -41,7 +51,7 @@
                         Description
                     </th>
                     <th>
-                    	Is Public
+                        Is Public
                     </th>
                     <th>
                         #

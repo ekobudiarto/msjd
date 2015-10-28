@@ -24,7 +24,18 @@
 
     <div class="module-head">
         <b>Media Manager</b>
-		{!! Html::link('admin/media-manager/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+        {!! Html::link('admin/media-manager/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+    </div>
+    <div>
+        <form action="{{ url("admin/media-manager/search") }}" method="get">
+            <select name="select">
+                <option value="media_manager_title">Title</option>
+                <option value="media_manager_type">Type</option>
+                <option value="media_manager_filename">Filename</option>
+            </select>
+            <input type="text" name="query" />
+            <input type="submit" value="Search" />
+        </form>
     </div>
     <div class="module-body">
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"

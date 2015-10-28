@@ -19,12 +19,18 @@ Route::get('home', 'HomeController@index');
 //admin
 	//dashboard
 		Route::resource('admin/dashboard', 'Admin\dashboard\controller_admin_dashboard');
-
 	//database
 		//for search
 		Route::get('admin/banned-report/search', 'Admin\database\controller_search@getSearchBannedReport');
-
-		//for all table
+		Route::get('admin/content/search', 'Admin\database\controller_search@getSearchContent');
+		Route::get('admin/content-category/search', 'Admin\database\controller_search@getSearchContentCategory');
+		Route::get('admin/media-manager/search', 'Admin\database\controller_search@getSearchMediaManager');
+		Route::get('admin/schedule/search', 'Admin\database\controller_search@getSearchSchedule');
+		Route::get('admin/schedule-type/search', 'Admin\database\controller_search@getSearchScheduleType');
+		Route::get('admin/users-group/search', 'Admin\database\controller_search@getSearchUsersGroup');
+		Route::get('admin/users-status/search', 'Admin\database\controller_search@getSearchUsersStatus');
+		Route::get('admin/users-detail/search', 'Admin\database\controller_search@getSearchUsersDetail');
+	
 		Route::resource('admin/banned-report', 'Admin\database\controller_banned_report');
 		Route::resource('admin/content', 'Admin\database\controller_content');
 		Route::resource('admin/content-category', 'Admin\database\controller_content_category');
