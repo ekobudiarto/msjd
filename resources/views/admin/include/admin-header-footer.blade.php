@@ -63,7 +63,9 @@
                                         <li><a href="<?PHP echo url()?>/admin/content"><i class="icon-inbox"></i>Content </a></li>
                                         <li><a href="<?PHP echo url()?>/admin/content-category"><i class="icon-inbox"></i>Content Category </a></li>
                                         <li><a href="<?PHP echo url()?>/admin/hashtag"><i class="icon-inbox"></i>Hashtag </a></li>
+                                        <li><a href="<?PHP echo url()?>/admin/last-login"><i class="icon-inbox"></i>Last Login User</a></li>
                                         <li><a href="<?PHP echo url()?>/admin/media-manager"><i class="icon-inbox"></i>Media Manager </a></li>
+                                        <li><a href="<?PHP echo url()?>/admin/notification"><i class="icon-inbox"></i>Notification</a></li>
                                         <li><a href="<?PHP echo url()?>/admin/schedule"><i class="icon-inbox"></i>Schedule </a></li>
                                         <li><a href="<?PHP echo url()?>/admin/schedule-type"><i class="icon-inbox"></i>Schedule Type</a></li>
                                         <li><a href="<?PHP echo url()?>/admin/users-group"><i class="icon-inbox"></i>Users Group </a></li>

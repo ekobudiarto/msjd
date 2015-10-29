@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\database;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\table_notification;
 use DB;
 use App\Models\table_notification;
 use App\Library\authentication;
@@ -29,7 +28,9 @@ class controller_notification extends Controller
     {
 
          $data=array(
-            'notification' => table_notification::latest('notification_id')->paginate(10),
+            'notification' => DB::table('table_notification as no')
+                                    ->select('no.*',DB::raw('(select users_name from table_users_detail where users_id = no.users_id) as users_name'))
+                                    ->paginate(10),
          );
 
 
@@ -70,7 +71,7 @@ class controller_notification extends Controller
    public function show($id)
     {
         $data = array(
-                'dataContentCategory' => table_notification::where('notification_id', '=', $id)->get(),
+                'notification' => table_notification::where('notification_id', '=', $id)->get(),
          );     
         return view('admin.database.notification.notification-show', compact('data'));
     }
@@ -85,7 +86,7 @@ class controller_notification extends Controller
     {
            
          $data = array(
-                'dataContentCategory' => table_notification::where('notification_id', '=', $id)->get(),
+                'notification' => table_notification::where('notification_id', '=', $id)->get(),
          );     
         return view('admin.database.notification.notification-edit', compact('data'));
     }
