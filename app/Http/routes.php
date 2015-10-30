@@ -32,7 +32,8 @@ Route::get('home', 'HomeController@index');
 		Route::get('admin/users-group/search', 'Admin\database\controller_search@getSearchUsersGroup');
 		Route::get('admin/users-status/search', 'Admin\database\controller_search@getSearchUsersStatus');
 		Route::get('admin/users-detail/search', 'Admin\database\controller_search@getSearchUsersDetail');
-		Route::get('admin/notification/search', 'Admin\database\controller_serach@getSearchNotification');
+		Route::get('admin/notification/search', 'Admin\database\controller_search@getSearchNotification');
+		Route::get('admin/last-login/search', 'Admin\database\controller_search@getSearchLastLogin');
 	
 		Route::resource('admin/banned-report', 'Admin\database\controller_banned_report');
 		Route::resource('admin/content', 'Admin\database\controller_content');
@@ -45,6 +46,7 @@ Route::get('home', 'HomeController@index');
 		Route::resource('admin/users-status', 'Admin\database\controller_users_status');
 		Route::resource('admin/users-detail', 'Admin\database\controller_users_detail');
 		Route::resource('admin/notification', 'Admin\database\controller_notification');
+		Route::resource('admin/last-login', 'Admin\database\controller_last_login');
 
 
 

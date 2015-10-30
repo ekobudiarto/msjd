@@ -4,7 +4,7 @@
 
 <div class="module">
 	<div class="module-head">
-		<h3>Forms Notification</h3>
+		<h3>Forms Last Login</h3>
 	</div>
 	<div class="module-body">
 
@@ -34,38 +34,43 @@
 			    </ul>
 			@endif
 
-			@foreach($data['notification'] as $key => $value)
+			@foreach($data['last_login'] as $key => $value)
 			
-			{!! Form::open(array('url' => 'admin/notification/'.$value->notification_id, 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
+			{!! Form::open(array('url' => 'admin/last-login/'.$value->last_login_id, 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
 			
 				<input name="_method" type="hidden" value="PUT">
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_id" value="{{ $value->users_id }}">
+						<input type="text" id="autouser"  onchange="getid(this)" value="{{ $value->users_id }}" class="autouser" name="users_id" style="width: 65.812%;" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Datetime</label>
 					<div class="controls">
-						<input type="text" id="basicinput" onchange="getid(this)" value="{{ $value->datetime }}" class="autocontent" style="width: 65.812%;" name="datetime" required>
+						<input type="text" id="basicinput"  value="{{ $value->datetime }}"  class="span8" name="datetime" required>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="basicinput">Status</label>
+					<label class="control-label" for="basicinput">Regional</label>
 					<div class="controls">
-						<select name="status" >
-							@if( $value->status == 'read')
-							<option value="send">Send</option>
-							<option value="read" selected>Read</option>
-							@else
-							<option value="send" selected>Send</option>
-							<option value="read">Read</option>
-							@endif
-						</select>
+						<input type="text" id="basicinput"  value="{{ $value->regional }}" class="span8" placeholder="Bogor" name="regional" required>
 					</div>
 				</div>
+				<div class="control-group">
+					<label class="control-label" for="basicinput">Longitude</label>
+					<div class="controls">
+						<input type="text" id="basicinput"  value="{{ $value->long }}" class="span8" placeholder="106.806039" name="long" required>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="basicinput">Latitude</label>
+					<div class="controls">
+						<input type="text" id="basicinput"  value="{{ $value->lat }}" class="span8" placeholder="-6.597147" name="lat" required>
+					</div>
+				</div>
+
 			{!! Form::close() !!}
 			
 			@endforeach

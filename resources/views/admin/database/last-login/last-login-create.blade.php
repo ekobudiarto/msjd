@@ -8,7 +8,7 @@
 </style>
 <div class="module">
 	<div class="module-head">
-		<h3>Forms Notification</h3>
+		<h3>Forms Last Login</h3>
 	</div>
 	<div class="module-body">
 
@@ -38,7 +38,7 @@
 			    </ul>
 			@endif
 
-			{!! Form::open(array('url' => 'admin/notification', 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
+			{!! Form::open(array('url' => 'admin/last-login', 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
 
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 				<div class="control-group">
@@ -50,22 +50,31 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Datetime</label>
 					<div class="controls">
-						<input type="text" id="basicinput" onchange="getid(this)" value="<?php echo date('Y-m-d h:i:s');?>" class="autocontent" style="width: 65.812%;" name="datetime" required>
+						<input type="text" id="basicinput"  value="<?php echo date('Y-m-d h:i:s');?>"  class="span8" name="datetime" required>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="basicinput">Status</label>
+					<label class="control-label" for="basicinput">Regional</label>
 					<div class="controls">
-						<select name="status" >
-							<option value="send">Send</option>
-							<option value="read">Read</option>
-						</select>
+						<input type="text" id="basicinput"  class="span8" placeholder="Bogor" name="regional" required>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="basicinput">Longitude</label>
+					<div class="controls">
+						<input type="text" id="basicinput"  class="span8" placeholder="106.806039" name="long" required>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="basicinput">Latitude</label>
+					<div class="controls">
+						<input type="text" id="basicinput"  class="span8" placeholder="-6.597147" name="lat" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-small btn-success">Submit</button>
-						{!! Html::link('admin/notification', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
+						{!! Html::link('admin/last-login', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
 			{!! Form::close() !!}

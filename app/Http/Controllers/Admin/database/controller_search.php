@@ -275,5 +275,52 @@ class controller_search extends Controller
 
         return view('admin.database.users-detail.users-detail-index', compact('data'));
     }
+
+    public function getSearchNotification()
+    {
+        $select = input::get('select');
+        $query = input::get('query');
+        
+        $applicants =  DB::select("select * FROM (select no.*,
+                                    (select users_name from table_users_detail where users_id = no.users_id) as users_name
+                                    from table_notification as no) as notif
+                                    where ".$select." like '%".$query."%'");
+
+        $pageNumber = Input::get('page', 1);
+        $perpage = 2;
+        $slice = array_slice($applicants, $perpage * ($pageNumber - 1), $perpage);
+        $applicants = new \Illuminate\Pagination\LengthAwarePaginator($slice, count($applicants), $perpage);
+        $applicants->setPath('search?select='.$select.'&query='.$query.'%%%');
+         
+         $data=array(
+            'notification' => $applicants,
+         );
+
+
+        return view('admin.database.notification.notification-index', compact('data'));
+    }
     
+    public function getSearchLastLogin()
+    {
+        $select = input::get('select');
+        $query = input::get('query');
+        
+        $applicants =  DB::select("select * FROM (select no.*,
+                                    (select users_name from table_users_detail where users_id = no.users_id) as users_name
+                                    from table_last_login as no) as notif
+                                    where ".$select." like '%".$query."%'");
+
+        $pageNumber = Input::get('page', 1);
+        $perpage = 2;
+        $slice = array_slice($applicants, $perpage * ($pageNumber - 1), $perpage);
+        $applicants = new \Illuminate\Pagination\LengthAwarePaginator($slice, count($applicants), $perpage);
+        $applicants->setPath('search?select='.$select.'&query='.$query.'%%%');
+         
+         $data=array(
+            'last_login' => $applicants
+         );
+
+
+        return view('admin.database.last-login.last-login-index', compact('data'));
+    }
 }

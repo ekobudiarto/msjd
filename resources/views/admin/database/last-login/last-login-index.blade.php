@@ -22,16 +22,16 @@
     @endif
 
     <div class="module-head">
-        <b>Notification</b>
-        {!! Html::link('admin/notification/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
+        <b>Last Login</b>
+        {!! Html::link('admin/last-login/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
         <div>
-        <form action="{{ url("admin/notification/search") }}" method="get">
+        <form action="{{ url("admin/last-login/search") }}" method="get">
             <select name="select">
                 <option value="users_name">user name</option>
-                <option value="status">status</option>
                 <option value="datetime">datetime</option>
+                <option value="regional">Regional</option>
             </select>
             <input type="text" name="query" />
             <input type="submit" class="btn" style="margin-bottom:10px" value="Search" />
@@ -48,10 +48,16 @@
                         User
                     </th>
                     <th>
-                        datetime
+                        Datetime
                     </th>
                     <th>
-                        status
+                        Regional
+                    </th>
+                    <th>
+                        Longitude
+                    </th>
+                    <th>
+                        Latitude
                     </th>
                     <th>
                         #
@@ -59,27 +65,29 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($data['notification'] as $key => $value)
+                @foreach($data['last_login'] as $key => $value)
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $value->users_name }}</td>
                         <td>{{ $value->datetime }}</td>
-                        <td>{{ $value->status }}</td>
+                        <td>{{ $value->regional }}</td>
+						<td>{{ $value->long }}</td>
+						<td>{{ $value->lat }}</td>
 
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>
-                            <a class="btn btn-small btn-success" href="{{ URL('admin/notification/' . $value->notification_id) }}">View</a>
+                            <a class="btn btn-small btn-success" href="{{ URL('admin/last-login/' . $value->last_login_id) }}">View</a>
 
-                            <a class="btn btn-small btn-warning" href="{{ URL('admin/notification/' . $value->notification_id . '/edit') }}">Edit</a>
+                            <a class="btn btn-small btn-warning" href="{{ URL('admin/last-login/' . $value->last_login_id . '/edit') }}">Edit</a>
 
-                            {!! Form::open(['method' => 'DELETE', 'url' => 'admin/notification/' . $value->notification_id, 'class' => 'pull-right', 'onsubmit' => 'return confirm("Are you sure you want to delete this item?");']) !!}
+                            {!! Form::open(['method' => 'DELETE', 'url' => 'admin/last-login/' . $value->last_login_id, 'class' => 'pull-right', 'onsubmit' => 'return confirm("Are you sure you want to delete this item?");']) !!}
                                 {!! Form::submit('Delete', ['class' => 'btn btn-small btn-danger']) !!}
                             {!! Form::close() !!}
 
                         </td>
                     </tr>
                 @endforeach
-                @include('admin.include.pagination', ['paginator' => $data['notification']])
+                @include('admin.include.pagination', ['paginator' => $data['last_login']])
             </tbody>
         </table>
     </div>

@@ -4,7 +4,7 @@
 
 <div class="module">
 	<div class="module-head">
-		<h3>Forms Banned Report</h3>
+		<h3>Forms Notification</h3>
 	</div>
 	<div class="module-body">
 
