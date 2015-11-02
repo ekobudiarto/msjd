@@ -71,11 +71,15 @@
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $value->content_title }}</td>
                         <td>{{ $value->media_manager_title }}</td>
-                        <td> @if( $value->content_publish == 1 )
-                               Yes
-                            @else
-                               No
-                            @endif</td>
+                        <td>
+                            <center>
+                                @if( $value->content_publish == 1 )
+                                    <b class="label green">Yes</b>
+                                @else
+                                    <b class="label orange ">No</b>
+                                @endif
+                            </center>
+                        </td>
                         <td>{{ $value->content_category_title }}</td>
                         <td>{{ $value->content_repost }}</td>
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->

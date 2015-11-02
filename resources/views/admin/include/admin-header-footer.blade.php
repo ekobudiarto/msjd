@@ -20,6 +20,14 @@
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
+
+    <style>
+     table th{
+        background-color: #29B7D3;
+        color: #fff;
+     }
+    </style>
+
     </head>
     <body>
         <div class="navbar navbar-fixed-top">
@@ -32,7 +40,7 @@
                         <ul class="nav pull-right">
                             <li><a href="#">Support </a></li>
                             <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="images/user.png" class="nav-avatar" />
+                                <img src="{{ url::asset('public/css-js/images/user.png') }}" class="nav-avatar" />
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -60,8 +68,9 @@
                             </ul>
                             <!--/.widget-nav-->
                             <ul class="widget widget-menu unstyled">
-                                <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon icon-cog">
-                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+                                <li><a class="collapsed" data-toggle="collapse" href="#togglePages">
+                                <i class="menu-icon icon-table"></i>
+                                <i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>Database </a>
                                     <ul id="togglePages" class="collapse unstyled">
                                         <li><a href="<?PHP echo url()?>/admin/banned-report"><i class="icon-inbox"></i>Banned Report </a></li>

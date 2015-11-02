@@ -27,15 +27,18 @@
         {!! Html::link('admin/schedule-type/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
-        <div>
-        <form action="{{ url("admin/schedule-type/search") }}" method="get">
+        @include('admin.include.pagination', ['paginator' => $data['schedule-type']])
+        <div style="float:right;">
+
+        <form action="{{ url("admin/schedule-type/search") }}" method="get" style="display:inline">
             <select name="select">
                 <option value="schedule_type_name">Title</option>
                 <option value="media_manager_title">Media Manager</option>
             </select>
-            <input type="text" name="query" />
+            <input type="text"  name="query" />
             <input type="submit" class="btn" style="margin-bottom:10px" value="Search" />
         </form>
+        
         </div>
         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-condensed"
             width="100%">
@@ -74,9 +77,10 @@
                         </td>
                     </tr>
                 @endforeach
-                @include('admin.include.pagination', ['paginator' => $data['schedule-type']])
+                
             </tbody>
         </table>
+
     </div>
 </div>
 

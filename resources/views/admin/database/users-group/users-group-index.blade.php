@@ -65,11 +65,13 @@
                         <td>{{ $value->users_group_name }}</td>
                         <td>{{ $value->users_group_description }}</td>
                         <td>
-                            @if( $value->users_group_is_public == 1 )
-                               Yes
-                            @else
-                               No
-                            @endif
+                            <center>
+                                @if( $value->users_group_is_public == 1 )
+                                    <b class="label green">Yes</b>
+                                @else
+                                    <b class="label orange ">No</b>
+                                @endif
+                            </center>
                         </td>
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>

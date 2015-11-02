@@ -80,11 +80,13 @@
                             </center>
                         </td>
                         <td>
+                            <center>
                                 @if( $value->media_manager_publish == 1 )
-                                    Yes
+                                    <b class="label green">Yes</b>
                                 @else
-                                    No
+                                    <b class="label orange ">No</b>
                                 @endif
+                            </center>
 
                         </td>
 

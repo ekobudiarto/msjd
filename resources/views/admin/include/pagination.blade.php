@@ -1,6 +1,6 @@
 @if ($paginator->lastPage() > 1)
 
-<div class="pagination">
+<div class="pagination" style="display:inline">
 	<ul>
 	    <li class="{{ ($paginator->currentPage() == 1) ? ' disabled' : '' }}">
 	        <a href="{{ $paginator->url(1) }}">Previous</a>
