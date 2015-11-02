@@ -26,7 +26,8 @@
         {!! Html::link('admin/notification/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
-        <div>
+        @include('admin.include.pagination', ['paginator' => $data['notification']])
+        <div style="float:right;">
         <form action="{{ url("admin/notification/search") }}" method="get">
             <select name="select">
                 <option value="users_name">user name</option>
@@ -79,7 +80,7 @@
                         </td>
                     </tr>
                 @endforeach
-                @include('admin.include.pagination', ['paginator' => $data['notification']])
+                
             </tbody>
         </table>
     </div>

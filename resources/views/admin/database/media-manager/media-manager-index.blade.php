@@ -27,7 +27,8 @@
         {!! Html::link('admin/media-manager/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
-        <div>
+        @include('admin.include.pagination', ['paginator' => $data['media-manager']])
+        <div style="float:right;">
         <form action="{{ url("admin/media-manager/search") }}" method="get">
             <select name="select">
                 <option value="media_manager_title">Title</option>
@@ -103,7 +104,7 @@
                         </td>
                     </tr>
                 @endforeach
-                @include('admin.include.pagination', ['paginator' => $data['media-manager']])
+                
             </tbody>
         </table>
     </div>

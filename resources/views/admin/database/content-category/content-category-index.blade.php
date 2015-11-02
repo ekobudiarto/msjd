@@ -27,7 +27,8 @@
         {!! Html::link('admin/content-category/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
-        <div>
+        @include('admin.include.pagination', ['paginator' => $data['content_category']])
+        <div style="float:right;">
         <form action="{{ url("admin/content-category/search") }}" method="get">
             <select name="select">
                 <option value="content_category_title">Title</option>
@@ -80,7 +81,7 @@
                         </td>
                     </tr>
                 @endforeach
-                @include('admin.include.pagination', ['paginator' => $data['content_category']])
+                
             </tbody>
         </table>
     </div>

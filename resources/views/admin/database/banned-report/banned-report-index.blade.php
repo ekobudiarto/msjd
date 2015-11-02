@@ -26,7 +26,8 @@
         {!! Html::link('admin/banned-report/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
-        <div>
+        @include('admin.include.pagination', ['paginator' => $data['banned_report']])
+        <div style="float:right;">
         <form action="{{ url("admin/banned-report/search") }}" method="get">
             <select name="select">
                 <option value="content_title">Content</option>
@@ -83,7 +84,7 @@
                         </td>
                     </tr>
                 @endforeach
-                @include('admin.include.pagination', ['paginator' => $data['banned_report']])
+                
             </tbody>
         </table>
     </div>

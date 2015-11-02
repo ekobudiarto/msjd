@@ -27,7 +27,8 @@
         {!! Html::link('admin/schedule/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
-        <div>
+         @include('admin.include.pagination', ['paginator' => $data['schedule']])
+        <div style="float:right;">
         <form action="{{ url("admin/schedule/search") }}" method="get">
             <select name="select">
                 <option value="schedule_title">Title</option>
@@ -91,7 +92,7 @@
                         </td>
                     </tr>
                 @endforeach
-                @include('admin.include.pagination', ['paginator' => $data['schedule']])
+               
             </tbody>
         </table>
     </div>

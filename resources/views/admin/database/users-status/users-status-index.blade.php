@@ -28,7 +28,8 @@
 
     </div>
     <div class="module-body">
-        <div>
+        @include('admin.include.pagination', ['paginator' => $data['users_status']])
+        <div style="float:right;">
             <form action="{{ url("admin/users-status/search") }}" method="get">
                 <select name="select">
                     <option value="users_status_title">Status Title</option>
@@ -76,7 +77,7 @@
                         </td>
                     </tr>
                 @endforeach
-                @include('admin.include.pagination', ['paginator' => $data['users_status']])
+                
             </tbody>
         </table>
     </div>

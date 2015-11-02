@@ -27,7 +27,8 @@
         {!! Html::link('admin/users-group/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
-        <div>
+         @include('admin.include.pagination', ['paginator' => $data['users-group']])
+        <div style="float:right;">
         <form action="{{ url("admin/users-group/search") }}" method="get">
             <select name="select">
                 <option value="users_group_name">Name</option>
@@ -87,7 +88,7 @@
                     </tr>
                     
                 @endforeach
-                @include('admin.include.pagination', ['paginator' => $data['users-group']])
+               
 
             </tbody>
         </table>

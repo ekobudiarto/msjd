@@ -27,7 +27,8 @@
 		{!! Html::link('admin/hashtag/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
-        <div>
+        @include('admin.include.pagination', ['paginator' => $data['hashtag']])
+        <div style="float:right;">
         <form action="{{ url("admin/hashtag/search") }}" method="get">
             <select name="select">
                 <option value="hashtag_title">Hashtag</option>
@@ -69,7 +70,7 @@
                         </td>
                     </tr>
                 @endforeach
-                @include('admin.include.pagination', ['paginator' => $data['hashtag']])
+                
             </tbody>
         </table>
     </div>

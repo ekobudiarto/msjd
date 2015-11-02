@@ -26,7 +26,8 @@
         {!! Html::link('admin/last-login/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">
-        <div>
+        @include('admin.include.pagination', ['paginator' => $data['last_login']])
+        <div style="float:right;">
         <form action="{{ url("admin/last-login/search") }}" method="get">
             <select name="select">
                 <option value="users_name">user name</option>
@@ -87,7 +88,7 @@
                         </td>
                     </tr>
                 @endforeach
-                @include('admin.include.pagination', ['paginator' => $data['last_login']])
+                
             </tbody>
         </table>
     </div>
