@@ -53,7 +53,7 @@
                     <th>
                         Media manager ID
                     </th>
-                    <th>
+                    <th style="width:160px">
                         #
                     </th>
                 </tr>

@@ -54,7 +54,7 @@
                     <th>
                         status
                     </th>
-                    <th>
+                    <th style="width:160px">
                         #
                     </th>
                 </tr>

@@ -60,7 +60,7 @@
                     <th>
                         Latitude
                     </th>
-                    <th>
+                    <th style="width:160px">
                         #
                     </th>
                 </tr>

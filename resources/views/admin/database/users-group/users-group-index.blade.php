@@ -54,7 +54,7 @@
                     <th>
                         Is Public
                     </th>
-                    <th>
+                    <th style="width:160px">
                         #
                     </th>
                 </tr>

@@ -63,7 +63,7 @@
                     <th>
                         Schedule Users Creator
                     </th>
-                    <th>
+                    <th style="width:160px">
                         #
                     </th>
                 </tr>

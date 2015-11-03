@@ -52,7 +52,7 @@
                     <th>
                         Status Desc
                     </th>
-                    <th>
+                    <th style="width:160px">
                         #
                     </th>
                 </tr>

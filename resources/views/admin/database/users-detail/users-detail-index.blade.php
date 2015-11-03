@@ -52,7 +52,7 @@
                     <th>
                         User Email
                     </th>
-                    <th>
+                    <th style="width:160px">
                         #
                     </th>
                 </tr>
