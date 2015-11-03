@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin\database;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_users_detail;
+use App\User;
 use App\Library\authentication;
 use Auth;
 use DB;
+use Illuminate\Support\Facades\Input;
 
 class controller_users_detail extends Controller
 {
@@ -104,7 +106,7 @@ class controller_users_detail extends Controller
             'users_fullname' => $fullname,
             'users_group_id' => $groupid,
             'users_email' => $email,
-            'users_telp' = $telp,
+            'users_telp' => $telp,
             'users_json_following' => $jsonfollow,
             'users_description' => $description,
             'media_manager_id' => $media,
@@ -149,8 +151,9 @@ class controller_users_detail extends Controller
         $detail = table_users_detail::where('users_id', '=', $id)->first();
         $idusersdetail = $detail->users_detail_id;
         $data = array(
-                'users-detail' => table_users_detail::where('users_detail_id', '=', $idusersdetail)->first(),
+                'users-detail' => table_users_detail::where('users_detail_id', '=', $idusersdetail)->get(),
          );
+
 
         return view('admin.database.users-detail.users-detail-edit', compact('data'));
     }
@@ -181,22 +184,20 @@ class controller_users_detail extends Controller
         $brand = input::get('deviceBrand');
         $long = input::get('long');
         $lat = input::get('lat');
-        $password = input::get('password');
 
 
         $cekmail = User::where('email', '=', $email)->first();
         if(isset($cekmail->id)){
-            if($cekmail->id == $id )
+            if($cekmail->id != $id )
             return redirect('admin/users-detail')->with('failed', 'Failed to save, because The email have ever used !');
         }
 
         $field_users = array(
                     'name' => $name,
-                    'email' => $email,
-                    'password' => bcrypt($password)
+                    'email' => $email
                 );
 
-        $data = users::find($id);
+        $data = user::find($id);
         $data->update($field_users);
 
 
@@ -209,7 +210,7 @@ class controller_users_detail extends Controller
             'users_fullname' => $fullname,
             'users_group_id' => $groupid,
             'users_email' => $email,
-            'users_telp' = $telp,
+            'users_telp' => $telp,
             'users_json_following' => $jsonfollow,
             'users_description' => $description,
             'media_manager_id' => $media,
@@ -238,9 +239,12 @@ class controller_users_detail extends Controller
     public function destroy($id)
     {
         $detail = table_users_detail::where('users_id', '=', $id)->first();
-        $idusersdetail = $detail->users_detail_id;
-        table_users_detail::find($idusersdetail)->delete();
-        users::find($id)->delete();
+        if(isset($detail->users_detail_id)){
+            $idusersdetail = $detail->users_detail_id;
+            table_users_detail::find($idusersdetail)->delete();
+        }
+        
+        user::find($id)->delete();
         return redirect('admin/users-detail')->with('warning', 'Data have been removed!');
     }
 }
