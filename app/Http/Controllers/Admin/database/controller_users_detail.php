@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\table_users_detail;
 use App\Library\authentication;
 use Auth;
+use DB;
 
 class controller_users_detail extends Controller
 {
@@ -26,7 +27,15 @@ class controller_users_detail extends Controller
     public function index()
     {
         $data=array(
-            'users-detail' => table_users_detail::latest('users_detail_id')->paginate(10),
+           
+            'users-detail' =>  DB::table('users as us')
+                                    ->select('us.*',DB::raw('(select users_name from table_users_detail where users_id = us.id) as users_name'),
+                                                    DB::raw('(select users_group_id from table_users_detail where users_id = us.id) as users_groups_id'),
+                                                    DB::raw('(select media_manager_id from table_users_detail where users_id = us.id) as media_managers_id'),
+                                                    DB::raw('(select users_group_name from table_users_group where users_group_id = users_groups_id) as users_group_name'),
+                                                    DB::raw('(select media_manager_title from table_media_manager where media_manager_id = media_managers_id) as media_manager_title')
+                                        )
+                                    ->paginate(10),
          );
 
 
@@ -51,7 +60,65 @@ class controller_users_detail extends Controller
      */
     public function store(Request $request)
     {
-        table_users_detail::create(Request::all());
+        
+        $name = input::get('users_name');
+        $fullname = input::get('users_fullname');
+        $groupid = input::get('users_group_id');
+        $email = input::get('users_email');
+        $telp = input::get('users_telp');
+        $jsonfollow = input::get('users_json_following');
+        $description = input::get('users_description');
+        $media = input::get('media_manager_id');
+        $avatar = input::get('users_avatar');
+        $status = input::get('users_status_id');
+        $device = input::get('deviceID');
+        $provider = input::get('providerID');
+        $deviceversion = input::get('deviceVersion');
+        $brand = input::get('deviceBrand');
+        $long = input::get('long');
+        $lat = input::get('lat');
+        $password = input::get('password');
+
+
+        $cekmail = User::where('email', '=', $email)->first();
+        if(isset($cekmail->id)){
+            return redirect('admin/users-detail')->with('failed', 'Failed to save, because The email have ever used !');
+        }
+
+        $field_users = array(
+                    'name' => $name,
+                    'email' => $email,
+                    'password' => bcrypt($password)
+                );
+        $user = User::create($field_users);
+        
+        $user_login = User::where('email', '=', $email)->first();
+
+        foreach ($user_login as $key => $value) {
+            $id = $user_login->id;
+        }
+
+        $datausersdetail= array(
+            'users_name' => $name,
+            'users_id' => $id,
+            'users_fullname' => $fullname,
+            'users_group_id' => $groupid,
+            'users_email' => $email,
+            'users_telp' = $telp,
+            'users_json_following' => $jsonfollow,
+            'users_description' => $description,
+            'media_manager_id' => $media,
+            'users_avatar' => $avatar,
+            'users_status_id' => $status,
+            'deviceID' => $device,
+            'providerID' =>$provider,
+            'deviceVersion' => $deviceversion,
+            'deviceBrand' => $brand,
+            'long' => $long,
+            'lat' => $lat          
+        );
+
+        table_users_detail::create($datausersdetail);
         return redirect('admin/users-detail')->with('success', 'Data saved successfully!');
     }
 
@@ -63,9 +130,11 @@ class controller_users_detail extends Controller
      */
     public function show($id)
     {
+        $detail = table_users_detail::where('users_id', '=', $id)->first();
+        $idusersdetail = $detail->users_detail_id;
         $data = array(
-                'users-detail' => table_users_detail::where('users_detail_id', '=', $id)->get(),
-         );     
+                'users-detail' => table_users_detail::where('users_detail_id', '=', $idusersdetail)->first(),
+         );   
         return view('admin.database.users-detail.users-detail-show', compact('data'));
     }
 
@@ -77,9 +146,12 @@ class controller_users_detail extends Controller
      */
     public function edit($id)
     {
+        $detail = table_users_detail::where('users_id', '=', $id)->first();
+        $idusersdetail = $detail->users_detail_id;
         $data = array(
-                'users-detail' => table_users_detail::where('users_detail_id', '=', $id)->get(),
-         );     
+                'users-detail' => table_users_detail::where('users_detail_id', '=', $idusersdetail)->first(),
+         );
+
         return view('admin.database.users-detail.users-detail-edit', compact('data'));
     }
 
@@ -92,9 +164,68 @@ class controller_users_detail extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dataUpdate = Request::all();
-        $data = table_users_detail::find($id);
-        $data->update($dataUpdate);
+
+        $name = input::get('users_name');
+        $fullname = input::get('users_fullname');
+        $groupid = input::get('users_group_id');
+        $email = input::get('users_email');
+        $telp = input::get('users_telp');
+        $jsonfollow = input::get('users_json_following');
+        $description = input::get('users_description');
+        $media = input::get('media_manager_id');
+        $avatar = input::get('users_avatar');
+        $status = input::get('users_status_id');
+        $device = input::get('deviceID');
+        $provider = input::get('providerID');
+        $deviceversion = input::get('deviceVersion');
+        $brand = input::get('deviceBrand');
+        $long = input::get('long');
+        $lat = input::get('lat');
+        $password = input::get('password');
+
+
+        $cekmail = User::where('email', '=', $email)->first();
+        if(isset($cekmail->id)){
+            if($cekmail->id == $id )
+            return redirect('admin/users-detail')->with('failed', 'Failed to save, because The email have ever used !');
+        }
+
+        $field_users = array(
+                    'name' => $name,
+                    'email' => $email,
+                    'password' => bcrypt($password)
+                );
+
+        $data = users::find($id);
+        $data->update($field_users);
+
+
+        $user_login = table_users_detail::where('users_id', '=', $id)->first();
+        $usersiddetail = $user_login->users_detail_id;
+
+
+        $datausersdetail= array(
+            'users_name' => $name,
+            'users_fullname' => $fullname,
+            'users_group_id' => $groupid,
+            'users_email' => $email,
+            'users_telp' = $telp,
+            'users_json_following' => $jsonfollow,
+            'users_description' => $description,
+            'media_manager_id' => $media,
+            'users_avatar' => $avatar,
+            'users_status_id' => $status,
+            'deviceID' => $device,
+            'providerID' =>$provider,
+            'deviceVersion' => $deviceversion,
+            'deviceBrand' => $brand,
+            'long' => $long,
+            'lat' => $lat          
+        );
+
+        $data = table_users_detail::find($usersiddetail);
+        $data->update($datausersdetail);
+
         return redirect('admin/users-detail')->with('message', 'Data successfully changed!');
     }
 
@@ -106,7 +237,10 @@ class controller_users_detail extends Controller
      */
     public function destroy($id)
     {
-        table_users_detail::find($id)->delete();
+        $detail = table_users_detail::where('users_id', '=', $id)->first();
+        $idusersdetail = $detail->users_detail_id;
+        table_users_detail::find($idusersdetail)->delete();
+        users::find($id)->delete();
         return redirect('admin/users-detail')->with('warning', 'Data have been removed!');
     }
 }

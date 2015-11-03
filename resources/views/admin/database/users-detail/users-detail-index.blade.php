@@ -52,6 +52,12 @@
                     <th>
                         User Email
                     </th>
+                    <th>
+                        User Group
+                    </th>
+                    <th>
+                        Media title
+                    </th>
                     <th style="width:160px">
                         #
                     </th>
@@ -62,15 +68,17 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $value->users_name }}</td>
-                        <td>{{ $value->users_email }}</td>
+                        <td>{{ $value->email }}</td>
+                        <td>{{ $value->users_group_name }}</td>
+                        <td>{{ $value->media_manager_title }}</td>
 
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>
-                            <a class="btn btn-small btn-success" href="{{ URL('admin/users-detail/' . $value->users_detail_id) }}">View</a>
+                            <a class="btn btn-small btn-success" href="{{ URL('admin/users-detail/' . $value->id) }}">View</a>
 
-                            <a class="btn btn-small btn-warning" href="{{ URL('admin/users-detail/' . $value->users_detail_id . '/edit') }}">Edit</a>
+                            <a class="btn btn-small btn-warning" href="{{ URL('admin/users-detail/' . $value->id . '/edit') }}">Edit</a>
 
-                            {!! Form::open(['method' => 'DELETE', 'url' => 'admin/users-status/' . $value->users_detail_id, 'class' => 'pull-right', 'onsubmit' => 'return confirm("Are you sure you want to delete this item?");']) !!}
+                            {!! Form::open(['method' => 'DELETE', 'url' => 'admin/users-detail/' . $value->id, 'class' => 'pull-right', 'onsubmit' => 'return confirm("Are you sure you want to delete this item?");']) !!}
                                 {!! Form::submit('Delete', ['class' => 'btn btn-small btn-danger']) !!}
                             {!! Form::close() !!}
 
