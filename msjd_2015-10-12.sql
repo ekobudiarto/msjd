@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 02, 2015 at 04:21 PM
+-- Generation Time: Nov 03, 2015 at 05:41 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.6.14
 
@@ -398,16 +398,17 @@ CREATE TABLE IF NOT EXISTS `table_users_detail` (
   `long` varchar(100) DEFAULT NULL,
   `lat` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`users_detail_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `table_users_detail`
 --
 
 INSERT INTO `table_users_detail` (`users_detail_id`, `users_id`, `users_name`, `users_fullname`, `users_password`, `users_group_id`, `users_email`, `users_telp`, `users_json_following`, `users_description`, `media_manager_id`, `users_avatar`, `users_status_id`, `users_password_recovery`, `deviceID`, `providerID`, `deviceVersion`, `deviceBrand`, `long`, `lat`) VALUES
-(2, 26, 'ubay', 'bayu', '', 6, 'sdfsfddffsfata@data.com', '', '', '', '', 0, 0, '', NULL, 'IM3', '3.0', 'Samsung', NULL, NULL),
-(3, 28, 'robbi', 'robbi', '', 6, 'data@data.com', '', '26,25,', '', '', 0, 0, '', NULL, 'IM3', '4.0', 'Xiaomi', NULL, NULL),
-(4, 28, 'robbi', 'robbi', '', 6, 'data@data.com', '', '26,25,', '', '', 0, 0, '', NULL, 'Simpati', '4.0', 'Xiaomi', NULL, NULL);
+(2, 27, 'ubay', 'bayu', '', 6, 'data@data.com', '', '', '', '', 0, 2, '', '', 'IM3', '3.0', 'Samsung', '', ''),
+(3, 2, 'Rheza2', 'robbi', '', 6, 'admin@admin.com', '', '26,25,', '', '', 0, 0, '', NULL, 'IM3', '4.0', 'Xiaomi', NULL, NULL),
+(4, 28, 'tes', 'tes lengkap', '', 6, 'test@test.com', '', '26,25,', '', '', 0, 0, '', NULL, 'Simpati', '4.0', 'Xiaomi', NULL, NULL),
+(5, 29, 'testinputusersdetail2', 'testinputusersdetail2', '', 12, 'testinputusersdetail@gmail.com2', '2', '1,22', 'testinputusersdetail2', '12', 12, 2, '', 'testinputusersdetail2', 'testinputusersdetail2', 'testinputusersdetail2', 'testinputusersdetail2', 'testinputusersdetail2', 'testinputusersdetail2');
 
 -- --------------------------------------------------------
 
@@ -474,7 +475,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `users`
@@ -483,7 +484,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (2, 'Rheza2', 'admin@admin.com', '$2y$10$jE84xQoX/HjmXa5lCOKb5OTMOXoINK/QcBanjXF6NYc9bOPnend4i', 'n7aXJrTRqpeLeQFnRtyyi4lHTLslUXgSfvyxPZs0wJeoQt9U8A1gmTxqlMPl', '2015-10-15 09:37:38', '2015-10-15 09:44:29'),
 (27, 'ubay', 'data@data.com', '$2y$10$nipTEi5yPMPtJiWBdHxidONj6CItXq2KyGhNwA7ihisYqM6vNqiL6', NULL, '2015-10-21 06:49:57', '2015-10-21 06:49:57'),
-(28, 'test', 'test@test.com', '$2y$10$TGEB4ESQ4uJZvT1K18Zdoe6DU67DsHaJ1nUKkcRcFAWyhx5C2hCIC', 'N4gdZSLYKsqfq6lNcGTNCCnqcJVBSFm5yU8PGzxyQ933MCRJhZfwPEmsTz3L', '2015-11-27 10:30:13', '2015-10-28 06:19:36');
+(28, 'test', 'test@test.com', '$2y$10$TGEB4ESQ4uJZvT1K18Zdoe6DU67DsHaJ1nUKkcRcFAWyhx5C2hCIC', 'gzTbRuqJfYbIcCndXXRj69JU1jPFps9Lb5Tq0rPF91NfxqyGpBqxa3sD1oNH', '2015-11-27 10:30:13', '2015-11-02 08:36:19'),
+(29, 'testinputusersdetail2', 'testinputusersdetail@gmail.com2', '$2y$10$8RMzF5KWU/yNqGL30XjzA.1pD/0dHZN0aikW53JbegNPqjSUmIbvm', NULL, '2015-11-03 08:49:22', '2015-11-03 09:28:02');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
