@@ -16,6 +16,7 @@
 
     <script src="{{ URL::asset('public/css-js/scripts/jquery-1.9.1.min.js') }}" type="text/javascript"></script>
     <script src="{{ URL::asset('public/css-js/scripts/jquery-ui-1.10.1.custom.min.js') }}" type="text/javascript"></script>
+    <script src="{{ URL::asset('public/css-js/scripts/jquery-ui-timepicker-addon.js') }}" type="text/javascript"></script>
 
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -44,7 +45,7 @@
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li>
-	                                    {!! Html::link('auth/logout', 'Logout', array(), false) !!}
+                                        {!! Html::link('auth/logout', 'Logout', array(), false) !!}
                                     </li>
                                 </ul>
                             </li>
