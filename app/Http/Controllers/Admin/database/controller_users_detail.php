@@ -135,8 +135,8 @@ class controller_users_detail extends Controller
         $detail = table_users_detail::where('users_id', '=', $id)->first();
         $idusersdetail = $detail->users_detail_id;
         $data = array(
-                'users-detail' => table_users_detail::where('users_detail_id', '=', $idusersdetail)->first(),
-         );   
+                'users-detail' => table_users_detail::where('users_detail_id', '=', $idusersdetail)->get(),
+         ); 
         return view('admin.database.users-detail.users-detail-show', compact('data'));
     }
 
