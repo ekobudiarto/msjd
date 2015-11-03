@@ -32,7 +32,7 @@ class controller_content extends Controller
             'content' => DB::table('table_content as ct')
                                     ->select('ct.*',DB::raw('(select content_category_title from table_content_category where content_category_id = ct.content_category_id) as content_category_title'),
                                              DB::raw('(select media_manager_title from table_media_manager where media_manager_id = ct.content_media_id) as media_manager_title'),
-                                             DB::raw('(select content_title from table_content where content_repost_from = ct.content_id) as content_repost')
+                                             DB::raw('(select content_title from table_content where content_id = ct.content_repost_from) as content_repost')
                                             )
                                     ->paginate(10),
          );
