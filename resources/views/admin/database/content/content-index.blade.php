@@ -71,7 +71,7 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $value->content_title }}</td>
-                        <td>{{ $value->media_manager_title }}</td>
+                        <td>{{ $value->content_media_id }}</td>
                         <td>
                             <center>
                                 @if( $value->content_publish == 1 )

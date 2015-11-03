@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_content;
+use App\Models\table_media_manager;
 use DB;
 use App\Library\authentication;
 use Auth;
@@ -27,14 +28,28 @@ class controller_content extends Controller
     public function index()
     {
         
-         $data=array(
-            'content' => table_content::latest('content_id')->paginate(10),
-            'content' => DB::table('table_content as ct')
+        $result = DB::table('table_content as ct')
                                     ->select('ct.*',DB::raw('(select content_category_title from table_content_category where content_category_id = ct.content_category_id) as content_category_title'),
-                                             DB::raw('(select media_manager_title from table_media_manager where media_manager_id = ct.content_media_id) as media_manager_title'),
                                              DB::raw('(select content_title from table_content where content_id = ct.content_repost_from) as content_repost')
                                             )
-                                    ->paginate(10),
+                                    ->paginate(10);
+
+        foreach( $result as $res=>$value ){
+             $idsplit = explode(',', $value->content_media_id);
+             
+             $length = count($idsplit);
+             $name = '';
+             for($i = 0; $i<$length;$i++){
+                $cek = table_media_manager::where('media_manager_id', '=', $idsplit[$i])->first();
+                if($cek!= null){
+                    $name=$name.$cek->media_manager_title.', ';
+                }
+             }
+             $value->content_media_id = $name;
+        }
+         $data=array(
+            // 'content' => table_content::latest('content_id')->paginate(10),
+            'content' => $result
          );
 
 
