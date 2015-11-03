@@ -50,7 +50,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Datetime</label>
 					<div class="controls">
-						<input type="text" id="basicinput"  value="<?php echo date('Y-m-d h:i:s');?>"  class="span8" name="datetime" required>
+						<input type="text" id="datetime" class="span8" placeholder="Datetime" name="datetime" required>
 					</div>
 				</div>
 				<div class="control-group">
@@ -84,6 +84,12 @@
 <!-- autocomplete. why use this? because the system will be slow if dropdown for user has too many or large database -->
 <script type="text/javascript">
 	$(document).ready(function(){
+		//DATETIME
+		$('#datetime').datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat: "HH:mm",
+		});
+	
 		$('input:text').bind({
 
 		});

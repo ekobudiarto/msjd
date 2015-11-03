@@ -67,13 +67,13 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Date Start</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="Schedule Date Start" class="span8" name="schedule_date_start" value="{{ $value->schedule_date_start }}">
+						<input type="text" id="datestart" placeholder="Schedule Date Start" class="span8" name="schedule_date_start" value="{{ $value->schedule_date_start }}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Date End</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="Schedule Date End" class="span8" name="schedule_date_end" value="{{ $value->schedule_date_end }}">
+						<input type="text" id="dateend" placeholder="Schedule Date End" class="span8" name="schedule_date_end" value="{{ $value->schedule_date_end }}">
 					</div>
 				</div>
 				<div class="control-group">
@@ -124,6 +124,16 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
+		//DATETIME
+		$('#datestart').datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat: "HH:mm",
+		});
+		$('#dateend').datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat: "HH:mm",
+		});
+	
 		$('input:text').bind({
 
 		});

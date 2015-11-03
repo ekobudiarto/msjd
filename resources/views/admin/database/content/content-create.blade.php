@@ -78,19 +78,19 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Date Insert</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="Date" class="span8" name="content_date_insert" value="<?php echo date('Y-m-d h:i:s');?>">
+						<input type="text" id="dateinput" placeholder="Date" class="span8" name="content_date_insert">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Date Update</label>
 					<div class="controls">
-						<input type="text" id="datepicker" placeholder="Date" class="span8" name="content_date_update" value="<?php echo date('Y-m-d h:i:s');?>">
+						<input type="text" id="dateupdate" placeholder="Date" class="span8" name="content_date_update">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Date Expired</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="Date" class="span8" name="content_date_expired" value="<?php echo date('Y-m-d h:i:s',strtotime('+3 days'));?>">
+						<input type="text" id="dateexpired" placeholder="Date" class="span8" name="content_date_expired">
 					</div>
 				</div>
 				<div class="control-group">
@@ -126,6 +126,21 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
+		//DATETIME
+		$('#dateinput').datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat: "HH:mm",
+		});
+		$('#dateupdate').datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat: "HH:mm",
+		});
+		$('#dateexpired').datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat: "HH:mm",
+		});
+		
+		
 		$('input:text').bind({
 
 		});

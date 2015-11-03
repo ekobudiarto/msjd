@@ -69,13 +69,45 @@
                 </tr>
             </thead>
             <tbody>
+            <?php
+                function changeDate($day){
+                    switch ($day) {
+                        case "Sunday":
+                            $day = "Minggu";
+                            break;
+                        case "Monday":
+                            $day = "Senin";
+                            break;
+                        case "Tuesday":
+                            $day = "Selasa";
+                            break;
+                        case "Wednesday":
+                            $day = "Rabu";
+                            break;
+                        case "Thursday":
+                            $day = "Kamis";
+                            break;
+                        case "Friday":
+                            $day = "Jumat";
+                            break;
+                        case "Saturday":
+                            $day = "Sabtu";
+                            break;
+                    }
+                    echo $day;
+                }
+            ?>
                 @foreach($data['schedule'] as $key => $value)
                     <tr>
+                        <?php
+                            $start = strtotime($value->schedule_date_start);
+                            $end = strtotime($value->schedule_date_end);
+                        ?>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $value->schedule_title }}</td>
                         <td>{{ $value->schedule_type_name }}</td>
-                        <td>{{ $value->schedule_date_start }}</td>
-                        <td>{{ $value->schedule_date_end }}</td>
+                        <td><?php echo changeDate(date("l",$start)).", ".date("d F Y H:i",$start); ?></td>
+                        <td><?php echo changeDate(date("l",$end)).", ".date("d F Y H:i",$end); ?></td>
                         <td>{{ $value->schedule_media_id }}</td>
                         <td>{{ $value->users_name_creator }}</td>
 

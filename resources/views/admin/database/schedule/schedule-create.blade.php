@@ -64,13 +64,13 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Date Start</label>
 					<div class="controls">
-						<input type="date" id="basicinput" placeholder="datetime" class="span8" name="schedule_date_start" value="<?php echo date('Y-m-d h:i:s');?>">
+						<input type="date" id="datestart" placeholder="Datetime" class="span8" name="schedule_date_start">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Date End</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="datetime" class="span8" name="schedule_date_end" value="<?php echo date('Y-m-d h:i:s');?>">
+						<input type="text" id="dateend" placeholder="Datetime" class="span8" name="schedule_date_end">
 					</div>
 				</div>
 				<div class="control-group">
@@ -109,6 +109,16 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
+		//DATETIME
+		$('#datestart').datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat: "HH:mm",
+		});
+		$('#dateend').datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat: "HH:mm",
+		});
+		
 		$('input:text').bind({
 
 		});

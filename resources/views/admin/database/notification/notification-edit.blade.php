@@ -49,7 +49,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Datetime</label>
 					<div class="controls">
-						<input type="text" id="basicinput" onchange="getid(this)" value="{{ $value->datetime }}" class="autocontent" style="width: 65.812%;" name="datetime" required>
+						<input type="text" id="datetime" onchange="getid(this)" value="{{ $value->datetime }}" class="autocontent" style="width: 65.812%;" name="datetime" required>
 					</div>
 				</div>
 				<div class="control-group">
@@ -77,5 +77,14 @@
 			@endforeach
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//DATETIME
+		$('#datetime').datetimepicker({
+			dateFormat: "yy-mm-dd",
+			timeFormat: "HH:mm",
+		});
+	});
+</script>
 
 @endsection
