@@ -21,14 +21,6 @@
     <!-- Fonts -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
-
-    <style>
-     table th{
-        background-color: #29B7D3;
-        color: #fff;
-     }
-    </style>
-
     </head>
     <body>
         <div class="navbar navbar-fixed-top">

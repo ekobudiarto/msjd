@@ -61,6 +61,12 @@ blockquote p {
 blockquote small::before {
 	content: "# "
 }
+table th{
+        background-color: #00555F;
+        color: #fff;
+        text-align: center;
+}
+
 .lead {
 	font-size: 16px;
 	line-height: 22px
