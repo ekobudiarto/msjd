@@ -87,3 +87,4 @@ Route::get('admin/autocomplete/getcontenttitle', 'Admin\database\autocomplete@ge
 Route::get('admin/autocomplete/getmediaid', 'Admin\database\autocomplete@getMediaId');
 Route::get('admin/autocomplete/getcategoryid', 'Admin\database\autocomplete@getCategoryId');
 Route::get('admin/autocomplete/getscheduletype', 'Admin\database\autocomplete@getScheduleType');
+Route::get('admin/autocomplete/getstatusid', 'Admin\database\autocomplete@getStatusId');

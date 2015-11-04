@@ -82,4 +82,16 @@ class autocomplete extends Controller
         return (new Response($return_array,200))->header('Content-Type', "json");
 
     }
+    
+    public function getStatusId()
+    {
+        
+        $term = strtolower(input::get('term'));
+        $data = DB::table('table_users_status')->select('users_status_id','users_status_title')->where('users_status_title', 'LIKE', $term.'%')->take(10)->get();
+        foreach($data as $v){
+            $return_array[] = array('value' => '['.$v->users_status_id.'] '.$v->users_status_title);
+        }
+        return (new Response($return_array,200))->header('Content-Type', "json");
+
+    }
 }
