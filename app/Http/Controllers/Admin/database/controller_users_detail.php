@@ -51,7 +51,11 @@ class controller_users_detail extends Controller
      */
     public function create()
     {
-        return view('admin.database.users-detail.users-detail-create');
+        $data=array(
+                'group' => DB::table('table_users_group')->get(),
+                'status' => DB::table('table_users_status')->get(),
+            );
+        return view('admin.database.users-detail.users-detail-create', compact('data'));
     }
 
     /**
@@ -136,6 +140,8 @@ class controller_users_detail extends Controller
         $idusersdetail = $detail->users_detail_id;
         $data = array(
                 'users-detail' => table_users_detail::where('users_detail_id', '=', $idusersdetail)->get(),
+                'group' => DB::table('table_users_group')->get(),
+                'status' => DB::table('table_users_status')->get(),
          ); 
         return view('admin.database.users-detail.users-detail-show', compact('data'));
     }
@@ -150,8 +156,11 @@ class controller_users_detail extends Controller
     {
         $detail = table_users_detail::where('users_id', '=', $id)->first();
         $idusersdetail = $detail->users_detail_id;
+
         $data = array(
                 'users-detail' => table_users_detail::where('users_detail_id', '=', $idusersdetail)->get(),
+                'group' => DB::table('table_users_group')->get(),
+                'status' => DB::table('table_users_status')->get(),
          );
 
 

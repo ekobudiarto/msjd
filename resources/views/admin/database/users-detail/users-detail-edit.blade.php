@@ -60,7 +60,14 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Group ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" name="users_group_id" value="{{ $value->users_group_id }}" required>
+						<select name="users_group_id" required>
+						
+
+						@foreach($data['group'] as $row=>$valuegroup)
+								<option value="{{ $valuegroup->users_group_id }}" <?PHP if ($valuegroup->users_group_id==$value->users_group_id) echo "selected"; ?> >{{ $valuegroup->users_group_name}}</option>
+						@endforeach
+						</select>
+						<!-- <input type="text" id="basicinput" placeholder="" class="span8" name="users_group_id" value="{{ $value->users_group_id }}" required> -->
 					</div>
 				</div>
 				<div class="control-group">
@@ -97,7 +104,14 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Status ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" onchange="getid(this)" placeholder="it should status id, but you can search by title" class="span8 getStatus" name="users_status_id" value="{{ $value->users_status_id }}">
+						<!-- <input type="text" id="basicinput" onchange="getid(this)" placeholder="it should status id, but you can search by title" class="span8 getStatus" name="users_status_id" value="{{ $value->users_status_id }}"> -->
+						<select name="users_status_id" required>
+						
+
+						@foreach($data['status'] as $row=>$valuestatus)
+								<option value="{{ $valuestatus->users_status_id }}" <?PHP if( $valuestatus->users_status_id ==  $value->users_status_id) echo "selected"; ?>>{{ $valuestatus->users_status_title}}</option>
+						@endforeach
+						</select>
 					</div>
 				</div>
 				<div class="control-group">

@@ -37,7 +37,6 @@
 			@foreach($data['users-detail'] as $key => $value)
 			{!! Form::open(array('url' => 'admin/users-detail/'.$value->users_id, 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
 
-				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users Name</label>
 					<div class="controls">
@@ -59,7 +58,14 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Group ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" name="users_group_id" value="{{ $value->users_group_id }}" required>
+						<select name="users_group_id" required>
+						
+
+						@foreach($data['group'] as $row=>$valuegroup)
+								<option value="{{ $valuegroup->users_group_id }}" <?PHP if ($valuegroup->users_group_id==$value->users_group_id) echo "selected"; ?> >{{ $valuegroup->users_group_name}}</option>
+						@endforeach
+						</select>
+						<!-- <input type="text" id="basicinput" placeholder="" class="span8" name="users_group_id" value="{{ $value->users_group_id }}" required> -->
 					</div>
 				</div>
 				<div class="control-group">
@@ -71,7 +77,8 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Json Follow</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" value="{{ $value->users_json_following }}" name="users_json_following">
+						<input type="text" onchange="getidAll(this)" placeholder="it should user id, but you can search by name" class="span8 getFollow">
+						<input type="text" id="basicinput" class="tempJsonFollow" value="{{ $value->users_json_following }}" name="users_json_following" style="width: 65.812%;margin-top:10px;" required>
 					</div>
 				</div>
 				<div class="control-group">
@@ -83,7 +90,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" value="{{ $value->media_manager_id }}" name="media_manager_id">
+						<input type="text" id="basicinput" onchange="getid(this)" placeholder="it should media id, but you can search by name" class="span8 getMedia" value="{{ $value->media_manager_id }}" name="media_manager_id">
 					</div>
 				</div>
 				<div class="control-group">
@@ -95,7 +102,14 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Status ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" name="users_status_id" value="{{ $value->users_status_id }}">
+						<!-- <input type="text" id="basicinput" onchange="getid(this)" placeholder="it should status id, but you can search by title" class="span8 getStatus" name="users_status_id" value="{{ $value->users_status_id }}"> -->
+						<select name="users_status_id" required>
+						
+
+						@foreach($data['status'] as $row=>$valuestatus)
+								<option value="{{ $valuestatus->users_status_id }}" <?PHP if( $valuestatus->users_status_id ==  $value->users_status_id) echo "selected"; ?>>{{ $valuestatus->users_status_title}}</option>
+						@endforeach
+						</select>
 					</div>
 				</div>
 				<div class="control-group">
@@ -135,9 +149,60 @@
 					</div>
 				</div>
 
+				
+				<div class="control-group">
+					<div class="controls">
+						{!! Html::link('admin/users-detail', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
+					</div>
+				</div>
 			{!! Form::close() !!}
 			@endforeach
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".getFollow").autocomplete({
+			minLength:1,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getusername") }}',
+		});
+		$(".getMedia").autocomplete({
+			minLength:1,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getmediaid") }}',
+		});
+		$(".getStatus").autocomplete({
+			minLength:1,
+			autofocus: true,
+			source: '{{ url("admin/autocomplete/getstatusid") }}',
+		});
+	});
+	function getid(obj){
+    
+		var valuee = obj.value;
+		var res = valuee.split(" ");
+		var nilai = res[0].replace('[','');
+		var nilai = nilai.replace(']','');
+		obj.value = nilai;
+	}
+	
+	function getidAll(obj){
+		var valuee = obj.value;
+		var res = valuee.split(" ");
+		var nilai = res[0].replace('[','');
+		var nilai = nilai.replace(']','');
+		var temp = $(".tempJsonFollow").val();
+		if (temp == "") {
+            $(".tempJsonFollow").val(nilai);
+        }
+		else{
+			$(".tempJsonFollow").val(temp+","+nilai);
+		}
+		obj.value = "";
+	}
+
+
+</script>
 
 @endsection

@@ -64,7 +64,14 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Group ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" name="users_group_id" required>
+						<select name="users_group_id" required>
+						<option value=''>--select--</option>
+
+						@foreach($data['group'] as $row=>$value)
+								<option value="{{ $value->users_group_id }}">{{ $value->users_group_name}}</option>
+						@endforeach
+						</select>
+						
 					</div>
 				</div>
 				<div class="control-group">
@@ -101,7 +108,14 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Status ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" onchange="getid(this)" placeholder="it should status id, but you can search by title" class="span8 getStatus" name="users_status_id">
+						<select name="users_status_id" required>
+						<option value=''>--select--</option>
+
+						@foreach($data['status'] as $row=>$value)
+								<option value="{{ $value->users_status_id }}">{{ $value->users_status_title}}</option>
+						@endforeach
+						</select>
+						<!-- <input type="text" id="basicinput" onchange="getid(this)" placeholder="it should status id, but you can search by title" class="span8 getStatus" name="users_status_id">-->
 					</div>
 				</div>
 				<div class="control-group">
