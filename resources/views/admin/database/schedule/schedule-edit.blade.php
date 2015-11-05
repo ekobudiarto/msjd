@@ -89,6 +89,12 @@
 					</div>
 				</div>
 				<div class="control-group">
+					<label class="control-label" for="basicinput">Schedule Repeat</label>
+					<div class="controls">
+						<input type="text" class="span8" name="schedule_repeat" value="{{ $value->schedule_repeat}}" >
+					</div>
+				</div>
+				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Media ID</label>
 					<div class="controls">
 						<input type="text" class="automedia" onchange="getidAll(this)" placeholder="it should media id, but you can search by name media" style="width: 65.812%;">

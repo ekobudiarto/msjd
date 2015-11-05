@@ -93,6 +93,12 @@
 					</div>
 				</div>
 				<div class="control-group">
+					<label class="control-label" for="basicinput">Schedule Repeat</label>
+					<div class="controls">
+						<input type="text" class="span8" name="schedule_repeat">
+					</div>
+				</div>
+				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Publish</label>
 					<div class="controls">
 						{!! Form::select('schedule_publish', ['0' => 'No','1' => 'Yes']) !!}
