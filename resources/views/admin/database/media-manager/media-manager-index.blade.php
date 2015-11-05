@@ -82,7 +82,7 @@
                         </td>
                         <td>
                             <center>
-                            {!! Form::open(['method' => 'GET', 'url' => 'admin/ispublish/', 'onsubmit' => 'return confirm("Are you sure you want to publish this item?");']) !!}
+                            {!! Form::open(['method' => 'GET', 'url' => 'admin/ispublish/', 'onsubmit' => 'return confirm("Are you sure you want to change publish status for this item?");']) !!}
                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                 <input type="hidden" name="id" value="{{ $value->media_manager_id }}">
                                 <input type="hidden" name="id_name" value="media_manager_id">
