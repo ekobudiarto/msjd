@@ -32,6 +32,7 @@ class controller_content extends Controller
                                     ->select('ct.*',DB::raw('(select content_category_title from table_content_category where content_category_id = ct.content_category_id) as content_category_title'),
                                              DB::raw('(select content_title from table_content where content_id = ct.content_repost_from) as content_repost')
                                             )
+                                    ->orderBy('content_id', 'desc')
                                     ->paginate(10);
 
         foreach( $result as $res=>$value ){

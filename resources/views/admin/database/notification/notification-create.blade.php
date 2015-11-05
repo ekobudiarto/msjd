@@ -47,10 +47,10 @@
 						<input type="text" id="autouser"  onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" name="users_id" style="width: 65.812%;" required>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" >
 					<label class="control-label" for="basicinput">Datetime</label>
 					<div class="controls">
-						<input type="text" id="datetime" onchange="getid(this)" placeholder="Datetime" class="autocontent" style="width: 65.812%;" name="datetime" required>
+						<input type="text" id="datetime" value="<?PHP echo date('Y-m-d H:i:s');?>" onchange="getid(this)" placeholder="Datetime" class="autocontent" style="width: 65.812%;" name="datetime" required>
 					</div>
 				</div>
 				<div class="control-group">

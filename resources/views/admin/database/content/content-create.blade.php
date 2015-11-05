@@ -75,16 +75,16 @@
 						<input type="text" id="autouser2"  onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" name="content_last_editor" style="width: 65.812%;" required>
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" style="display:none">
 					<label class="control-label" for="basicinput">Content Date Insert</label>
 					<div class="controls">
-						<input type="text" id="dateinput" placeholder="Date" class="span8" name="content_date_insert">
+						<input type="text" id="" placeholder="Date" value="<?PHP echo date('Y-m-d H:i:s');?>" class="span8" name="content_date_insert">
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" style="display:none">
 					<label class="control-label" for="basicinput">Content Date Update</label>
 					<div class="controls">
-						<input type="text" id="dateupdate" placeholder="Date" class="span8" name="content_date_update">
+						<input type="text" id="dateupdate" value="" placeholder="Date" class="span8" name="content_date_update">
 					</div>
 				</div>
 				<div class="control-group">

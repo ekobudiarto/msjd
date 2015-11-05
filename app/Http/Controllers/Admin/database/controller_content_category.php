@@ -32,6 +32,7 @@ class controller_content_category extends Controller
             //'content_category' => table_content_category::latest('content_category_id')->paginate(10),
             'content_category' => DB::table('table_content_category as ct')
                                     ->select('ct.*',DB::raw('(select media_manager_title from table_media_manager where media_manager_id = ct.media_manager_id) as media_manager_title') )
+                                    ->orderBy('content_category_id', 'desc')
                                     ->paginate(10),
          );
 

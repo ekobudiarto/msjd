@@ -30,6 +30,7 @@ class controller_notification extends Controller
          $data=array(
             'notification' => DB::table('table_notification as no')
                                     ->select('no.*',DB::raw('(select users_name from table_users_detail where users_id = no.users_id) as users_name'))
+                                    ->orderBy('notification_id', 'desc')
                                     ->paginate(10),
          );
 

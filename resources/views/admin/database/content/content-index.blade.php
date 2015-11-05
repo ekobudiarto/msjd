@@ -70,7 +70,7 @@
                 @foreach($data['content'] as $key => $value)
                     <tr>
                         <td>{{ $key + 1 }}</td>
-                        <td>{{ $value->content_title }}</td>
+                        <td><?PHP $one = str_replace('<p>','',$value->content_title); echo str_replace('</p>','',$one); ?></td>
                         <td>{{ $value->content_media_id }}</td>
                         <td>
                             <center>

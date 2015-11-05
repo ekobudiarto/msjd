@@ -34,6 +34,7 @@ class controller_schedule extends Controller
                                              DB::raw('(select users_name from table_users_detail where users_id = sch.schedule_users_source) as users_name_source'),
                                              DB::raw('(select schedule_type_name from table_schedule_type where schedule_type_id = sch.schedule_type_id) as schedule_type_name')
                                             )
+                                    ->orderBy('schedule_id', 'desc')
                                     ->paginate(10);
         
         foreach( $result as $res=>$value ){

@@ -30,6 +30,7 @@ class controller_last_login extends Controller
          $data=array(
             'last_login' => DB::table('table_last_login as no')
                                     ->select('no.*',DB::raw('(select users_name from table_users_detail where users_id = no.users_id) as users_name'))
+                                    ->orderBy('last_login_id', 'desc')
                                     ->paginate(10),
          );
 

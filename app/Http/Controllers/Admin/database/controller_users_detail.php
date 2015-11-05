@@ -37,6 +37,7 @@ class controller_users_detail extends Controller
                                                     DB::raw('(select users_group_name from table_users_group where users_group_id = users_groups_id) as users_group_name'),
                                                     DB::raw('(select media_manager_title from table_media_manager where media_manager_id = media_managers_id) as media_manager_title')
                                         )
+                                    ->orderBy('id', 'desc')
                                     ->paginate(10),
          );
 
