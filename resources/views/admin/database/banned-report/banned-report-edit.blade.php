@@ -61,8 +61,12 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Banned Report Message</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="banned_report_message">{{ $value->banned_report_message }}</textarea>
+						<textarea class="span8" rows="5" id="editor" name="banned_report_message">{{ $value->banned_report_message }}</textarea>
 					</div>
+
+					 <script>
+                		CKEDITOR.replace( 'editor' );
+            		</script>
 				</div>
 				<div class="control-group">
 					<div class="controls">
