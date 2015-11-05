@@ -4,8 +4,16 @@ $_SERVER['REQUEST_URI_PATH'] = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', $_SERVER['REQUEST_URI_PATH']);
 if($segments[1] == 'public' || $segments[2] == 'public' ){
 	
-	header("Location:http://".$_SERVER['SERVER_NAME']);
-die();
+	// will direct to url without public
+	$oldurl =  $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+	$newurl = str_replace('/public/', '/', $oldurl);
+	echo $newurl;
+	header("Location:http://".$newurl);
+	die();
+
+	// will direct to domain name
+	// header("Location:http://".$_SERVER['SERVER_NAME']);
+	// die();
 }
 /**
  * Laravel - A PHP Framework For Web Artisans
