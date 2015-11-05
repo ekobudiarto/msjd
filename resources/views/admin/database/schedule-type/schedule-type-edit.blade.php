@@ -49,13 +49,13 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Type Description</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="schedule_type_desc" >{{ $value->schedule_type_desc}}</textarea>
+						<textarea class="span8" id="editor" rows="5" name="schedule_type_desc" >{{ $value->schedule_type_desc}}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager ID</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="media_manager_id" >{{ $value->media_manager_id}}</textarea>
+						<textarea class="span8" id="editor2" rows="5" name="media_manager_id" >{{ $value->media_manager_id}}</textarea>
 					</div>
 				</div>
 				

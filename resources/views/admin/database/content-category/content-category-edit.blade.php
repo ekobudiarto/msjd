@@ -49,7 +49,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Category Description</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="content_category_description">{{ $value->content_category_description }}</textarea>
+						<textarea class="span8" id="editor" rows="5" name="content_category_description">{{ $value->content_category_description }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">

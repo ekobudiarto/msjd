@@ -108,5 +108,11 @@
         <script src="{{ URL::asset('public/css-js/scripts/flot/jquery.flot.resize.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('public/css-js/scripts/datatables/jquery.dataTables.js') }}" type="text/javascript"></script>
         <script src="{{ URL::asset('public/css-js/scripts/common.js') }}" type="text/javascript"></script>
-      
+        
+        <script>
+            CKEDITOR.replace( 'editor' );
+            CKEDITOR.replace( 'editor1' );
+            CKEDITOR.replace( 'editor2' );
+            CKEDITOR.replace( 'editor3' );
+        </script>
     </body>

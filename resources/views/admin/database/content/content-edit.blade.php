@@ -42,19 +42,19 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Title</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="content_title" placeholder="text">{{ $value->content_title }}</textarea>
+						<textarea class="span8" rows="5" id="editor" name="content_title" placeholder="text">{{ $value->content_title }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Headline</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="content_headline" placeholder="text">{{ $value->content_headline }}</textarea>
+						<textarea class="span8" id="editor1" rows="5" name="content_headline" placeholder="text">{{ $value->content_headline }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Detail</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="content_detail" placeholder="text">{{ $value->content_detail }}</textarea>
+						<textarea class="span8" id="editor2" rows="5" name="content_detail" placeholder="text">{{ $value->content_detail }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">

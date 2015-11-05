@@ -90,7 +90,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Description</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="users_description"></textarea>
+						<textarea class="span8" id="editor" rows="5" name="users_description"></textarea>
 					</div>
 				</div>
 				<div class="control-group">

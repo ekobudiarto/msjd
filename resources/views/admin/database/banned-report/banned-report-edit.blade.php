@@ -63,10 +63,6 @@
 					<div class="controls">
 						<textarea class="span8" rows="5" id="editor" name="banned_report_message">{{ $value->banned_report_message }}</textarea>
 					</div>
-
-					 <script>
-                		CKEDITOR.replace( 'editor' );
-            		</script>
 				</div>
 				<div class="control-group">
 					<div class="controls">

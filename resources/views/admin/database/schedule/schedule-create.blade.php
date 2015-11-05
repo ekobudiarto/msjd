@@ -40,7 +40,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Title</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" placeholder="text" name="schedule_title"></textarea>
+						<textarea class="span8" id="editor" rows="5" placeholder="text" name="schedule_title"></textarea>
 					</div>
 				</div>
 				<div class="control-group">
@@ -76,13 +76,13 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Description</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" placeholder="text" name="schedule_description"></textarea>
+						<textarea class="span8" id="editor1" rows="5" placeholder="text" name="schedule_description"></textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Headline</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" placeholder="text" name="schedule_headline"></textarea>
+						<textarea class="span8" rows="5"  id="editor2" placeholder="text" name="schedule_headline"></textarea>
 					</div>
 				</div>
 				<div class="control-group">

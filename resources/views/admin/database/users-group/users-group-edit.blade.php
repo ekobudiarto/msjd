@@ -48,7 +48,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">User Group Description</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="users_group_description">{{ $value->users_group_name}}</textarea>
+						<textarea class="span8" rows="5" id="editor" name="users_group_description">{{ $value->users_group_name}}</textarea>
 					</div>
 				</div>	
 				<div class="control-group">
