@@ -67,12 +67,23 @@
                         <td>{{ $value->users_group_description }}</td>
                         <td>
                             <center>
+                            {!! Form::open(['method' => 'GET', 'url' => 'admin/ispublish/', 'onsubmit' => 'return confirm("Are you sure you want to publish this item?");']) !!}
+                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                <input type="hidden" name="id" value="{{ $value->users_group_id }}">
+                                <input type="hidden" name="id_name" value="users_group_id">
+                                <input type="hidden" name="table_name" value="table_users_group">
+                                <input type="hidden" name="field_name" value="users_group_is_public">
+                                <input type="hidden" name="url" value="<?PHP echo $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] ?>">
+                                <input type="hidden" name="values" value="<?PHP if($value->users_group_is_public == 1) echo 0; else echo 1;?>" >
+                                
                                 @if( $value->users_group_is_public == 1 )
-                                    <b class="label green">Yes</b>
+                                    <a href="#" onclick="$(this).closest('form').submit()" ><b class="label green">Yes</b></a>
                                 @else
-                                    <b class="label orange ">No</b>
+                                    <a href="#" onclick="$(this).closest('form').submit()" ><b class="label orange ">No</b></a>
                                 @endif
+                            {!! Form::close() !!}
                             </center>
+                            
                         </td>
                         <!-- untuk menambahkan tombol tampil, edit, dan hapus -->
                         <td>
