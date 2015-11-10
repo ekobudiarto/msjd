@@ -49,7 +49,12 @@ class controller_banned_report extends Controller
      */
     public function create()
     {
-       return view('admin.database.banned-report.banned-report-create');
+       $data = array(
+                    'users_detail' => json_encode(DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail')),
+                    'content' => json_encode(DB::select('select content_id as id, content_title as value, content_title as label from table_content')),
+                );
+       
+       return view('admin.database.banned-report.banned-report-create', compact('data'));
     }
 
     /**
@@ -90,7 +95,26 @@ class controller_banned_report extends Controller
            
          $data = array(
                 'databanned' => table_banned_report::where('banned_report_id', '=', $id)->get(),
-         );     
+                'users_detail' => json_encode(DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail')),
+                'content' => json_encode(DB::select('select content_id as id, content_title as value, content_title as label from table_content')),
+         );
+        
+        foreach($data['databanned'] as $key => $value){
+            $userBy = $value->users_by;
+            $userDest = $value->users_dest;
+            $contentId = $value->content_id;
+        }
+        
+        //Ambil data
+        $users_name = DB::table('table_users_detail')->select('users_id as id', 'users_name as value', 'users_name as label')->where('users_id', '=', $userBy)->first();
+        $users_name2 = DB::table('table_users_detail')->select('users_id as id', 'users_name as value', 'users_name as label')->where('users_id', '=', $userDest)->first();
+        $content_id = DB::table('table_content')->select('content_id as id', 'content_title as value', 'content_title as label')->where('content_id', '=', $contentId)->first();
+        
+        $data['dataUsers'] = $users_name;
+        $data['dataUsers2'] = $users_name2;
+        $data['contentId'] = $content_id;
+        //END Ambil data
+         
         return view('admin.database.banned-report.banned-report-edit', compact('data'));
     }
 

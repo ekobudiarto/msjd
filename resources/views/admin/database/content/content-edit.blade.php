@@ -1,6 +1,10 @@
 @extends('/admin/include/admin-header-footer')
 
 @section('content')
+<link type="text/css" href="{{ URL::asset('public/css-js/css/token-input.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ URL::asset('public/css-js/css/token-input-facebook.css') }}" rel="stylesheet">
+<script src="{{ URL::asset('public/css-js/scripts/jquery.tokeninput.js') }}" type="text/javascript"></script>
+	
 <div class="module">
 	<div class="module-head">
 		<h3>Forms Content Edit</h3>
@@ -31,8 +35,8 @@
 			            <li>{{ $error }}</li>
 			        @endforeach
 			    </ul>
-			@endif
-
+			@endif			
+			
 			@foreach($data['content'] as $key => $value)
 			
 			{!! Form::open(array('url' => 'admin/content/'.$value->content_id, 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
@@ -60,35 +64,42 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Media ID</label>
 					<div class="controls">
-						<input type="text" class="automedia" onchange="getidAll(this)" placeholder="it should media id, but you can search by name media" style="width: 65.812%;">
-						<input type="text" class="tempmediaid" name="content_media_id" value="{{ $value->content_media_id }}" style="width: 65.812%;margin-top:10px;" required>
+						<!--<input type="text" class="automedia" onchange="getidAll(this)" placeholder="it should media id, but you can search by name media" style="width: 65.812%;">
+						<input type="text" class="tempmediaid" name="content_media_id" value="{{ $value->content_media_id }}" style="width: 65.812%;margin-top:10px;" required>-->
+						
+						<input type="text" id="tags" style="width: 65.812%;"  />
+						<input type="hidden" class="tagsValue" name="content_media_id"  />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content users uploader</label>
 					<div class="controls">
-						<input type="text" id="autouser"  onchange="getid(this)" value="{{ $value->content_users_uploader }}" placeholder="it should user id, but you can search by name" class="autouser" name="content_users_uploader" style="width: 65.812%;" required>
+						<!--<input type="text" id="autouser"  placeholder="it should user id, but you can search by name" class="autouser" name="content_users_uploader" style="width: 65.812%;" required>-->
+						<input type="text" id="uploader" style="width: 65.812%;" />
+						<input type="hidden" name="content_users_uploader" id="uploaderValue" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Last Editor</label>
 					<div class="controls">
-						<input type="text" id="autouser2"  onchange="getid(this)" value="{{ $value->content_last_editor }}" placeholder="it should user id, but you can search by name" class="autouser" name="content_last_editor" style="width: 65.812%;" required>
+						<!--<input type="text" id="autouser2"  onchange="getid(this)" value="{{ $value->content_last_editor }}" placeholder="it should user id, but you can search by name" class="autouser" name="content_last_editor" style="width: 65.812%;" required>-->
+						<input type="text" id="lasteditor"style="width: 65.812%;" />
+						<input type="hidden" name="content_last_editor" id="lasteditorValue" />
 					</div>
 				</div>
-				<!-- <div class="control-group">
+				<div class="control-group" style="display:none">
 					<label class="control-label" for="basicinput">Content Date Insert</label>
 					<div class="controls">
 						<input type="text" id="dateinput" placeholder="Date" class="span8" name="content_date_insert" value="{{ $value->content_date_insert }}">
 					</div>
-				</div> -->
+				</div>
 				<div class="control-group" style="display:none">
 					<label class="control-label" for="basicinput">Content Date Update</label>
 					<div class="controls">
-						<input type="text" id="dateupdate" placeholder="Date" value="<?PHP echo date('Y-m-d H:i:s');?>" class="span8" name="content_date_update" value="{{ $value->content_date_update }}">
+						<input type="text" id="dateupdate" placeholder="Date" class="span8" name="content_date_update" value="{{ $value->content_date_update }}">
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group" style="display:none">
 					<label class="control-label" for="basicinput">Content Date Expired</label>
 					<div class="controls">
 						<input type="text" id="dateexpired" placeholder="Date" class="span8" name="content_date_expired" value="{{ $value->content_date_expired }}">
@@ -97,13 +108,17 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Category</label>
 					<div class="controls">
-						<input type="text" id="autocontencategory"  onchange="getid(this)" value="{{ $value->content_category_id }}" placeholder="you can search by content category name" class="autocontencategory" name="content_category_id" style="width: 65.812%;" required>
+						<!--<input type="text" id="autocontencategory"  onchange="getid(this)" value="{{ $value->content_category_id }}" placeholder="you can search by content category name" class="autocontencategory" name="content_category_id" style="width: 65.812%;" required>-->
+						<input type="text" id="ccat" style="width: 65.812%;" />
+						<input type="hidden" name="content_category_id" id="ccatValue" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content repost from</label>
 					<div class="controls">
-						<input type="text" id="autoconten"  onchange="getid(this)" value="{{ $value->content_repost_from }}" placeholder="it should content id, but you can search by name" class="autocontent" name="content_repost_from" style="width: 65.812%;" required>
+						<!--<input type="text" id="autoconten"  onchange="getid(this)" value="{{ $value->content_repost_from }}" placeholder="it should content id, but you can search by name" class="autocontent" name="content_repost_from" style="width: 65.812%;" required>-->
+						<input type="text" id="content" style="width: 65.812%;" />
+						<input type="hidden" name="content_repost_from" id="contentValue" />
 					</div>
 				</div>
 				<div class="control-group">
@@ -138,6 +153,125 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
+		var data = <?php echo json_encode($data['media_manager']);?>;
+		$("#tags").tokenInput(data, {
+			preventDuplicates: true,
+			theme: "facebook"
+		});
+		$("#tags").on('change',function(){
+			$(".tagsValue").val($('#tags').val());
+		});
+		var med_man = "<?php echo $data['dataIdMediaManager'];?>";
+		$(".tagsValue").val(med_man);
+		
+		<?php
+			foreach($data['dataMediaManager'] as $key => $value){
+		?>
+				$("#tags").tokenInput("add", {id: "<?php echo $key;?>", name: "<?php echo $value;?>"});
+		<?php
+			}
+		?>
+		
+		
+		//SINGLE AUTOCOMPLETE
+		var dataUploader= <?php echo json_encode($data['users_detail']);?>;
+		$( "#uploader" )
+		.bind( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+				$( this ).autocomplete( "instance" ).menu.active ) {
+			  event.preventDefault();
+			}
+		})
+		.autocomplete({
+			minLength: 0,
+			source: dataUploader,
+			focus: function( event, ui ) {
+				$( "#uploader" ).val( ui.item.label );
+				return false;
+			},
+			select: function( event, ui ) {
+				$( "#uploader" ).val( ui.item.label );
+				$("#uploaderValue").val(ui.item.id);  
+				return false;
+			}
+		});
+		$( "#uploader" ).val('<?php echo $data["dataUsers"]->value;?>');
+		$("#uploaderValue").val('<?php echo $data["dataUsers"]->id;?>');
+		
+		
+		var dataEditor= <?php echo json_encode($data['users_detail']);?>;
+		$( "#lasteditor" )
+		.bind( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+				$( this ).autocomplete( "instance" ).menu.active ) {
+			  event.preventDefault();
+			}
+		})
+		.autocomplete({
+			minLength: 0,
+			source: dataEditor,
+			focus: function( event, ui ) {
+				$( "#lasteditor" ).val( ui.item.label );
+				return false;
+			},
+			select: function( event, ui ) {
+				$( "#lasteditor" ).val( ui.item.label );
+				$("#lasteditorValue").val(ui.item.id);  
+				return false;
+			}
+		});
+		$( "#lasteditor" ).val('<?php echo $data["dataUsers2"]->value;?>');
+		$("#lasteditorValue").val('<?php echo $data["dataUsers2"]->id;?>');
+		
+		var dataCat= <?php echo json_encode($data['content_category']);?>;
+		$( "#ccat" )
+		.bind( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+				$( this ).autocomplete( "instance" ).menu.active ) {
+			  event.preventDefault();
+			}
+		})
+		.autocomplete({
+			minLength: 0,
+			source: dataCat,
+			focus: function( event, ui ) {
+				$( "#ccat" ).val( ui.item.label );
+				return false;
+			},
+			select: function( event, ui ) {
+				$( "#ccat" ).val( ui.item.label );
+				$("#ccatValue").val(ui.item.id);  
+				return false;
+			}
+		});
+		$( "#ccat" ).val('<?php echo $data["dataContentCategory"]->value;?>');
+		$("#ccatValue").val('<?php echo $data["dataContentCategory"]->id;?>');
+		
+		var dataContent= <?php echo json_encode($data['content_from']);?>;
+		$( "#content" )
+		.bind( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+				$( this ).autocomplete( "instance" ).menu.active ) {
+			  event.preventDefault();
+			}
+		})
+		.autocomplete({
+			minLength: 0,
+			source: dataContent,
+			focus: function( event, ui ) {
+				$( "#content" ).val( ui.item.label );
+				return false;
+			},
+			select: function( event, ui ) {
+				$( "#content" ).val( ui.item.label );
+				$("#contentValue").val(ui.item.id);  
+				return false;
+			}
+		});
+		//console.log("<?php echo preg_replace('/[\r\n]+/', '', $data['dataContentFrom']->value);?>");
+		$( "#content" ).val("<?php echo preg_replace('/[\r\n]+/', '', $data['dataContentFrom']->value);?>");
+		$("#contentValue").val('<?php echo $data["dataContentFrom"]->id;?>');
+	
 		//DATETIME
 		$('#dateinput').datetimepicker({
 			dateFormat: "yy-mm-dd",

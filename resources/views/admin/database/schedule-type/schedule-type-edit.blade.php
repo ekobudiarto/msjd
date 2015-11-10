@@ -1,6 +1,10 @@
 @extends('/admin/include/admin-header-footer')
 
 @section('content')
+<link type="text/css" href="{{ URL::asset('public/css-js/css/token-input.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ URL::asset('public/css-js/css/token-input-facebook.css') }}" rel="stylesheet">
+<script src="{{ URL::asset('public/css-js/scripts/jquery.tokeninput.js') }}" type="text/javascript"></script>
+	
 <div class="module">
 	<div class="module-head">
 		<h3>Forms Schedule Type</h3>
@@ -55,7 +59,9 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager ID</label>
 					<div class="controls">
-						<textarea class="span8" id="editor2" rows="5" name="media_manager_id" >{{ $value->media_manager_id}}</textarea>
+						<!--<textarea class="span8" id="editor2" rows="5" name="media_manager_id" >{{ $value->media_manager_id}}</textarea>-->
+						<input type="text" id="mediaId" style="width: 65.812%;" />
+						<input type="hidden" class="mediaIdValue" name="media_manager_id" />
 					</div>
 				</div>
 				
@@ -71,5 +77,30 @@
 			@endforeach
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//MULTI AUTOCOMPLETE
+		var data = <?php echo $data['media_manager'];?>;
+		$("#mediaId").tokenInput(data, {
+			preventDuplicates: true,
+			theme: "facebook"
+		});
+		$("#mediaId").on('change',function(){
+			$(".mediaIdValue").val($('#mediaId').val());
+		});
+		var med_man = "<?php echo $data['dataIdMediaManager'];?>";
+		$(".mediaIdValue").val(med_man);
+		
+		<?php
+			foreach($data['dataMediaManager'] as $key => $value){
+		?>
+				$("#mediaId").tokenInput("add", {id: "<?php echo $key;?>", name: "<?php echo $value;?>"});
+		<?php
+			}
+		?>
+		
+	});
+
+</script>
 
 @endsection

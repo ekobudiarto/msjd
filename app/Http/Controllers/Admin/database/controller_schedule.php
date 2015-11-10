@@ -69,9 +69,12 @@ class controller_schedule extends Controller
     public function create()
     {
         $data=array(
-            //'schedule_type' => table_schedule_type::select('schedule_type_id','schedule_type_name')->get(), 
-            'schedule_type' => table_schedule_type::select('schedule_type_id','schedule_type_name')->get(),
+            'schedule_type' => table_schedule_type::select('schedule_type_id','schedule_type_name')->get(), 
+            'schedule_typeAuto' => json_encode(DB::select('select schedule_type_id as id, schedule_type_name as label from table_schedule_type')),
+            'users_detail' => json_encode(DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail')),
+            'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager')),
         );
+        
        return view('admin.database.schedule.schedule-create', compact('data'));
     }
 
@@ -99,7 +102,7 @@ class controller_schedule extends Controller
         $data = array(
                 'dataschedule' => table_schedule::where('schedule_id', '=', $id)->get(),
                 'schedule_type' => table_schedule_type::select('schedule_type_id','schedule_type_name')->get(),
-         );     
+         );
         return view('admin.database.schedule.schedule-show', compact('data'));
     }
 
@@ -115,7 +118,42 @@ class controller_schedule extends Controller
          $data = array(
                 'dataschedule' => table_schedule::where('schedule_id', '=', $id)->get(),
                 'schedule_type' => table_schedule_type::select('schedule_type_id','schedule_type_name')->get(),
-         );     
+                'schedule_typeAuto' => json_encode(DB::select('select schedule_type_id as id, schedule_type_name as label from table_schedule_type')),
+                'users_detail' => json_encode(DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail')),
+                'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager')),
+         );
+         
+        //Ambil data schedule
+        foreach($data['dataschedule'] as $key => $value){
+            $scheduleType = $value->schedule_type_id;
+            $usrCreator = $value->schedule_users_creator;
+            $usrSource = $value->schedule_users_source;
+            $exp = $value->schedule_media_id;
+        }
+        $tempExp = explode(",", $exp);
+        $i = 0;
+        for($i;$i<count($tempExp);$i++){
+            //$newArray = DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager where media_manager_id='.$tempExp[$i]);
+            $newArray = DB::table('table_media_manager')->select('media_manager_id as id', 'media_manager_title as name')->where('media_manager_id', '=', $tempExp[$i])->first();
+            $dataMediaManager[$newArray->id] = $newArray->name;
+        }
+        $data['dataMediaManager'] = $dataMediaManager;
+        $data['dataIdMediaManager'] = $exp;
+        //END Ambil data schedule
+        
+        //Ambil data Schedule Type
+        $row = DB::table('table_schedule_type')->select('schedule_type_id as id', 'schedule_type_name as value')->where('schedule_type_id', '=', $scheduleType)->first();
+        $data['dataScheduleType'] = $row;
+        //END Ambil data Schedule Type
+        
+        //Ambil data users_name
+        $users_name = DB::table('table_users_detail')->select('users_id as id', 'users_name as value')->where('users_id', '=', $usrCreator)->first();
+        $users_name2 = DB::table('table_users_detail')->select('users_id as id', 'users_name as value')->where('users_id', '=', $usrSource)->first();
+        
+        $data['dataUsers'] = $users_name;
+        $data['dataUsers2'] = $users_name2;
+        //END Ambil data users_name
+         
         return view('admin.database.schedule.schedule-edit', compact('data'));
     }
 

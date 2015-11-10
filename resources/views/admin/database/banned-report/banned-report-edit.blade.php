@@ -1,6 +1,9 @@
 @extends('/admin/include/admin-header-footer')
 
 @section('content')
+<link type="text/css" href="{{ URL::asset('public/css-js/css/token-input.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ URL::asset('public/css-js/css/token-input-facebook.css') }}" rel="stylesheet">
+<script src="{{ URL::asset('public/css-js/scripts/jquery.tokeninput.js') }}" type="text/javascript"></script>
 
 <div class="module">
 	<div class="module-head">
@@ -43,19 +46,25 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users by</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_by" value="{{ $value->users_by }}">
+						<!--<input type="text" id="basicinput" placeholder="number" class="span8" name="users_by" value="{{ $value->users_by }}">-->
+						<input type="text" id="usrBy" placeholder="it should user id, but you can search by name" style="width: 65.812%;" />
+						<input type="hidden" name="users_by" id="usrByValue" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="content_id" value="{{ $value->content_id }}">
+						<!--<input type="text" id="basicinput" placeholder="number" class="span8" name="content_id" value="{{ $value->content_id }}">-->
+						<input type="text" id="contentId" placeholder="it should content id, but you can search by name" style="width: 65.812%;" />
+						<input type="hidden" name="content_id" id="contentIdValue" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users Destination</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_dest" value="{{ $value->users_dest }}">
+						<!--<input type="text" id="basicinput" placeholder="number" class="span8" name="users_dest" value="{{ $value->users_dest }}">-->
+						<input type="text" id="usrDest" placeholder="it should user id, but you can search by name" style="width: 65.812%;" />
+						<input type="hidden" name="users_dest" id="usrDestValue" />
 					</div>
 				</div>
 				<div class="control-group">
@@ -75,5 +84,84 @@
 			@endforeach
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		var dataUser= <?php echo $data['users_detail'];?>;
+		$( "#usrBy" )
+		.bind( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+				$( this ).autocomplete( "instance" ).menu.active ) {
+			  event.preventDefault();
+			}
+		})
+		.autocomplete({
+			minLength: 0,
+			source: dataUser,
+			focus: function( event, ui ) {
+				$( "#usrBy" ).val( ui.item.label );
+				return false;
+			},
+			select: function( event, ui ) {
+			console.log(ui.item);
+				$( "#usrBy" ).val( ui.item.label );
+				$("#usrByValue").val(ui.item.id);  
+				return false;
+			}
+		});
+		$( "#usrBy" ).val('<?php echo $data["dataUsers"]->value;?>');
+		$("#usrByValue").val('<?php echo $data["dataUsers"]->id;?>');
+		
+		$( "#usrDest" )
+		.bind( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+				$( this ).autocomplete( "instance" ).menu.active ) {
+			  event.preventDefault();
+			}
+		})
+		.autocomplete({
+			minLength: 0,
+			source: dataUser,
+			focus: function( event, ui ) {
+				$( "#usrDest" ).val( ui.item.label );
+				return false;
+			},
+			select: function( event, ui ) {
+			console.log(ui.item);
+				$( "#usrDest" ).val( ui.item.label );
+				$("#usrDestValue").val(ui.item.id);  
+				return false;
+			}
+		});
+		$( "#usrDest" ).val('<?php echo $data["dataUsers2"]->value;?>');
+		$("#usrDestValue").val('<?php echo $data["dataUsers2"]->id;?>');
+		
+		var dataContent= <?php echo $data['content'];?>;
+		$( "#contentId" )
+		.bind( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+				$( this ).autocomplete( "instance" ).menu.active ) {
+			  event.preventDefault();
+			}
+		})
+		.autocomplete({
+			minLength: 0,
+			source: dataContent,
+			focus: function( event, ui ) {
+				$( "#contentId" ).val( ui.item.label );
+				return false;
+			},
+			select: function( event, ui ) {
+			console.log(ui.item);
+				$( "#contentId" ).val( ui.item.label );
+				$("#contentIdValue").val(ui.item.id);  
+				return false;
+			}
+		});
+		$( "#contentId" ).val('<?php echo $data["contentId"]->value;?>');
+		$("#contentIdValue").val('<?php echo $data["contentId"]->id;?>');
 
+	});
+
+</script>
 @endsection

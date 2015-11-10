@@ -65,7 +65,11 @@ class controller_content extends Controller
     public function create()
     {
        $data=array(
-            'content_type' => DB::select('select content_category_id, content_category_title from table_content_category')
+            'content_type' => DB::select('select content_category_id, content_category_title from table_content_category'),
+            'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager')),
+            'users_detail' => json_encode(DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail')),
+            'content_category' => json_encode(DB::select('select content_category_id as id, content_category_title as value, content_category_title as label from table_content_category')),
+            'content' => json_encode(DB::select('select content_id as id, content_title as value, content_title as label from table_content'))
          );
        return view('admin.database.content.content-create', compact('data'));
     }
@@ -108,7 +112,47 @@ class controller_content extends Controller
            
          $data = array(
                 'content' => table_content::where('content_id', '=', $id)->get(),
-         );     
+                'media_manager' => DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager'),
+                'users_detail' => DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail'),
+                'content_category' => DB::select('select content_category_id as id, content_category_title as value, content_category_title as label from table_content_category'),
+                'content_from' => DB::select('select content_id as id, content_title as value, content_title as label from table_content')
+         );
+        
+        //Ambil data nama media manager
+        foreach($data['content'] as $key => $value){
+            $exp = $value->content_media_id;
+            $usrUp = $value->content_users_uploader;
+            $usrEdit = $value->content_last_editor;
+            $contCat = $value->content_category_id;
+            $contFrom = $value->content_repost_from;
+        }
+        $tempExp = explode(",", $exp);
+        $i = 0;
+        for($i;$i<count($tempExp);$i++){
+            //$newArray = DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager where media_manager_id='.$tempExp[$i]);
+            $newArray = DB::table('table_media_manager')->select('media_manager_id as id', 'media_manager_title as name')->where('media_manager_id', '=', $tempExp[$i])->first();
+            $dataMediaManager[$newArray->id] = $newArray->name;
+        }
+        $data['dataMediaManager'] = $dataMediaManager;
+        $data['dataIdMediaManager'] = $exp;
+        //END Ambil data nama media manager
+        
+        //Ambil data users_name
+        $users_name = DB::table('table_users_detail')->select('users_id as id', 'users_name as value')->where('users_id', '=', $usrUp)->first();
+        $users_name2 = DB::table('table_users_detail')->select('users_id as id', 'users_name as value')->where('users_id', '=', $usrEdit)->first();
+        
+        $data['dataUsers'] = $users_name;
+        $data['dataUsers2'] = $users_name2;
+        //END Ambil data users_name
+        
+        //Ambil data Content Category
+        $content_category = DB::table('table_content_category')->select('content_category_id as id', 'content_category_title as value')->where('content_category_id', '=', $contCat)->first();
+        $data['dataContentCategory'] = $content_category;
+        //END Ambil data Content Category
+        
+        $content_from = DB::table('table_content')->select('content_id as id', 'content_title as value')->where('content_id', '=', $contFrom)->first();
+        $data['dataContentFrom'] = $content_from;
+         
         return view('admin.database.content.content-edit', compact('data'));
     }
 

@@ -55,6 +55,8 @@ class controller_users_detail extends Controller
         $data=array(
                 'group' => DB::table('table_users_group')->get(),
                 'status' => DB::table('table_users_status')->get(),
+                'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager')),
+                'users_detail' => json_encode(DB::select('select users_id as id, users_name as name from table_users_detail')),
             );
         return view('admin.database.users-detail.users-detail-create', compact('data'));
     }
@@ -162,8 +164,31 @@ class controller_users_detail extends Controller
                 'users-detail' => table_users_detail::where('users_detail_id', '=', $idusersdetail)->get(),
                 'group' => DB::table('table_users_group')->get(),
                 'status' => DB::table('table_users_status')->get(),
+                'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager')),
          );
-
+        //Ambil data schedule
+        foreach($data['users-detail'] as $key => $value){
+            $expMedia = $value->media_manager_id;
+            $expJson = $value->users_json_following;
+        }
+        $tempExp = explode(",", $expMedia);
+        $i = 0;
+        for($i;$i<count($tempExp);$i++){
+            $newArray = DB::table('table_media_manager')->select('media_manager_id as id', 'media_manager_title as name')->where('media_manager_id', '=', $tempExp[$i])->first();
+            $dataMediaManager[$newArray->id] = $newArray->name;
+        }
+        $data['dataMediaManager'] = $dataMediaManager;
+        $data['dataIdMediaManager'] = $expMedia;
+        
+        $tempExp2 = explode(",", $expJson);
+        $i = 0;
+        for($i;$i<count($tempExp2);$i++){
+            $newArray2 = DB::table('table_users_detail')->select('users_id as id', 'users_name as name')->where('users_id', '=', $tempExp2[$i])->first();
+            $dataUsers[$newArray2->id] = $newArray2->name;
+        }
+        $data['dataUsers'] = $dataUsers;
+        $data['dataIdUsers'] = $expMedia;
+        //END Ambil data schedule
 
         return view('admin.database.users-detail.users-detail-edit', compact('data'));
     }

@@ -15,7 +15,7 @@
 				  <div class="module-head box-header with-border">
 					 <h3 class="box-title">Statistic User</h3>
 					 <div class="box-tools pull-right">
-						<input type="text" name="tahun_user" value="<?php echo $data['tahunUser'];?>" style="width:50px;" id="tahun_user" />
+						<input type="text" name="tahun_user" value="<?php echo $data['tahunUser'];?>" style="width:50px;margin-bottom:0px;" id="tahun_user" />
 						<input type="hidden" value="{{ url("admin/dashboard") }}" id="url" />
 						<input type="button" class="btn btn-info" value="Go" onclick="tahunUser()" />
 					 </div>

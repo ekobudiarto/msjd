@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\table_schedule_type;
 use App\Library\authentication;
 use Auth;
+use DB;
 
 class controller_schedule_type extends Controller
 {
@@ -42,7 +43,11 @@ class controller_schedule_type extends Controller
      */
     public function create()
     {
-       return view('admin.database.schedule-type.schedule-type-create');
+        $data=array(
+            'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager')),
+         );
+        
+       return view('admin.database.schedule-type.schedule-type-create', compact('data'));
     }
 
     /**
@@ -83,7 +88,23 @@ class controller_schedule_type extends Controller
            
          $data = array(
                 'schedule-type' => table_schedule_type::where('schedule_type_id', '=', $id)->get(),
-         );     
+                'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager')),
+         );
+         
+         //Ambil data schedule
+        foreach($data['schedule-type'] as $key => $value){
+            $exp = $value->media_manager_id;
+        }
+        $tempExp = explode(",", $exp);
+        $i = 0;
+        for($i;$i<count($tempExp);$i++){
+            $newArray = DB::table('table_media_manager')->select('media_manager_id as id', 'media_manager_title as name')->where('media_manager_id', '=', $tempExp[$i])->first();
+            $dataMediaManager[$newArray->id] = $newArray->name;
+        }
+        $data['dataMediaManager'] = $dataMediaManager;
+        $data['dataIdMediaManager'] = $exp;
+        //END Ambil data schedule
+         
         return view('admin.database.schedule-type.schedule-type-edit', compact('data'));
     }
 
