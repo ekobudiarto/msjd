@@ -14,6 +14,9 @@ class JsonAPI extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken{
     */
    protected $routes = [
            'api/v1/signup',
+           'api/v1/login',
+           'api/v1/get-profile',
+           'api/v1/profile-upload',
    ];
 
     /**
