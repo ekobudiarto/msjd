@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\table_schedule_type;
+use App\Models\table_media_manager;
 use App\Library\authentication;
 use Auth;
 use DB;
@@ -28,8 +29,27 @@ class controller_schedule_type extends Controller
     public function index()
     {
         
+         $result =  table_schedule_type::latest('schedule_type_id')->paginate(10);
+         
+
+         foreach( $result as $res=>$value ){
+             $idsplit = explode(',', $value->media_manager_id);
+             
+             $length = count($idsplit);
+             $name = '';
+             for($i = 0; $i<$length;$i++){
+                $cek = table_media_manager::where('media_manager_id', '=', $idsplit[$i])->first();
+                if($cek!= null){
+                    $name=$name.$cek->media_manager_title.', ';
+                }
+             }
+             $value->media_manager_id = $name;
+        }
+      
+
          $data=array(
-            'schedule-type' => table_schedule_type::latest('schedule_type_id')->paginate(10),
+            // 'content' => table_content::latest('content_id')->paginate(10),
+            'schedule-type' => $result
          );
 
 
@@ -73,7 +93,22 @@ class controller_schedule_type extends Controller
     {
         $data = array(
                 'schedule-type' => table_schedule_type::where('schedule_type_id', '=', $id)->get(),
-         );     
+                'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager')),
+         );
+         
+         //Ambil data schedule
+        foreach($data['schedule-type'] as $key => $value){
+            $exp = $value->media_manager_id;
+        }
+        $tempExp = explode(",", $exp);
+        $i = 0;
+        for($i;$i<count($tempExp);$i++){
+            $newArray = DB::table('table_media_manager')->select('media_manager_id as id', 'media_manager_title as name')->where('media_manager_id', '=', $tempExp[$i])->first();
+            $dataMediaManager[$newArray->id] = $newArray->name;
+        }
+        $data['dataMediaManager'] = $dataMediaManager;
+        $data['dataIdMediaManager'] = $exp;
+        //END Ambil data schedule  
         return view('admin.database.schedule-type.schedule-type-show', compact('data'));
     }
 

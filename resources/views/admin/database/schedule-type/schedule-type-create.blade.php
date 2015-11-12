@@ -44,7 +44,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Type Name</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="text" class="span8" name="schedule_type_name">
+						<input type="text" required id="basicinput" placeholder="text" class="span8" name="schedule_type_name">
 					</div>
 				</div>
 				<div class="control-group">
@@ -57,7 +57,7 @@
 					<label class="control-label" for="basicinput">Media Manager ID</label>
 					<div class="controls">
 						<!--<textarea class="span8" id="editor2" rows="5" name="media_manager_id"></textarea>-->
-						<input type="text" id="mediaId" style="width: 65.812%;" />
+						<input type="text" required id="mediaId" style="width: 65.812%;" />
 						<input type="hidden" class="mediaIdValue" name="media_manager_id" />
 					</div>
 				</div>				

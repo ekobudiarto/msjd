@@ -4,7 +4,7 @@
 
 <div class="module">
 	<div class="module-head">
-		<h3>Forms Content Category</h3>
+		<h3>Forms Hashtag</h3>
 	</div>
 	<div class="module-body">
 
@@ -46,7 +46,7 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<button type="submit" class="btn btn-small btn-success">Submit</button>
+						<button type="submit" required  class="btn btn-small btn-success">Submit</button>
 						{!! Html::link('admin/hashtag', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>

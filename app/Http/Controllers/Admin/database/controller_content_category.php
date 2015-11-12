@@ -48,7 +48,8 @@ class controller_content_category extends Controller
     public function create()
     {
         $data=array(
-            'media_manager' => table_media_manager::select('media_manager_id','media_manager_title')->get(),
+            'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as label, media_manager_title as value from table_media_manager')),
+            
         );
        return view('admin.database.content-category.content-category-create', compact('data'));
     }
@@ -73,10 +74,19 @@ class controller_content_category extends Controller
      */
    public function show($id)
     {
-        $data = array(
+        $datacontentcategory = table_content_category::where('content_category_id', '=', $id)->first();
+        $mediaid = $datacontentcategory->media_manager_id;
+        $media = table_media_manager::where('media_manager_id',$mediaid)->first();
+        if($media !=null)
+            $medianame = $media->media_manager_title;
+        else
+            $medianame = '';
+
+         $data = array(
                 'dataContentCategory' => table_content_category::where('content_category_id', '=', $id)->get(),
-                'media_manager' => table_media_manager::select('media_manager_id','media_manager_title')->get(),
-         );     
+                'media_manager_name' => $medianame,
+                'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as label, media_manager_title as value from table_media_manager')),
+         );      
         return view('admin.database.content-category.content-category-show', compact('data'));
     }
 
@@ -88,10 +98,20 @@ class controller_content_category extends Controller
      */
     public function edit($id)
     {
-           
+        
+        $datacontentcategory = table_content_category::where('content_category_id', '=', $id)->first();
+        $mediaid = $datacontentcategory->media_manager_id;
+        $media = table_media_manager::where('media_manager_id',$mediaid)->first();
+        if($media !=null)
+            $medianame = $media->media_manager_title;
+        else
+            $medianame = '';
+             
+
          $data = array(
                 'dataContentCategory' => table_content_category::where('content_category_id', '=', $id)->get(),
-                'media_manager' => table_media_manager::select('media_manager_id','media_manager_title')->get(),
+                'media_manager_name' => $medianame,
+                'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as label, media_manager_title as value from table_media_manager')),
          );     
         return view('admin.database.content-category.content-category-edit', compact('data'));
     }

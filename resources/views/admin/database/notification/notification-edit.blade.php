@@ -4,7 +4,7 @@
 
 <div class="module">
 	<div class="module-head">
-		<h3>Forms Notification</h3>
+		<h3>Forms Edit Notification</h3>
 	</div>
 	<div class="module-body">
 
@@ -43,7 +43,8 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_id" value="{{ $value->users_id }}">
+						<input type="text" required id="usrDest" value="{{ $data['user_name'] }}" placeholder="it should user id, but you can search by name" style="width: 65.812%;" />
+						<input type="hidden" name="users_id" value="{{ $value->users_id }}"  id="usrDestValue" />	
 					</div>
 				</div>
 				<div class="control-group">
@@ -83,6 +84,29 @@
 		$('#datetime').datetimepicker({
 			dateFormat: "yy-mm-dd",
 			timeFormat: "HH:mm",
+		});
+
+		var dataUser= <?php echo $data['users_detail'];?>;
+		$( "#usrDest" )
+		.bind( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+				$( this ).autocomplete( "instance" ).menu.active ) {
+			  event.preventDefault();
+			}
+		})
+		.autocomplete({
+			minLength: 0,
+			source: dataUser,
+			focus: function( event, ui ) {
+				$( "#usrDest" ).val( ui.item.label );
+				return false;
+			},
+			select: function( event, ui ) {
+			console.log(ui.item);
+				$( "#usrDest" ).val( ui.item.label );
+				$("#usrDestValue").val(ui.item.id);  
+				return false;
+			}
 		});
 	});
 </script>

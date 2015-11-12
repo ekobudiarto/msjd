@@ -9,6 +9,7 @@ use App\Models\table_banned_report;
 use DB;
 use App\Library\authentication;
 use Auth;
+use app\user;
 
 class controller_banned_report extends Controller
 {
@@ -78,7 +79,12 @@ class controller_banned_report extends Controller
      */
    public function show($id)
     {
+        $databanned = table_banned_report::where('banned_report_id', '=', $id)->first();
+        $users_by = user::where('id', '=', $databanned->users_by)->first();
+        $users_dest = user::where('id', '=', $databanned->users_dest)->first();
         $data = array(
+                'users_by'   => $users_by->name,
+                'users_dest'   => $users_dest->name,
                 'databanned' => table_banned_report::where('banned_report_id', '=', $id)->get(),
          );     
         return view('admin.database.banned-report.banned-report-show', compact('data'));

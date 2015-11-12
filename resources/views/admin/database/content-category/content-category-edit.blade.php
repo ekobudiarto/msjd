@@ -43,27 +43,20 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Category Title</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="content_category_title" value="{{ $value->content_category_title }}">
+						<input type="text" id="basicinput" placeholder="number" class="span8" name="content_category_title" value="{{ $value->content_category_title }}" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Category Description</label>
 					<div class="controls">
-						<textarea class="span8" id="editor" rows="5" name="content_category_description">{{ $value->content_category_description }}</textarea>
+						<textarea class="span8" id="editor" rows="5" name="content_category_description" required>{{ $value->content_category_description }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager ID</label>
 					<div class="controls">
-						<select class="span8" name="media_manager_id">
-							@foreach($data['media_manager'] as $key => $mm)
-								@if($value->media_manager_id == $mm->media_manager_id)
-						 			<option value="{{ $mm->media_manager_id }}">{{ $mm->media_manager_title }}</option>
-						 		@else
-						 			<option value="{{ $mm->media_manager_id }}" selected>{{ $mm->media_manager_title }}</option>
-						 		@endif
-						 	@endforeach
-						</select>
+						<input type="text" id="Media" value="<?PHP echo $data['media_manager_name'] ?>"  style="width: 65.812%;" required />
+						<input type="hidden" name="media_manager_id" id="idMedia" value="{{ $value->media_manager_id}} "/>
 					</div>
 				</div>
 				<div class="control-group">
@@ -78,5 +71,33 @@
 			@endforeach
 	</div>
 </div>
+
+<script>
+$(document).ready(function(){
+	var dataMedia= <?php echo $data['media_manager'];?>;
+	$( "#Media" )
+		.bind( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+				$( this ).autocomplete( "instance" ).menu.active ) {
+			  event.preventDefault();
+			}
+		})
+		.autocomplete({
+			minLength: 0,
+			source: dataMedia,
+			focus: function( event, ui ) {
+				$( "#Media" ).val( ui.item.label );
+				return false;
+			},
+			select: function( event, ui ) {
+			console.log(ui.item);
+				$( "#Media" ).val( ui.item.label );
+				$("#idMedia").val(ui.item.id);  
+				return false;
+			}
+		});
+});
+</script>
+
 
 @endsection

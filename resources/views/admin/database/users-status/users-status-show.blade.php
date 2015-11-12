@@ -41,13 +41,13 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users Status Title</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_status_title" value="{{ $value->users_status_title }}">
+						<input type="text" disabled id="basicinput" placeholder="number" class="span8" name="users_status_title" value="{{ $value->users_status_title }}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users Status Description</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="users_status_desc">{{ $value->users_status_desc }}</textarea>
+						<textarea class="span8" disabled rows="5" name="users_status_desc">{{ $value->users_status_desc }}</textarea>
 					</div>
 				</div>
 			

@@ -3,7 +3,7 @@
 @section('content')
 <div class="module">
 	<div class="module-head">
-		<h3>Media Manager</h3>
+		<h3>Show Media Manager</h3>
 	</div>
 	<div class="module-body">
 
@@ -34,17 +34,32 @@
 			@endif
 
 			@foreach($data['media-manager'] as $key => $value)
-			<form class="form-horizontal row-fluid" role="form" method="POST" action="/admin/media-manager/{{ $value->media_manager_id }}">
+			
+			{!! Form::open(array('url' => 'admin/media-manager/'.$value->media_manager_id, 'files' => false, 'class' => 'form-horizontal row-fluid', 'enctype' => 'multipart/form-data')) !!}
+			
 				<input name="_method" type="hidden" value="PUT">
 				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager Title</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="text" class="span8" name="media_manager_title" value="{{ $value->media_manager_title }}">
+						<input type="text" disabled required id="basicinput" placeholder="text" class="span8" name="media_manager_title" value="{{ $value->media_manager_title }}">
 					</div>
 				</div>
 				<div class="control-group">
+					<label class="control-label" for="basicinput">Media</label>
+					<div class="controls">
+							<?PHP $media = $value->media_manager_type ?>
+						 	@if($media == 'png' || $media == 'jpeg'|| $media == 'jpg' )
+                            <img src="{{url()}}/UPLOADED/{{ $value->media_manager_filename }}" width="100px" />
+                            @elseif($media == 'url')
+                            <a href="{{ $value->media_manager_filename }}" target="_blank" class="btn btn-info">Go to Resource</a>
+                            @else
+                            <a href="{{url()}}/UPLOADED/{{ $value->media_manager_filename }}" class="btn btn-success">Download</a>
+                            @endif
+					</div>
+				</div>
+				<!-- <div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager Type</label>
 					<div class="controls">
 						<input type="text" id="basicinput" placeholder="text" class="span8" name="media_manager_type" value="{{ $value->media_manager_type }}">
@@ -55,21 +70,50 @@
 					<div class="controls">
 						<textarea class="span8" rows="5" name="media_manager_filename">{{ $value->media_manager_filename }}</textarea>
 					</div>
-				</div>
+				</div> -->
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager publish</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="text" class="span8" name="media_manager_publish" value="{{ $value->media_manager_publish }}">
+						<select disabled class="span8" name="media_manager_publish">
+						 		@if( $value->media_manager_publish == 1 )
+						 			<option value="1">Yes</option>
+						 			<option value="0">No</option>
+						 		@else
+						 			<option value="0">No</option>
+						 			<option value="1">yes</option>
+						 		@endif
+						 	
+						 </select>
 					</div>
 				</div>
+				
 				<div class="control-group">
 					<div class="controls">
 						{!! Html::link('admin/media-manager', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
-			</form>
+			
+			{!! Form::close() !!}
+			
 			@endforeach
 	</div>
 </div>
+<script type="text/javascript">
+	function typeUpload(){
+		var choose = $('#type_upload').val();
+
+		if(choose == 'file'){
+			$('#inputlink').val('');
+			document.getElementById('inputlink').style.display = 'none';
+			document.getElementById('inputfile').style.display = 'block';
+		}
+		else{
+			$('#inputfile').val('');
+			document.getElementById('inputfile').style.display = 'none';
+			document.getElementById('inputlink').style.display = 'block';
+		}
+		
+	}
+</script>
 
 @endsection

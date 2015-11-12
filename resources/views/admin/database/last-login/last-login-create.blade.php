@@ -44,7 +44,8 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users</label>
 					<div class="controls">
-						<input type="text" id="autouser"  onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" name="users_id" style="width: 65.812%;" required>
+						<input type="text" required id="usrDest" placeholder="it should user id, but you can search by name" style="width: 65.812%;" />
+						<input type="hidden" name="users_id" id="usrDestValue" />
 					</div>
 				</div>
 				<div class="control-group" style="display:none">
@@ -56,7 +57,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Regional</label>
 					<div class="controls">
-						<input type="text" id="basicinput"  class="span8" placeholder="Bogor" name="regional" required>
+						<input type="text" required id="basicinput"  class="span8" placeholder="Bogor" name="regional" required>
 					</div>
 				</div>
 				<div class="control-group">
@@ -94,15 +95,27 @@
 
 		});
 	
-		$(".autouser").autocomplete({
-			minLength:2,
-			autofocus: true,
-			source: '{{ url("admin/autocomplete/getusername") }}',
-		});
-		$(".autocontent").autocomplete({
-			minLength:3,
-			autofocus: true,
-			source: '{{ url("admin/autocomplete/getcontenttitle") }}',
+		var dataUser= <?php echo $data['users_detail'];?>;
+		$( "#usrDest" )
+		.bind( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+				$( this ).autocomplete( "instance" ).menu.active ) {
+			  event.preventDefault();
+			}
+		})
+		.autocomplete({
+			minLength: 0,
+			source: dataUser,
+			focus: function( event, ui ) {
+				$( "#usrDest" ).val( ui.item.label );
+				return false;
+			},
+			select: function( event, ui ) {
+			console.log(ui.item);
+				$( "#usrDest" ).val( ui.item.label );
+				$("#usrDestValue").val(ui.item.id);  
+				return false;
+			}
 		});
 
 	});

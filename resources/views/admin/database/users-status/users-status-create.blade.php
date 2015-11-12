@@ -38,7 +38,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Title</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" name="users_status_title">
+						<input type="text" required id="basicinput" placeholder="title" class="span8" name="users_status_title">
 					</div>
 				</div>
 				<div class="control-group">

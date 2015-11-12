@@ -23,7 +23,7 @@
 
 
     <div class="module-head">
-        <b>Content Category</b>
+        <b>Hashtag</b>
 		{!! Html::link('admin/hashtag/create', 'Add Data', array('class' => 'btn btn-info', 'style' => 'float:right;'), false) !!}
     </div>
     <div class="module-body">

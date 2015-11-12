@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\database;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\User;
 use DB;
 use App\Models\table_last_login;
 use App\Library\authentication;
@@ -45,9 +46,9 @@ class controller_last_login extends Controller
      */
     public function create()
     {
-        // $data=array(
-        //     'last_login' => table_last_login::select('last_login_id','last-login_title')->get(),
-        // );
+        $data=array(
+            'users_detail' => json_encode(DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail')),
+        );
        return view('admin.database.last-login.last-login-create', compact('data'));
     }
 
@@ -71,7 +72,15 @@ class controller_last_login extends Controller
      */
    public function show($id)
     {
+         $lastlogin = table_last_login::where('last_login_id', '=', $id)->first();
+         $user = user::where('id', '=', $lastlogin->users_id)->first();
+         if($user !=null)
+            $username = $user->name;
+         else
+            $username ='';
+        
         $data = array(
+                'user_name'  => $username,
                 'last_login' => table_last_login::where('last_login_id', '=', $id)->get(),
          );     
         return view('admin.database.last-login.last-login-show', compact('data'));
@@ -85,9 +94,18 @@ class controller_last_login extends Controller
      */
     public function edit($id)
     {
-           
+         $lastlogin = table_last_login::where('last_login_id', '=', $id)->first();
+         $user = user::where('id', '=', $lastlogin->users_id)->first();
+         if($user !=null)
+            $username = $user->name;
+         else
+            $username ='';
+        
          $data = array(
+                'user_name'  => $username,
                 'last_login' => table_last_login::where('last_login_id', '=', $id)->get(),
+                'users_detail' => json_encode(DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail')),
+
          );     
         return view('admin.database.last-login.last-login-edit', compact('data'));
     }

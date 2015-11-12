@@ -4,7 +4,7 @@
 
 <div class="module">
 	<div class="module-head">
-		<h3>Forms Edit Content Category</h3>
+		<h3>Show Hashtag</h3>
 	</div>
 	<div class="module-body">
 
@@ -43,7 +43,12 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Hashtag</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="hashtag_title" value="{{ $value->hashtag_title }}">
+						<input type="text" disabled id="basicinput" placeholder="number" class="span8" name="hashtag_title" value="{{ $value->hashtag_title }}">
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						{!! Html::link('admin/hashtag', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
 				

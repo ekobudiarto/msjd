@@ -41,21 +41,30 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users Group Name</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="text" class="span8" name="users_group_name" value="{{ $value->users_group_name}}">
+						<input disabled type="text" id="basicinput" placeholder="text" class="span8" name="users_group_name" value="{{ $value->users_group_name}}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">User Group Description</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="users_group_description">{{ $value->users_group_name}}</textarea>
+						<textarea disabled class="span8" rows="5" name="users_group_description">{{ $value->users_group_name}}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="basicinput">Users Group Is Public</label>
+					<label class="control-label" for="basicinput">User Group Is Public</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="text" class="span8" name="users_group_is_public" value="{{ $value->users_group_is_public}}">
+						<select disabled class="span8" name="users_group_is_public">
+						 		@if( $value->users_group_is_public == 1 )
+						 			<option value="1">Yes</option>
+						 			<option value="0">No</option>
+						 		@else
+						 			<option value="0">No</option>
+						 			<option value="1">yes</option>
+						 		@endif
+						 	
+						 </select>
 					</div>
-				</div>	
+				</div>
 				<div class="control-group">
 					<div class="controls">
 						{!! Html::link('admin/users-group', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}

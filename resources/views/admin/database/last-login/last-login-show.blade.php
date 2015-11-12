@@ -4,7 +4,7 @@
 
 <div class="module">
 	<div class="module-head">
-		<h3>Forms Last Login</h3>
+		<h3>Show Last Login</h3>
 	</div>
 	<div class="module-body">
 
@@ -43,31 +43,36 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users</label>
 					<div class="controls">
-						<input type="text" id="autouser"  onchange="getid(this)" value="{{ $value->users_id }}" class="autouser" name="users_id" style="width: 65.812%;" required>
+						<input disabled type="text" id="autouser"  onchange="getid(this)" value="{{ $data['user_name'] }}" class="autouser" name="users_id" style="width: 65.812%;" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Datetime</label>
 					<div class="controls">
-						<input type="text" id="basicinput"  value="{{ $value->datetime }}"  class="span8" name="datetime" required>
+						<input disabled type="text" id="basicinput"  value="{{ $value->datetime }}"  class="span8" name="datetime" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Regional</label>
 					<div class="controls">
-						<input type="text" id="basicinput"  value="{{ $value->regional }}" class="span8" placeholder="Bogor" name="regional" required>
+						<input disabled type="text" id="basicinput"  value="{{ $value->regional }}" class="span8" placeholder="Bogor" name="regional" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Longitude</label>
 					<div class="controls">
-						<input type="text" id="basicinput"  value="{{ $value->long }}" class="span8" placeholder="106.806039" name="long" required>
+						<input disabled type="text" id="basicinput"  value="{{ $value->long }}" class="span8" placeholder="106.806039" name="long" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Latitude</label>
 					<div class="controls">
-						<input type="text" id="basicinput"  value="{{ $value->lat }}" class="span8" placeholder="-6.597147" name="lat" required>
+						<input disabled type="text" id="basicinput"  value="{{ $value->lat }}" class="span8" placeholder="-6.597147" name="lat" required>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						{!! Html::link('admin/last-login', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
 

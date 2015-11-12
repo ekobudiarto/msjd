@@ -3,7 +3,7 @@
 @section('content')
 <div class="module">
 	<div class="module-head">
-		<h3>Forms Media Manager</h3>
+		<h3>Forms Edit Media Manager</h3>
 	</div>
 	<div class="module-body">
 
@@ -43,7 +43,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager Title</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="text" class="span8" name="media_manager_title" value="{{ $value->media_manager_title }}">
+						<input type="text" required id="basicinput" placeholder="text" class="span8" name="media_manager_title" value="{{ $value->media_manager_title }}">
 					</div>
 				</div>
 				<div class="control-group">

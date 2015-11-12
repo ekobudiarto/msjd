@@ -40,7 +40,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">User Group Name</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="text" class="span8" name="users_group_name">
+						<input type="text" required id="basicinput" placeholder="text" class="span8" name="users_group_name">
 					</div>
 				</div>
 				<div class="control-group">

@@ -47,7 +47,7 @@
 					<label class="control-label" for="basicinput">Users by</label>
 					<div class="controls">
 						<!--<input type="text" id="basicinput" placeholder="number" class="span8" name="users_by" value="{{ $value->users_by }}">-->
-						<input type="text" id="usrBy" placeholder="it should user id, but you can search by name" style="width: 65.812%;" />
+						<input type="text" id="usrBy" placeholder="it should user id, but you can search by name" style="width: 65.812%;" required />
 						<input type="hidden" name="users_by" id="usrByValue" />
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 					<label class="control-label" for="basicinput">Content ID</label>
 					<div class="controls">
 						<!--<input type="text" id="basicinput" placeholder="number" class="span8" name="content_id" value="{{ $value->content_id }}">-->
-						<input type="text" id="contentId" placeholder="it should content id, but you can search by name" style="width: 65.812%;" />
+						<input type="text" id="contentId" placeholder="it should content id, but you can search by name" style="width: 65.812%;" required />
 						<input type="hidden" name="content_id" id="contentIdValue" />
 					</div>
 				</div>
@@ -63,7 +63,7 @@
 					<label class="control-label" for="basicinput">Users Destination</label>
 					<div class="controls">
 						<!--<input type="text" id="basicinput" placeholder="number" class="span8" name="users_dest" value="{{ $value->users_dest }}">-->
-						<input type="text" id="usrDest" placeholder="it should user id, but you can search by name" style="width: 65.812%;" />
+						<input type="text" id="usrDest" placeholder="it should user id, but you can search by name" style="width: 65.812%;" required />
 						<input type="hidden" name="users_dest" id="usrDestValue" />
 					</div>
 				</div>
@@ -109,8 +109,8 @@
 				return false;
 			}
 		});
-		$( "#usrBy" ).val('<?php echo $data["dataUsers"]->value;?>');
-		$("#usrByValue").val('<?php echo $data["dataUsers"]->id;?>');
+		$( "#usrBy" ).val('<?php if(isset ($data["dataUsers"]->value)) echo $data["dataUsers"]->value;?>');
+		$("#usrByValue").val('<?php if(isset ($data["dataUsers"]->id)) echo $data["dataUsers"]->id;?>');
 		
 		$( "#usrDest" )
 		.bind( "keydown", function( event ) {

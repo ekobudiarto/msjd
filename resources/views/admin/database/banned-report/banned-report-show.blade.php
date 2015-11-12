@@ -41,25 +41,25 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_by" value="{{ $value->users_by }}">
+						<input type="text" disabled id="basicinput" placeholder="number" class="span8" name="users_by" value="{{ $data['users_by'] }}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="content_id" value="{{ $value->content_id }}">
+						<input type="text" disabled id="basicinput" placeholder="number" class="span8" name="content_id" value="{{ $value->content_id }}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users Target</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_dest" value="{{ $value->users_dest }}">
+						<input type="text" disabled id="basicinput" placeholder="number" class="span8" name="users_dest" value="{{ $data['users_dest'] }}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Report Message</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="banned_report_message">{{ $value->banned_report_message }}</textarea>
+						<textarea class="span8" disabled rows="5" name="banned_report_message">{{ $value->banned_report_message }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">

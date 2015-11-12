@@ -9,6 +9,7 @@ use DB;
 use App\Models\table_notification;
 use App\Library\authentication;
 use Auth;
+use app\user;
 
 class controller_notification extends Controller
 {
@@ -45,9 +46,9 @@ class controller_notification extends Controller
      */
     public function create()
     {
-        // $data=array(
-        //     'notification' => table_notification::select('notification_id','notification_title')->get(),
-        // );
+        $data=array(
+            'users_detail' => json_encode(DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail')),
+        );
        return view('admin.database.notification.notification-create', compact('data'));
     }
 
@@ -71,7 +72,15 @@ class controller_notification extends Controller
      */
    public function show($id)
     {
+        $notification = table_notification::where('notification_id', '=', $id)->first();
+        $user = user::where('id', '=', $notification->users_id)->first();
+        if($user != null)
+            $username = $user->name;
+        else
+            $username ='';
+
         $data = array(
+                'user_name'  => $username,
                 'notification' => table_notification::where('notification_id', '=', $id)->get(),
          );     
         return view('admin.database.notification.notification-show', compact('data'));
@@ -86,9 +95,20 @@ class controller_notification extends Controller
     public function edit($id)
     {
            
-         $data = array(
+         $notification = table_notification::where('notification_id', '=', $id)->first();
+         $user = user::where('id', '=', $notification->users_id)->first();
+         if($user != null)
+            $username = $user->name;
+         else
+            $username ='';
+
+        $data = array(
+                'user_name'  => $username,
                 'notification' => table_notification::where('notification_id', '=', $id)->get(),
+                'users_detail' => json_encode(DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail')),
+
          );     
+
         return view('admin.database.notification.notification-edit', compact('data'));
     }
 

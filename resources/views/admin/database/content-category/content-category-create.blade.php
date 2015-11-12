@@ -41,24 +41,21 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Category Title</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="content_category_title">
+						<input type="text" id="basicinput" placeholder="Title" class="span8" required name="content_category_title">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Category Description</label>
 					<div class="controls">
-						<textarea class="span8" id="editor" rows="5" name="content_category_description"></textarea>
+						<textarea class="span8" id="editor" rows="5" required name="content_category_description"></textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager ID</label>
 					<div class="controls">
-						<select class="span8" name="media_manager_id">
-							<option value="">---pilih type---</option>
-						 	@foreach($data['media_manager'] as $key => $value)
-						 	<option value="{{ $value->media_manager_id }}">{{ $value->media_manager_title }}</option>
-						 	@endforeach
-						</select>
+						
+						<input type="text" id="Media" required placeholder="it should user id, but you can search by name" style="width: 65.812%;" />
+						<input type="hidden" name="media_manager_id" id="idMedia" />
 						
 					</div>
 				</div>
@@ -71,5 +68,32 @@
 			{!! Form::close() !!}
 	</div>
 </div>
+
+<script>
+$(document).ready(function(){
+	var dataMedia= <?php echo $data['media_manager'];?>;
+	$( "#Media" )
+		.bind( "keydown", function( event ) {
+			if ( event.keyCode === $.ui.keyCode.TAB &&
+				$( this ).autocomplete( "instance" ).menu.active ) {
+			  event.preventDefault();
+			}
+		})
+		.autocomplete({
+			minLength: 0,
+			source: dataMedia,
+			focus: function( event, ui ) {
+				$( "#Media" ).val( ui.item.label );
+				return false;
+			},
+			select: function( event, ui ) {
+			console.log(ui.item);
+				$( "#Media" ).val( ui.item.label );
+				$("#idMedia").val(ui.item.id);  
+				return false;
+			}
+		});
+});
+</script>
 
 @endsection

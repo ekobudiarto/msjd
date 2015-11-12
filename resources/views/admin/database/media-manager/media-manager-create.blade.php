@@ -41,7 +41,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media Manager Title</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="text" class="span8" name="media_manager_title" required>
+						<input required type="text" id="basicinput" placeholder="text" class="span8" name="media_manager_title" required>
 					</div>
 				</div>
 				<div class="control-group">

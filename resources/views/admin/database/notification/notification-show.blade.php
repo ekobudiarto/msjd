@@ -43,13 +43,13 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="number" class="span8" name="users_id" value="{{ $value->users_id }}">
+						<input type="text" disabled id="autouser"  onchange="getid(this)" value="{{ $data['user_name'] }}" class="autouser" name="users_id" style="width: 65.812%;" required>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Datetime</label>
 					<div class="controls">
-						<input type="text" id="basicinput" onchange="getid(this)" value="{{ $value->datetime }}" class="autocontent" style="width: 65.812%;" name="datetime" required>
+						<input type="text" disabled id="basicinput" onchange="getid(this)" value="{{ $value->datetime }}" class="autocontent" style="width: 65.812%;" name="datetime" required>
 					</div>
 				</div>
 				<div class="control-group">
