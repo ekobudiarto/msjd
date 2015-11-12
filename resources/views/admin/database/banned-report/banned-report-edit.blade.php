@@ -133,8 +133,10 @@
 				return false;
 			}
 		});
+		<?PHP if($data['dataUsers2'] != ''){ ?>
 		$( "#usrDest" ).val('<?php echo $data["dataUsers2"]->value;?>');
 		$("#usrDestValue").val('<?php echo $data["dataUsers2"]->id;?>');
+		<?PHP }?>
 		
 		var dataContent= <?php echo $data['content'];?>;
 		$( "#contentId" )
@@ -158,8 +160,10 @@
 				return false;
 			}
 		});
+		<?PHP if($data['contentId'] != ''){ ?>
 		$( "#contentId" ).val('<?php echo $data["contentId"]->value;?>');
 		$("#contentIdValue").val('<?php echo $data["contentId"]->id;?>');
+		<?PHP }?>
 
 	});
 

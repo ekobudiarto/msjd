@@ -46,14 +46,14 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Title</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" id="editor" placeholder="text" name="schedule_title">{{ $value->schedule_title }}</textarea>
+						<textarea class="span8" rows="5" id="editor" placeholder="text" name="schedule_title" required>{{ $value->schedule_title }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Type</label>
 					<div class="controls">
 						<!--<input type="text" id="autoscheduletype" value="{{ $value->schedule_type_id }}" name="schedule_type_id" class="autoscheduletype" onchange="getid(this)" placeholder="it should schedule type id, but you can search by name" style="width: 65.812%;" required>-->
-						<input type="text" id="sType" style="width: 65.812%;" />
+						<input type="text" required id="sType" style="width: 65.812%;" />
 						<input type="hidden" name="schedule_type_id" id="sTypeValue" />
 					</div>
 				</div>
@@ -61,7 +61,7 @@
 					<label class="control-label" for="basicinput">Schedule Users Creator</label>
 					<div class="controls">
 						<!--<input type="text" id="autouser" value="{{ $value->schedule_users_creator }}" name="schedule_users_creator" onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" style="width: 65.812%;" required>-->
-						<input type="text" id="usrCreator" style="width: 65.812%;" />
+						<input type="text" required id="usrCreator" style="width: 65.812%;" />
 						<input type="hidden" name="schedule_users_creator" id="usrCreatorValue" />
 					</div>
 				</div>
@@ -69,7 +69,7 @@
 					<label class="control-label" for="basicinput">Schedule Users Source</label>
 					<div class="controls">
 						<!--<input type="text" id="autouser2" value="{{ $value->schedule_users_source }}" name="schedule_users_source" onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" style="width: 65.812%;" required>-->
-						<input type="text" id="usrSource" style="width: 65.812%;" />
+						<input type="text" required id="usrSource" style="width: 65.812%;" />
 						<input type="hidden" name="schedule_users_source" id="usrSourceValue" />
 					</div>
 				</div>
@@ -82,25 +82,25 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Date End</label>
 					<div class="controls">
-						<input type="text" id="dateend" placeholder="Schedule Date End" class="span8" name="schedule_date_end" value="{{ $value->schedule_date_end }}">
+						<input type="text" id="dateend" required placeholder="Schedule Date End" class="span8" name="schedule_date_end" value="{{ $value->schedule_date_end }}">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Description</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" id="editor1" placeholder="Schedule Description" name="schedule_description">{{ $value->schedule_description }}</textarea>
+						<textarea class="span8" rows="5" required id="editor1" placeholder="Schedule Description" name="schedule_description">{{ $value->schedule_description }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Headline</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" id="editor2" placeholder="Schedule Description" name="schedule_description">{{ $value->schedule_headline }}</textarea>
+						<textarea class="span8" rows="5" required id="editor2" placeholder="Schedule Description" name="schedule_description">{{ $value->schedule_headline }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Repeat</label>
 					<div class="controls">
-						<input type="text" class="span8" name="schedule_repeat" value="{{ $value->schedule_repeat}}" >
+						<input type="text" class="span8" required name="schedule_repeat" value="{{ $value->schedule_repeat}}" >
 					</div>
 				</div>
 				<div class="control-group">
@@ -109,7 +109,7 @@
 						<!--<input type="text" class="automedia" onchange="getidAll(this)" placeholder="it should media id, but you can search by name media" style="width: 65.812%;">
 						<input type="text" class="tempmediaid" value="{{ $value->schedule_media_id }}" name="schedule_media_id" style="width: 65.812%;margin-top:10px;" required>-->
 						
-						<input type="text" id="mediaId" style="width: 65.812%;" />
+						<input type="text" required id="mediaId" style="width: 65.812%;" />
 						<input type="hidden" class="mediaIdValue" name="schedule_media_id" />
 					</div>
 				</div>
@@ -155,10 +155,12 @@
 		$(".mediaIdValue").val(med_man);
 		
 		<?php
-			foreach($data['dataMediaManager'] as $key => $value){
+			if($data['dataMediaManager'] != ''){
+				foreach($data['dataMediaManager'] as $key => $value){
 		?>
-				$("#mediaId").tokenInput("add", {id: "<?php echo $key;?>", name: "<?php echo $value;?>"});
+					$("#mediaId").tokenInput("add", {id: "<?php echo $key;?>", name: "<?php echo $value;?>"});
 		<?php
+				}
 			}
 		?>
 		
@@ -186,9 +188,11 @@
 				return false;
 			}
 		});
-		$( "#sType" ).val('<?php echo $data["dataScheduleType"]->value;?>');
-		$("#sTypeValue").val('<?php echo $data["dataScheduleType"]->id;?>');
-		
+
+		<?PHP if($data['dataScheduleType'] != ''){ ?>
+			$( "#sType" ).val('<?php echo $data["dataScheduleType"]->value;?>');
+			$("#sTypeValue").val('<?php echo $data["dataScheduleType"]->id;?>');
+		<?PHP } ?>
 		
 		var datausrCreator= <?php echo $data['users_detail'];?>;
 		$( "#usrCreator" )
@@ -212,8 +216,11 @@
 				return false;
 			}
 		});
+
+		<?PHP if($data['dataUsers'] != ''){?>
 		$( "#usrCreator" ).val('<?php echo $data["dataUsers"]->value;?>');
 		$("#usrCreatorValue").val('<?php echo $data["dataUsers"]->id;?>');
+		<?PHP }?>
 		
 		
 		var datausrSource= <?php echo $data['users_detail'];?>;
@@ -238,8 +245,11 @@
 				return false;
 			}
 		});
+
+		<?PHP if($data['dataUsers'] != ''){?>
 		$( "#usrSource" ).val('<?php echo $data["dataUsers2"]->value;?>');
 		$("#usrSourceValue").val('<?php echo $data["dataUsers2"]->id;?>');
+		<?PHP } ?>
 		
 		
 	

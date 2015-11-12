@@ -55,7 +55,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Status</label>
 					<div class="controls">
-						<select name="status" >
+						<select disabled name="status" >
 							@if( $value->status == 'read')
 							<option value="send">Send</option>
 							<option value="read" selected>Read</option>
@@ -64,6 +64,12 @@
 							<option value="read">Read</option>
 							@endif
 						</select>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						
+						{!! Html::link('admin/notification', 'Back', array('class' => 'btn btn-small btn-info'), false) !!}
 					</div>
 				</div>
 			{!! Form::close() !!}

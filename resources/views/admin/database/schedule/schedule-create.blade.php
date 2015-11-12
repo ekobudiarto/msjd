@@ -43,22 +43,22 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Title</label>
 					<div class="controls">
-						<textarea class="span8" id="editor" rows="5" placeholder="text" name="schedule_title"></textarea>
+						<textarea class="span8" required id="editor" rows="5" placeholder="text" name="schedule_title"></textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Type</label>
 					<div class="controls">
 						<!--<input type="text" id="autoscheduletype" name="schedule_type_id" class="autoscheduletype" onchange="getid(this)" placeholder="it should schedule type id, but you can search by name" style="width: 65.812%;" required>-->
-						<input type="text" id="sType" style="width: 65.812%;" />
-						<input type="hidden" name="schedule_type_id" id="sTypeValue" />
+						<input type="text" required id="sType" style="width: 65.812%;" />
+						<input type="hidden"  name="schedule_type_id" id="sTypeValue" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Users Creator</label>
 					<div class="controls">
 						<!--<input type="text" id="autouser" name="schedule_users_creator" onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" style="width: 65.812%;" required>-->
-						<input type="text" id="usrCreator" style="width: 65.812%;" />
+						<input type="text" required  id="usrCreator" style="width: 65.812%;" />
 						<input type="hidden" name="schedule_users_creator" id="usrCreatorValue" />
 					</div>
 				</div>
@@ -66,45 +66,45 @@
 					<label class="control-label" for="basicinput">Schedule Users Source</label>
 					<div class="controls">
 						<!--<input type="text" id="autouser2" name="schedule_users_source" onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" style="width: 65.812%;" required>-->
-						<input type="text" id="usrSource" style="width: 65.812%;" />
+						<input type="text" required  id="usrSource" style="width: 65.812%;" />
 						<input type="hidden" name="schedule_users_source" id="usrSourceValue" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Date Start</label>
 					<div class="controls">
-						<input type="date" id="datestart" placeholder="Datetime" class="span8" name="schedule_date_start">
+						<input type="date" required id="datestart" placeholder="Datetime" class="span8" name="schedule_date_start">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Date End</label>
 					<div class="controls">
-						<input type="text" id="dateend" placeholder="Datetime" class="span8" name="schedule_date_end">
+						<input type="text" required id="dateend" placeholder="Datetime" class="span8" name="schedule_date_end">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Description</label>
 					<div class="controls">
-						<textarea class="span8" id="editor1" rows="5" placeholder="text" name="schedule_description"></textarea>
+						<textarea class="span8" required id="editor1" rows="5" placeholder="text" name="schedule_description"></textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Headline</label>
 					<div class="controls">
-						<textarea class="span8" rows="5"  id="editor2" placeholder="text" name="schedule_headline"></textarea>
+						<textarea class="span8" required rows="5"  id="editor2" placeholder="text" name="schedule_headline"></textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Media ID</label>
 					<div class="controls">
-						<input type="text" id="mediaId" style="width: 65.812%;" />
+						<input type="text" required id="mediaId" style="width: 65.812%;" />
 						<input type="hidden" class="mediaIdValue" name="schedule_media_id" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Schedule Repeat</label>
 					<div class="controls">
-						<input type="text" class="span8" name="schedule_repeat">
+						<input type="text" required class="span8" name="schedule_repeat">
 					</div>
 				</div>
 				<div class="control-group">

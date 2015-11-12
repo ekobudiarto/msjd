@@ -135,23 +135,41 @@ class controller_schedule extends Controller
         for($i;$i<count($tempExp);$i++){
             //$newArray = DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager where media_manager_id='.$tempExp[$i]);
             $newArray = DB::table('table_media_manager')->select('media_manager_id as id', 'media_manager_title as name')->where('media_manager_id', '=', $tempExp[$i])->first();
-            $dataMediaManager[$newArray->id] = $newArray->name;
+            if($newArray !=null)
+                $dataMediaManager[$newArray->id] = $newArray->name;
         }
-        $data['dataMediaManager'] = $dataMediaManager;
-        $data['dataIdMediaManager'] = $exp;
-        //END Ambil data schedule
+
+        if(isset($dataMediaManager)){
+            $data['dataMediaManager'] = $dataMediaManager;
+            $data['dataIdMediaManager'] = $exp;
+        }else{
+            $data['dataMediaManager'] = '';
+            $data['dataIdMediaManager'] = '';
+        }
+     
         
         //Ambil data Schedule Type
         $row = DB::table('table_schedule_type')->select('schedule_type_id as id', 'schedule_type_name as value')->where('schedule_type_id', '=', $scheduleType)->first();
-        $data['dataScheduleType'] = $row;
+        if($row !=null)
+            $data['dataScheduleType'] = $row;
+        else
+            $data['dataScheduleType'] = '';
         //END Ambil data Schedule Type
         
         //Ambil data users_name
         $users_name = DB::table('table_users_detail')->select('users_id as id', 'users_name as value')->where('users_id', '=', $usrCreator)->first();
         $users_name2 = DB::table('table_users_detail')->select('users_id as id', 'users_name as value')->where('users_id', '=', $usrSource)->first();
         
-        $data['dataUsers'] = $users_name;
-        $data['dataUsers2'] = $users_name2;
+        if($users_name != null)
+            $data['dataUsers'] = $users_name;
+        else 
+            $data['dataUsers'] = '';
+        
+        if($users_name2 != null)
+            $data['dataUsers2'] = $users_name2;
+        else
+            $data['dataUsers2'] = '';
+
         //END Ambil data users_name
          
         return view('admin.database.schedule.schedule-edit', compact('data'));

@@ -79,14 +79,38 @@ class controller_banned_report extends Controller
      */
    public function show($id)
     {
-        $databanned = table_banned_report::where('banned_report_id', '=', $id)->first();
-        $users_by = user::where('id', '=', $databanned->users_by)->first();
-        $users_dest = user::where('id', '=', $databanned->users_dest)->first();
         $data = array(
-                'users_by'   => $users_by->name,
-                'users_dest'   => $users_dest->name,
                 'databanned' => table_banned_report::where('banned_report_id', '=', $id)->get(),
-         );     
+                'users_detail' => json_encode(DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail')),
+                'content' => json_encode(DB::select('select content_id as id, content_title as value, content_title as label from table_content')),
+         );
+        
+        foreach($data['databanned'] as $key => $value){
+            $userBy = $value->users_by;
+            $userDest = $value->users_dest;
+            $contentId = $value->content_id;
+        }
+        
+        //Ambil data
+        $users_name = DB::table('table_users_detail')->select('users_id as id', 'users_name as value', 'users_name as label')->where('users_id', '=', $userBy)->first();
+        $users_name2 = DB::table('table_users_detail')->select('users_id as id', 'users_name as value', 'users_name as label')->where('users_id', '=', $userDest)->first();
+        $content_id = DB::table('table_content')->select('content_id as id', 'content_title as value', 'content_title as label')->where('content_id', '=', $contentId)->first();
+        
+         if($users_name != null)
+            $data['dataUsers'] = $users_name;
+        else 
+            $data['dataUsers'] = '';
+        
+        if($users_name2 != null)
+            $data['dataUsers2'] = $users_name2;
+        else
+            $data['dataUsers2'] = '';
+
+        if ($content_id !=null)
+            $data['contentId'] = $content_id;
+        else
+            $data['contentId'] = '';
+
         return view('admin.database.banned-report.banned-report-show', compact('data'));
     }
 
@@ -116,9 +140,20 @@ class controller_banned_report extends Controller
         $users_name2 = DB::table('table_users_detail')->select('users_id as id', 'users_name as value', 'users_name as label')->where('users_id', '=', $userDest)->first();
         $content_id = DB::table('table_content')->select('content_id as id', 'content_title as value', 'content_title as label')->where('content_id', '=', $contentId)->first();
         
-        $data['dataUsers'] = $users_name;
-        $data['dataUsers2'] = $users_name2;
-        $data['contentId'] = $content_id;
+        if($users_name != null)
+            $data['dataUsers'] = $users_name;
+        else 
+            $data['dataUsers'] = '';
+        
+        if($users_name2 != null)
+            $data['dataUsers2'] = $users_name2;
+        else
+            $data['dataUsers2'] = '';
+
+        if ($content_id !=null)
+            $data['contentId'] = $content_id;
+        else
+            $data['contentId'] = '';
         //END Ambil data
          
         return view('admin.database.banned-report.banned-report-edit', compact('data'));
