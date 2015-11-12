@@ -31,11 +31,11 @@ class get_profile extends Controller
     		$compare = GlobalLibrary::tokenExtractor($token);
     		$users_checker = $this->check_users($compare);
     		//echo '<pre>'.print_r($compare).'</pre>';
-    		if($users_checker)
+    		if($users_checker[0])
     		{
-    			$uname = $compare[4];
-			    $uid = $compare[6];
-			    $email = $compare[3].'@'.$compare[2].'.'.$compare[0];
+    			$uname = $users_checker[1];
+			    $uid = $users_checker[2];
+			    $email = $users_checker[3];
     			$users = table_users_detail::where('users_email','=',$email)
 							    ->where('users_name','=',$uname)
 							    ->where('users_detail_id','=',$uid)
@@ -134,13 +134,19 @@ class get_profile extends Controller
 	    ->where('users_name','=',$uname)
 	    ->where('users_detail_id','=',$uid)
 	    ->first();
+        $values = array();
 	    if(count($users_detail) > 0)
 	    {
-	    	return true;
+            $values[0] = true;
+            $values[1] = $uname;
+            $values[2] = $uid;
+            $values[3] = $email;
+	    	return $values;
 	    }
 	    else
 	    {
-		    return false;
+            $values[0] = false;
+		    return $values;
 	    }
 	    
     }
