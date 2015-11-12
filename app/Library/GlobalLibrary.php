@@ -5,7 +5,7 @@
 		
 		public static function tokenGenerator($user)
 		{
-			$u_id = $user->id;
+			$u_id = $user->ids;
 			$u_name = $user->users_name;
 			$u_email = $user->users_email;
 			$u_group = $user->users_group_id;
@@ -20,11 +20,11 @@
 			$domain_ext = $split_domain[1];
 			$u_group = base64_encode($u_group);
 			$u_full = base64_encode($u_full);
-			$time = base64_encode(date("Y-m-d H:i:s"));
+			$time = base64_encode(date("Y-m-d"));
 			
 			//format 
 			$part_1 = $domain_ext."---".$u_group.'---'.$domain_name.'---';
-			$part_2 = base64_encode($email_name).'---'.$part_username.'---'.$u_full.'---'.$time;
+			$part_2 = base64_encode($email_name).'---'.$part_username.'---'.$u_full.'---'.$time.'---'.$u_id;
 			return base64_encode($part_1.$part_2);
 		}
 		
@@ -39,6 +39,7 @@
 			$data[3] = base64_decode($split_all[3]);  //email name eko if email eko@cupslice.com
 			$data[4] = base64_decode($split_all[4]);  //username
 			$data[5] = base64_decode($split_all[5]);  //Fullname;
+			$data[6] = $split_all[7];  //uid;
 			return $data;
 		}
 		public static function compareToken($token)

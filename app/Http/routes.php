@@ -76,6 +76,8 @@ Route::controllers([
 Route::group(array('prefix'=>'api/v1'), function(){
   
   //Example API
+  Route::get('get-profile', array('uses'=>'Api\get_profile@index'));
+  Route::post('profile-upload', array('uses'=>'Api\get_profile@upload'));
   Route::post('signup', array('uses'=>'Api\controller_signup@index'));
   Route::post('login', array('uses'=>'Api\controller_login@index'));
   Route::get('get-roles', array('uses'=>'Api\roles@findAll'));

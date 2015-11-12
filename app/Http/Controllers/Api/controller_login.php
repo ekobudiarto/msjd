@@ -41,20 +41,28 @@ class controller_login extends Controller
                 	$users_detail = table_users_detail::where('users_email','=',$email)->first();
                 	$users_default = User::where('email','=',$email)->first();
                 	$status = $users_detail->users_status_id;
-                	if($status == "1")
+                	if($status == "2")
                 	{
 	                	//return (new Response(array('status' => true,'msg' => 'You are Logged in'),200))->header('Content-Type', "json");
 	                	$field_users = array();
 	                	$field_users['id'] = $users_default->id;
-	                	$field_users['ids'] = $users_detail->users_id;
+	                	$field_users['ids'] = $users_detail->users_detail_id;
 	                	$field_users['users_name'] = $users_detail->users_name;
 	                	$field_users['users_email'] = $email;
 	                	$field_users['users_group_id'] = $users_detail->users_group_id;
 	                	$field_users['users_fullname'] = $users_detail->users_fullname;
 	                	$field_users = (object) $field_users;
 	                	$token = GlobalLibrary::tokenGenerator($field_users);
-	                	//echo $token.'<br><br><br>';
-	                	return (new Response(array('status' => true,'msg' => 'You are Logged in','token' => $token),200))->header('Content-Type', "json");
+	                	$js = array();
+	                	$js = (object) $js;
+	                	$js->i = $users_detail->users_detail_id;
+	                	$js->n = $users_detail->users_name;
+	                	$js->fu = $users_detail->users_fullname;
+	                	$js->d = $users_detail->users_description;
+	                	$js->ugid = $users_detail->users_group_id;
+	                	$js->token = $token;
+	                	
+	                	return (new Response(array('status' => true,'msg' => 'You are Logged in','data' => $js),200))->header('Content-Type', "json");
                 	}
                 	else
                 	{
