@@ -44,19 +44,19 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Title</label>
 					<div class="controls">
-						<textarea class="span8" id="editor" rows="5" name="content_title" placeholder="text"></textarea>
+						<textarea class="span8" required id="editor" rows="5" name="content_title" placeholder="text"></textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Headline</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" id="editor1" name="content_headline" placeholder="text"></textarea>
+						<textarea class="span8" required rows="5" id="editor1" name="content_headline" placeholder="text"></textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Detail</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" id="editor2" name="content_detail" placeholder="text"></textarea>
+						<textarea class="span8" required rows="5" id="editor2" name="content_detail" placeholder="text"></textarea>
 					</div>
 				</div>
 				<div class="control-group">
@@ -65,7 +65,7 @@
 						<!--<input type="text" class="automedia" onchange="getidAll(this)" placeholder="it should media id, but you can search by name media" style="width: 65.812%;">
 						<input type="text" class="tempmediaid" name="content_media_id" style="width: 65.812%;margin-top:10px;" required>-->
 						
-						<input type="text" id="tags" style="width: 65.812%;" />
+						<input type="text" id="tags" required style="width: 65.812%;" />
 						<input type="hidden" class="tagsValue" name="content_media_id" />
 					</div>
 				</div>
@@ -74,7 +74,7 @@
 					<div class="controls">
 						<!--<input type="text" id="autouser"  onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" name="content_users_uploader" style="width: 65.812%;" required>-->
 						
-						<input type="text" id="uploader" style="width: 65.812%;" />
+						<input type="text" required id="uploader" style="width: 65.812%;" />
 						<input type="hidden" name="content_users_uploader" id="uploaderValue" />
 					</div>
 				</div>
@@ -83,14 +83,14 @@
 					<div class="controls">
 						<!--<input type="text" id="autouser2"  onchange="getid(this)" placeholder="it should user id, but you can search by name" class="autouser" name="content_last_editor" style="width: 65.812%;" required>-->
 						
-						<input type="text" id="lasteditor" style="width: 65.812%;" />
+						<input type="text" required id="lasteditor" style="width: 65.812%;" />
 						<input type="hidden" name="content_last_editor" id="lasteditorValue" />
 					</div>
 				</div>
 				<div class="control-group" style="display:none">
 					<label class="control-label" for="basicinput">Content Date Insert</label>
 					<div class="controls">
-						<input type="text" id="dateinput" placeholder="Date" class="span8" name="content_date_insert">
+						<input type="text" id="dateinput" value="<?PHP echo date('Y-m-d H:i:s');?>" placeholder="Date" class="span8" name="content_date_insert">
 					</div>
 				</div>
 				<div class="control-group" style="display:none">
@@ -102,7 +102,7 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Date Expired</label>
 					<div class="controls">
-						<input type="text" id="dateexpired" placeholder="Date" class="span8" name="content_date_expired">
+						<input type="text" id="dateexpired" required placeholder="Date" class="span8" name="content_date_expired">
 					</div>
 				</div>
 				<div class="control-group">
@@ -110,7 +110,7 @@
 					<div class="controls">
 						<!--<input type="text" id="autocontencategory"  onchange="getid(this)" placeholder="you can search by content category name" class="autocontencategory" name="content_category_id" style="width: 65.812%;" required>-->
 						
-						<input type="text" id="ccat" style="width: 65.812%;" />
+						<input type="text" required id="ccat" style="width: 65.812%;" />
 						<input type="hidden" name="content_category_id" id="ccatValue" />
 					</div>
 				</div>

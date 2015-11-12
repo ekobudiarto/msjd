@@ -1,10 +1,13 @@
 @extends('/admin/include/admin-header-footer')
 
 @section('content')
+<link type="text/css" href="{{ URL::asset('public/css-js/css/token-input.css') }}" rel="stylesheet">
+<link type="text/css" href="{{ URL::asset('public/css-js/css/token-input-facebook.css') }}" rel="stylesheet">
+<script src="{{ URL::asset('public/css-js/scripts/jquery.tokeninput.js') }}" type="text/javascript"></script>
 
 <div class="module">
 	<div class="module-head">
-		<h3>Add Users Detail</h3>
+		<h3>Show Users Detail</h3>
 	</div>
 	<div class="module-body">
 
@@ -37,73 +40,85 @@
 			@foreach($data['users-detail'] as $key => $value)
 			{!! Form::open(array('url' => 'admin/users-detail/'.$value->users_id, 'files' => false, 'class' => 'form-horizontal row-fluid')) !!}
 
+				<input name="_method" type="hidden" value="PUT">
+				<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users Name</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" name="users_name" value="{{ $value->users_name }}" required>
+						<input type="text" id="basicinput" placeholder="" class="span8" name="users_name" value="{{ $value->users_name }}" disabled>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Users Fullname</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" name="users_fullname" value="{{ $value->users_fullname }}" required>
+						<input type="text" id="basicinput" placeholder="" class="span8" name="users_fullname" value="{{ $value->users_fullname }}" disabled>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Email</label>
 					<div class="controls">
-						<input type="email" id="basicinput" placeholder="" class="span8" name="users_email" value="{{ $value->users_email }}" required>
+						<input type="email" id="basicinput" placeholder="" class="span8" name="users_email" value="{{ $value->users_email }}" disabled>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Group ID</label>
 					<div class="controls">
-						<select name="users_group_id" required>
+						<select name="users_group_id" disabled>
 						
 
 						@foreach($data['group'] as $row=>$valuegroup)
 								<option value="{{ $valuegroup->users_group_id }}" <?PHP if ($valuegroup->users_group_id==$value->users_group_id) echo "selected"; ?> >{{ $valuegroup->users_group_name}}</option>
 						@endforeach
 						</select>
-						<!-- <input type="text" id="basicinput" placeholder="" class="span8" name="users_group_id" value="{{ $value->users_group_id }}" required> -->
+						<!-- <input type="text" id="basicinput" placeholder="" class="span8" name="users_group_id" value="{{ $value->users_group_id }}" disabled> -->
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Telp</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" name="users_telp" value="{{ $value->users_telp }}">
+						<input type="text" id="basicinput" placeholder="" class="span8" name="users_telp" value="{{ $value->users_telp }}" disabled>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Json Follow</label>
 					<div class="controls">
-						<input type="text" onchange="getidAll(this)" placeholder="it should user id, but you can search by name" class="span8 getFollow">
-						<input type="text" id="basicinput" class="tempJsonFollow" value="{{ $value->users_json_following }}" name="users_json_following" style="width: 65.812%;margin-top:10px;" required>
+						<!--<input type="text" onchange="getidAll(this)" placeholder="it should user id, but you can search by name" class="span8 getFollow">
+						<input type="text" id="basicinput" class="tempJsonFollow" value="{{ $value->users_json_following }}" name="users_json_following" style="width: 65.812%;margin-top:10px;" disabled>-->
+						<input type="text" id="jsonId" style="width: 65.812%;" disabled/>
+						<input type="hidden" class="jsonValue" name="users_json_following" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Description</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" name="users_description" >{{ $value->users_description }}</textarea>
+						<textarea class="span8" id="editor" rows="5" name="users_description" disabled>{{ $value->users_description }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Media ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" onchange="getid(this)" placeholder="it should media id, but you can search by name" class="span8 getMedia" value="{{ $value->media_manager_id }}" name="media_manager_id">
+						<!--<input type="text" id="basicinput" onchange="getid(this)" placeholder="it should media id, but you can search by name" class="span8 getMedia" value="{{ $value->media_manager_id }}" name="media_manager_id">-->
+						<input type="text" id="mediaId" style="width: 65.812%;"disabled/>
+						<input type="hidden" class="mediaIdValue" name="media_manager_id" />
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Avatar</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" name="users_avatar" value="{{ $value->users_avatar }}">
+						<input type="text" id="basicinput" placeholder="" class="span8" name="users_avatar" value="{{ $value->users_avatar }}" disabled>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="basicinput">Cover</label>
+					<div class="controls">
+						<input type="text" id="basicinput" placeholder="" class="span8" name="users_cover" disabled>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Status ID</label>
 					<div class="controls">
 						<!-- <input type="text" id="basicinput" onchange="getid(this)" placeholder="it should status id, but you can search by title" class="span8 getStatus" name="users_status_id" value="{{ $value->users_status_id }}"> -->
-						<select name="users_status_id" required>
+						<select name="users_status_id" disabled>
 						
 
 						@foreach($data['status'] as $row=>$valuestatus)
@@ -115,37 +130,37 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Device ID</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" name="deviceID" value="{{ $value->deviceID }}">
+						<input type="text" id="basicinput" placeholder="" class="span8" name="deviceID" value="{{ $value->deviceID }}" disabled>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Device Version</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" value="{{ $value->deviceVersion }}" name="deviceVersion" >
+						<input type="text" id="basicinput" placeholder="" class="span8" value="{{ $value->deviceVersion }}" name="deviceVersion" disabled>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Device Brand</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" value="{{ $value->deviceBrand }}" name="deviceBrand">
+						<input type="text" id="basicinput" placeholder="" class="span8" value="{{ $value->deviceBrand }}" name="deviceBrand" disabled>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Provider</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" value="{{ $value->providerID }}" name="providerID">
+						<input type="text" id="basicinput" placeholder="" class="span8" value="{{ $value->providerID }}" name="providerID" disabled>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Longitude</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" value="{{ $value->long }}" name="long">
+						<input type="text" id="basicinput" placeholder="" class="span8" value="{{ $value->long }}" name="long" disabled>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Latitude</label>
 					<div class="controls">
-						<input type="text" id="basicinput" placeholder="" class="span8" value="{{ $value->lat }}" name="lat">
+						<input type="text" id="basicinput" placeholder="" class="span8" value="{{ $value->lat }}" name="lat" disabled>
 					</div>
 				</div>
 
@@ -162,6 +177,51 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		//MULTI AUTOCOMPLETE
+		var data = <?php echo $data['media_manager'];?>;
+		$("#mediaId").tokenInput(data, {
+			preventDuplicates: true,
+			theme: "facebook"
+		});
+		$("#mediaId").on('change',function(){
+			$(".mediaIdValue").val($('#mediaId').val());
+		});
+		var med_man = "<?php echo $data['dataIdMediaManager'];?>";
+		$(".mediaIdValue").val(med_man);
+		
+		<?php
+			if($data['dataMediaManager'] != ''){
+				foreach($data['dataMediaManager'] as $key => $value){
+		?>
+					$("#mediaId").tokenInput("add", {id: "<?php echo $key;?>", name: "<?php echo $value;?>"});
+		<?php
+				}
+			}
+		?>
+		
+		
+		var data2 = <?php echo $data['users-detail'];?>;
+		$("#jsonId").tokenInput(data2, {
+			preventDuplicates: true,
+			theme: "facebook"
+		});
+		$("#jsonId").on('change',function(){
+			$(".jsonValue").val($('#jsonId').val());
+		});
+		var med_man = "<?php echo $data['dataIdUsers'];?>";
+		$(".jsonValue").val(med_man);
+		
+		<?php
+			if($data['dataUsers'] != ''){
+				foreach($data['dataUsers'] as $key => $value){
+		?>
+					$("#jsonId").tokenInput("add", {id: "<?php echo $key;?>", name: "<?php echo $value;?>"});
+		<?php
+				}
+			}
+		?>
+		
+	
 		$(".getFollow").autocomplete({
 			minLength:1,
 			autofocus: true,

@@ -46,19 +46,19 @@
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Title</label>
 					<div class="controls">
-						<textarea class="span8" rows="5" id="editor" name="content_title" placeholder="text">{{ $value->content_title }}</textarea>
+						<textarea class="span8" required rows="5" id="editor" name="content_title" placeholder="text">{{ $value->content_title }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Headline</label>
 					<div class="controls">
-						<textarea class="span8" id="editor1" rows="5" name="content_headline" placeholder="text">{{ $value->content_headline }}</textarea>
+						<textarea class="span8" required id="editor1" rows="5" name="content_headline" placeholder="text">{{ $value->content_headline }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="basicinput">Content Detail</label>
 					<div class="controls">
-						<textarea class="span8" id="editor2" rows="5" name="content_detail" placeholder="text">{{ $value->content_detail }}</textarea>
+						<textarea class="span8" required id="editor2" rows="5" name="content_detail" placeholder="text">{{ $value->content_detail }}</textarea>
 					</div>
 				</div>
 				<div class="control-group">
@@ -67,7 +67,7 @@
 						<!--<input type="text" class="automedia" onchange="getidAll(this)" placeholder="it should media id, but you can search by name media" style="width: 65.812%;">
 						<input type="text" class="tempmediaid" name="content_media_id" value="{{ $value->content_media_id }}" style="width: 65.812%;margin-top:10px;" required>-->
 						
-						<input type="text" id="tags" style="width: 65.812%;"  />
+						<input type="text" required id="tags" style="width: 65.812%;"  />
 						<input type="hidden" class="tagsValue" name="content_media_id"  />
 					</div>
 				</div>
@@ -75,15 +75,15 @@
 					<label class="control-label" for="basicinput">Content users uploader</label>
 					<div class="controls">
 						<!--<input type="text" id="autouser"  placeholder="it should user id, but you can search by name" class="autouser" name="content_users_uploader" style="width: 65.812%;" required>-->
-						<input type="text" id="uploader" style="width: 65.812%;" />
+						<input type="text" required id="uploader" style="width: 65.812%;" />
 						<input type="hidden" name="content_users_uploader" id="uploaderValue" />
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="basicinput">Content Last Editor</label>
+					<label class="control-label" required for="basicinput">Content Last Editor</label>
 					<div class="controls">
 						<!--<input type="text" id="autouser2"  onchange="getid(this)" value="{{ $value->content_last_editor }}" placeholder="it should user id, but you can search by name" class="autouser" name="content_last_editor" style="width: 65.812%;" required>-->
-						<input type="text" id="lasteditor"style="width: 65.812%;" />
+						<input type="text" required id="lasteditor"style="width: 65.812%;" />
 						<input type="hidden" name="content_last_editor" id="lasteditorValue" />
 					</div>
 				</div>
@@ -96,10 +96,10 @@
 				<div class="control-group" style="display:none">
 					<label class="control-label" for="basicinput">Content Date Update</label>
 					<div class="controls">
-						<input type="text" id="dateupdate" placeholder="Date" class="span8" name="content_date_update" value="{{ $value->content_date_update }}">
+						<input type="text" id="dateupdate" placeholder="Date" class="span8" name="content_date_update" value="<?PHP echo date('Y-m-d H:i:s');?>" >
 					</div>
 				</div>
-				<div class="control-group" style="display:none">
+				<div class="control-group" >
 					<label class="control-label" for="basicinput">Content Date Expired</label>
 					<div class="controls">
 						<input type="text" id="dateexpired" placeholder="Date" class="span8" name="content_date_expired" value="{{ $value->content_date_expired }}">
@@ -109,7 +109,7 @@
 					<label class="control-label" for="basicinput">Content Category</label>
 					<div class="controls">
 						<!--<input type="text" id="autocontencategory"  onchange="getid(this)" value="{{ $value->content_category_id }}" placeholder="you can search by content category name" class="autocontencategory" name="content_category_id" style="width: 65.812%;" required>-->
-						<input type="text" id="ccat" style="width: 65.812%;" />
+						<input type="text" required id="ccat" style="width: 65.812%;" />
 						<input type="hidden" name="content_category_id" id="ccatValue" />
 					</div>
 				</div>
@@ -195,8 +195,11 @@
 				return false;
 			}
 		});
+
+		<?PHP if($data['dataUsers'] != ''){ ?>
 		$( "#uploader" ).val('<?php echo $data["dataUsers"]->value;?>');
 		$("#uploaderValue").val('<?php echo $data["dataUsers"]->id;?>');
+		<?PHP } ?>
 		
 		
 		var dataEditor= <?php echo json_encode($data['users_detail']);?>;
@@ -220,9 +223,13 @@
 				return false;
 			}
 		});
+
+		<?PHP if($data['dataUsers2'] != ''){ ?>
 		$( "#lasteditor" ).val('<?php echo $data["dataUsers2"]->value;?>');
 		$("#lasteditorValue").val('<?php echo $data["dataUsers2"]->id;?>');
-		
+		<?PHP }?>
+
+
 		var dataCat= <?php echo json_encode($data['content_category']);?>;
 		$( "#ccat" )
 		.bind( "keydown", function( event ) {
@@ -244,8 +251,10 @@
 				return false;
 			}
 		});
+		<?PHP if($data['dataContentCategory'] != ''){ ?>
 		$( "#ccat" ).val('<?php echo $data["dataContentCategory"]->value;?>');
 		$("#ccatValue").val('<?php echo $data["dataContentCategory"]->id;?>');
+		<?PHP } ?>
 		
 		var dataContent= <?php echo json_encode($data['content_from']);?>;
 		$( "#content" )
@@ -268,9 +277,12 @@
 				return false;
 			}
 		});
-		//console.log("<?php echo preg_replace('/[\r\n]+/', '', $data['dataContentFrom']->value);?>");
+		
+
+		<?PHP if($data['dataContentFrom'] != ''){ ?>
 		$( "#content" ).val("<?php echo preg_replace('/[\r\n]+/', '', $data['dataContentFrom']->value);?>");
 		$("#contentValue").val('<?php echo $data["dataContentFrom"]->id;?>');
+		<?PHP } ?>
 	
 		//DATETIME
 		$('#dateinput').datetimepicker({

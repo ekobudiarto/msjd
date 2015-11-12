@@ -114,6 +114,12 @@
 					</div>
 				</div>
 				<div class="control-group">
+					<label class="control-label" for="basicinput">Cover</label>
+					<div class="controls">
+						<input type="text" id="basicinput" placeholder="" class="span8" name="users_cover">
+					</div>
+				</div>
+				<div class="control-group">
 					<label class="control-label" for="basicinput">Status ID</label>
 					<div class="controls">
 						<select name="users_status_id" required>

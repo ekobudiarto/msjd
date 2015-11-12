@@ -7,7 +7,7 @@
 
 <div class="module">
 	<div class="module-head">
-		<h3>Add Users Detail</h3>
+		<h3>EditUsers Detail</h3>
 	</div>
 	<div class="module-body">
 
@@ -109,6 +109,12 @@
 					</div>
 				</div>
 				<div class="control-group">
+					<label class="control-label" for="basicinput">Cover</label>
+					<div class="controls">
+						<input type="text" id="basicinput" placeholder="" class="span8" name="users_cover">
+					</div>
+				</div>
+				<div class="control-group">
 					<label class="control-label" for="basicinput">Status ID</label>
 					<div class="controls">
 						<!-- <input type="text" id="basicinput" onchange="getid(this)" placeholder="it should status id, but you can search by title" class="span8 getStatus" name="users_status_id" value="{{ $value->users_status_id }}"> -->
@@ -185,10 +191,12 @@
 		$(".mediaIdValue").val(med_man);
 		
 		<?php
-			foreach($data['dataMediaManager'] as $key => $value){
+			if($data['dataMediaManager'] != ''){
+				foreach($data['dataMediaManager'] as $key => $value){
 		?>
-				$("#mediaId").tokenInput("add", {id: "<?php echo $key;?>", name: "<?php echo $value;?>"});
+					$("#mediaId").tokenInput("add", {id: "<?php echo $key;?>", name: "<?php echo $value;?>"});
 		<?php
+				}
 			}
 		?>
 		
@@ -205,10 +213,12 @@
 		$(".jsonValue").val(med_man);
 		
 		<?php
-			foreach($data['dataUsers'] as $key => $value){
+			if($data['dataUsers'] != ''){
+				foreach($data['dataUsers'] as $key => $value){
 		?>
-				$("#jsonId").tokenInput("add", {id: "<?php echo $key;?>", name: "<?php echo $value;?>"});
+					$("#jsonId").tokenInput("add", {id: "<?php echo $key;?>", name: "<?php echo $value;?>"});
 		<?php
+				}
 			}
 		?>
 		

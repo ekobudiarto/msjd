@@ -79,6 +79,7 @@ class controller_users_detail extends Controller
         $description = input::get('users_description');
         $media = input::get('media_manager_id');
         $avatar = input::get('users_avatar');
+        $cover = input::get('users_cover');
         $status = input::get('users_status_id');
         $device = input::get('deviceID');
         $provider = input::get('providerID');
@@ -118,6 +119,7 @@ class controller_users_detail extends Controller
             'users_description' => $description,
             'media_manager_id' => $media,
             'users_avatar' => $avatar,
+            'users_cover' => $cover,
             'users_status_id' => $status,
             'deviceID' => $device,
             'providerID' =>$provider,
@@ -141,11 +143,46 @@ class controller_users_detail extends Controller
     {
         $detail = table_users_detail::where('users_id', '=', $id)->first();
         $idusersdetail = $detail->users_detail_id;
+
         $data = array(
                 'users-detail' => table_users_detail::where('users_detail_id', '=', $idusersdetail)->get(),
                 'group' => DB::table('table_users_group')->get(),
                 'status' => DB::table('table_users_status')->get(),
-         ); 
+                'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager')),
+         );
+        //Ambil data schedule
+        foreach($data['users-detail'] as $key => $value){
+            $expMedia = $value->media_manager_id;
+            $expJson = $value->users_json_following;
+        }
+        $tempExp = explode(",", $expMedia);
+        $i = 0;
+        for($i;$i<count($tempExp);$i++){
+            $newArray = DB::table('table_media_manager')->select('media_manager_id as id', 'media_manager_title as name')->where('media_manager_id', '=', $tempExp[$i])->first();
+            if($newArray != null)
+                $dataMediaManager[$newArray->id] = $newArray->name;
+        }
+        if(isset($dataMediaManager))
+            $data['dataMediaManager'] = $dataMediaManager;
+        else
+            $data['dataMediaManager'] ='';
+
+
+        $data['dataIdMediaManager'] = $expMedia;
+        
+        $tempExp2 = explode(",", $expJson);
+        $i = 0;
+        for($i;$i<count($tempExp2);$i++){
+            $newArray2 = DB::table('table_users_detail')->select('users_id as id', 'users_name as name')->where('users_id', '=', $tempExp2[$i])->first();
+            if($newArray2 != null)
+                $dataUsers[$newArray2->id] = $newArray2->name;
+        }
+        if(isset($dataUsers))
+            $data['dataUsers'] = $dataUsers;
+        else 
+            $data['dataUsers']= '';
+
+        $data['dataIdUsers'] = $expMedia;
         return view('admin.database.users-detail.users-detail-show', compact('data'));
     }
 
@@ -175,18 +212,29 @@ class controller_users_detail extends Controller
         $i = 0;
         for($i;$i<count($tempExp);$i++){
             $newArray = DB::table('table_media_manager')->select('media_manager_id as id', 'media_manager_title as name')->where('media_manager_id', '=', $tempExp[$i])->first();
-            $dataMediaManager[$newArray->id] = $newArray->name;
+            if($newArray != null)
+                $dataMediaManager[$newArray->id] = $newArray->name;
         }
-        $data['dataMediaManager'] = $dataMediaManager;
+        if(isset($dataMediaManager))
+            $data['dataMediaManager'] = $dataMediaManager;
+        else
+            $data['dataMediaManager'] ='';
+
+
         $data['dataIdMediaManager'] = $expMedia;
         
         $tempExp2 = explode(",", $expJson);
         $i = 0;
         for($i;$i<count($tempExp2);$i++){
             $newArray2 = DB::table('table_users_detail')->select('users_id as id', 'users_name as name')->where('users_id', '=', $tempExp2[$i])->first();
-            $dataUsers[$newArray2->id] = $newArray2->name;
+            if($newArray2 != null)
+                $dataUsers[$newArray2->id] = $newArray2->name;
         }
-        $data['dataUsers'] = $dataUsers;
+        if(isset($dataUsers))
+            $data['dataUsers'] = $dataUsers;
+        else 
+            $data['dataUsers']= '';
+
         $data['dataIdUsers'] = $expMedia;
         //END Ambil data schedule
 
