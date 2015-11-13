@@ -114,6 +114,16 @@
 					</div>
 				</div>
 				<div class="control-group">
+					<label class="control-label" for="basicinput">Content Hashtag</label>
+					<div class="controls">
+						<!--<input type="text" class="automedia" onchange="getidAll(this)" placeholder="it should media id, but you can search by name media" style="width: 65.812%;">
+						<input type="text" class="tempmediaid" name="content_media_id" value="{{ $value->content_media_id }}" style="width: 65.812%;margin-top:10px;" disabled>-->
+						
+						<input type="text" disabled id="hashtag" style="width: 65.812%;"  />
+						<input type="hidden" class="hashtagValue" name="hashtag_id"  />
+					</div>
+				</div>
+				<div class="control-group">
 					<label class="control-label" for="basicinput">Content repost from</label>
 					<div class="controls">
 						<!--<input type="text" id="autoconten"  onchange="getid(this)" value="{{ $value->content_repost_from }}" placeholder="it should content id, but you can search by name" class="autocontent" name="content_repost_from" style="width: 65.812%;" disabled>-->
@@ -167,6 +177,25 @@
 			foreach($data['dataMediaManager'] as $key => $value){
 		?>
 				$("#tags").tokenInput("add", {id: "<?php echo $key;?>", name: "<?php echo $value;?>"});
+		<?php
+			}
+		?>
+		
+		var data = <?php echo json_encode($data['hashtag']);?>;
+		$("#hashtag").tokenInput(data, {
+			preventDuplicates: true,
+			theme: "facebook"
+		});
+		$("#hashtag").on('change',function(){
+			$(".hashtagValue").val($('#hashtag').val());
+		});
+		var med_man = "<?php echo $data['dataIdHashtag'];?>";
+		$(".hashtagValue").val(med_man);
+		
+		<?php
+			foreach($data['dataHashtag'] as $key => $value){
+		?>
+				$("#hashtag").tokenInput("add", {id: "<?php echo $key;?>", name: "<?php echo preg_replace('/[\r\n]+/', '', $value);?>"});
 		<?php
 			}
 		?>

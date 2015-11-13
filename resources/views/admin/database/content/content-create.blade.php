@@ -115,11 +115,20 @@
 					</div>
 				</div>
 				<div class="control-group">
+					<label class="control-label" for="basicinput">Content Hashtag</label>
+					<div class="controls">
+						<!--<input type="text" id="autoconten"  onchange="getid(this)" placeholder="it should content id, but you can search by name" class="autocontent" name="content_repost_from" style="width: 65.812%;" required>-->
+						
+						<input type="text" required id="hashtag" style="width: 65.812%;" />
+						<input type="hidden" name="hashtag_id" id="hashtagValue" />
+					</div>
+				</div>
+				<div class="control-group">
 					<label class="control-label" for="basicinput">Content repost from</label>
 					<div class="controls">
 						<!--<input type="text" id="autoconten"  onchange="getid(this)" placeholder="it should content id, but you can search by name" class="autocontent" name="content_repost_from" style="width: 65.812%;" required>-->
 						
-						<input type="text" id="content" style="width: 65.812%;" />
+						<input type="text" required id="content" style="width: 65.812%;" />
 						<input type="hidden" name="content_repost_from" id="contentValue" />
 					</div>
 				</div>
@@ -155,6 +164,15 @@ $(document).ready(function() {
 		});
 		$("#tags").on('change',function(){
 			$(".tagsValue").val($('#tags').val());
+		});
+		
+		var data = <?php echo $data['hashtag'];?>;
+		$("#hashtag").tokenInput(data, {
+			preventDuplicates: true,
+			theme: "facebook"
+		});
+		$("#hashtag").on('change',function(){
+			$(".hashtagValue").val($('#hashtag').val());
 		});
 		
 		//SINGLE AUTOCOMPLETE

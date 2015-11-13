@@ -69,6 +69,7 @@ class controller_content extends Controller
             'media_manager' => json_encode(DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager')),
             'users_detail' => json_encode(DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail')),
             'content_category' => json_encode(DB::select('select content_category_id as id, content_category_title as value, content_category_title as label from table_content_category')),
+            'hashtag' => json_encode(DB::select('select hashtag_id as id, hashtag_title as name from table_hashtag')),
             'content' => json_encode(DB::select('select content_id as id, content_title as value, content_title as label from table_content'))
          );
        return view('admin.database.content.content-create', compact('data'));
@@ -100,6 +101,7 @@ class controller_content extends Controller
                 'media_manager' => DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager'),
                 'users_detail' => DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail'),
                 'content_category' => DB::select('select content_category_id as id, content_category_title as value, content_category_title as label from table_content_category'),
+                'hashtag' => json_encode(DB::select('select hashtag_id as id, hashtag_title as name from table_hashtag')),
                 'content_from' => DB::select('select content_id as id, content_title as value, content_title as label from table_content')
          );
         
@@ -110,6 +112,7 @@ class controller_content extends Controller
             $usrEdit = $value->content_last_editor;
             $contCat = $value->content_category_id;
             $contFrom = $value->content_repost_from;
+            $contHash = $value->hashtag_id;
         }
         $tempExp = explode(",", $exp);
         $i = 0;
@@ -125,6 +128,20 @@ class controller_content extends Controller
 
         $data['dataIdMediaManager'] = $exp;
         //END Ambil data nama media manager
+        
+        $tempHash = explode(",", $contHash);
+        $i = 0;
+        for($i;$i<count($tempHash);$i++){
+            //$newArray = DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager where media_manager_id='.$tempExp[$i]);
+            $newArray = DB::table('table_hashtag')->select('hashtag_id as id', 'hashtag_title as name')->where('hashtag_id', '=', $tempHash[$i])->first();
+            if($newArray != null)
+                $dataHashtag[$newArray->id] = $newArray->name;
+        }
+        if(isset($dataHashtag))
+            $data['dataHashtag'] = $dataHashtag;
+
+
+        $data['dataIdHashtag'] = $contHash;
         
         //Ambil data users_name
         $users_name = DB::table('table_users_detail')->select('users_id as id', 'users_name as value')->where('users_id', '=', $usrUp)->first();
@@ -173,6 +190,7 @@ class controller_content extends Controller
                 'media_manager' => DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager'),
                 'users_detail' => DB::select('select users_id as id, users_name as value, users_name as label from table_users_detail'),
                 'content_category' => DB::select('select content_category_id as id, content_category_title as value, content_category_title as label from table_content_category'),
+                'hashtag' => json_encode(DB::select('select hashtag_id as id, hashtag_title as name from table_hashtag')),
                 'content_from' => DB::select('select content_id as id, content_title as value, content_title as label from table_content')
          );
         
@@ -183,6 +201,7 @@ class controller_content extends Controller
             $usrEdit = $value->content_last_editor;
             $contCat = $value->content_category_id;
             $contFrom = $value->content_repost_from;
+            $contHash = $value->hashtag_id;
         }
         $tempExp = explode(",", $exp);
         $i = 0;
@@ -198,6 +217,20 @@ class controller_content extends Controller
 
         $data['dataIdMediaManager'] = $exp;
         //END Ambil data nama media manager
+        
+        $tempHash = explode(",", $contHash);
+        $i = 0;
+        for($i;$i<count($tempHash);$i++){
+            //$newArray = DB::select('select media_manager_id as id, media_manager_title as name from table_media_manager where media_manager_id='.$tempExp[$i]);
+            $newArray = DB::table('table_hashtag')->select('hashtag_id as id', 'hashtag_title as name')->where('hashtag_id', '=', $tempHash[$i])->first();
+            if($newArray != null)
+                $dataHashtag[$newArray->id] = $newArray->name;
+        }
+        if(isset($dataHashtag))
+            $data['dataHashtag'] = $dataHashtag;
+
+
+        $data['dataIdHashtag'] = $contHash;
         
         //Ambil data users_name
         $users_name = DB::table('table_users_detail')->select('users_id as id', 'users_name as value')->where('users_id', '=', $usrUp)->first();

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 03, 2015 at 05:41 PM
+-- Generation Time: Nov 13, 2015 at 12:03 PM
 -- Server version: 5.5.25a
 -- PHP Version: 5.6.14
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `table_banned_report` (
   `users_dest` int(11) NOT NULL,
   `banned_report_message` text NOT NULL,
   PRIMARY KEY (`banned_report_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `table_banned_report`
@@ -91,11 +91,10 @@ INSERT INTO `table_banned_report` (`banned_report_id`, `users_by`, `content_id`,
 (15, 27, 2, 26, 'test8'),
 (16, 27, 2, 26, 'test9'),
 (17, 26, 1, 27, 'test10'),
-(18, 27, 1, 1, '\r\n'),
 (19, 26, 1, 27, ''),
-(20, 27, 2, 26, ''),
 (21, 26, 2, 27, ''),
-(22, 27, 1, 26, '');
+(23, 2, 1, 29, '<p>test aja</p>\r\n'),
+(24, 0, 0, 0, '<p>ddd</p>\r\n');
 
 -- --------------------------------------------------------
 
@@ -119,15 +118,15 @@ CREATE TABLE IF NOT EXISTS `table_content` (
   `hashtag_id` text NOT NULL,
   `content_repost_from` int(11) NOT NULL,
   PRIMARY KEY (`content_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `table_content`
 --
 
 INSERT INTO `table_content` (`content_id`, `content_title`, `content_headline`, `content_detail`, `content_media_id`, `content_users_uploader`, `content_last_editor`, `content_date_insert`, `content_date_update`, `content_date_expired`, `content_publish`, `content_category_id`, `hashtag_id`, `content_repost_from`) VALUES
-(1, 'Allah turunkan hujan sesaat setelah rakyat, ulama dan aparat shalat Istisqa di Bogor', 'Allah subhanahu wa Ta’ala menurunkan hujan lebat di Kota Bogor sesaat setelah ratusan umat Islam bersama ulama dan aparat pemerintah sipil dan militer melaksakan Shalat Istisqa, minta hujan di Lapangan Sempur Kota Bogor, Jumat (30/10/2015). - See more at: http://www.arrahmah.com/news/2015/10/30/allah-turunkan-hujan-sesaat-setelah-rakyat-ulama-dan-aparat-shalat-istisqa-di-bogor.html#sthash.i8NqyJgs.dpuf', 'Hujan turun jam 15.30 sementara rangkaian ibadah shalat Istisqa yang terdiri dari Shalat dua rakaat, Khutbah dan doa serta zikir selesai jam 14.50. Hujan sedang hingga lebat berlangsung selama 1 jam. Pantauan Arrahmah.com dari lokasi shalat Istisqa hingga jalur kereta menuju Jakarta, hujan turun hingga stasiun Cilebut.  Jamaah satu persatu mendatangi Lapangan Sempur tempat dilaksakannya shalat Istisqa ba’da shalat Jumat. Shalat dimulai pukul 14.00 dengan imam Drs. Lukmanul Hakim dari Kemenag kota Bogor sedangkan khotib DR. Badruddin H Subki.  Khotib mengajak jamaah beristighfar, mohon ampun dan bertaubat kepada Allah atas segala dosa. Saat itu langit mulai gelap.  Khotbah selesai, jamaah diajak untuk berdzikir dan berdoa kepada Allah Ta’ala hingga datangnya waktu Ashar.Kemudian dilaksanakan Shalat Ashar berjamaah di lapangan. - See more at: http://www.arrahmah.com/news/2015/10/30/allah-turunkan-hujan-sesaat-setelah-rakyat-ulama-dan-aparat-shalat-istisqa-di-bogor.html#sthash.i8NqyJgs.dpuf', '1', 26, 26, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '1', 1, '', 1),
-(2, 'Raja Salman Perintahkan Seluruh Rakyat Saudi Shalat Istisqo’', 'Content 2', 'Content 2', '1', 26, 26, '2015-10-27 05:05:24', '2015-10-27 05:05:24', '2015-10-30 05:05:24', '1', 1, '', 1),
+(1, 'Allah turunkan hujan sesaat setelah rakyat, ulama dan aparat shalat Istisqa di Bogor', 'Allah subhanahu wa Ta’ala menurunkan hujan lebat di Kota Bogor sesaat setelah ratusan umat Islam bersama ulama dan aparat pemerintah sipil dan militer melaksakan Shalat Istisqa, minta hujan di Lapangan Sempur Kota Bogor, Jumat (30/10/2015). - See more at: http://www.arrahmah.com/news/2015/10/30/allah-turunkan-hujan-sesaat-setelah-rakyat-ulama-dan-aparat-shalat-istisqa-di-bogor.html#sthash.i8NqyJgs.dpuf', 'Hujan turun jam 15.30 sementara rangkaian ibadah shalat Istisqa yang terdiri dari Shalat dua rakaat, Khutbah dan doa serta zikir selesai jam 14.50. Hujan sedang hingga lebat berlangsung selama 1 jam. Pantauan Arrahmah.com dari lokasi shalat Istisqa hingga jalur kereta menuju Jakarta, hujan turun hingga stasiun Cilebut.  Jamaah satu persatu mendatangi Lapangan Sempur tempat dilaksakannya shalat Istisqa ba’da shalat Jumat. Shalat dimulai pukul 14.00 dengan imam Drs. Lukmanul Hakim dari Kemenag kota Bogor sedangkan khotib DR. Badruddin H Subki.  Khotib mengajak jamaah beristighfar, mohon ampun dan bertaubat kepada Allah atas segala dosa. Saat itu langit mulai gelap.  Khotbah selesai, jamaah diajak untuk berdzikir dan berdoa kepada Allah Ta’ala hingga datangnya waktu Ashar.Kemudian dilaksanakan Shalat Ashar berjamaah di lapangan. - See more at: http://www.arrahmah.com/news/2015/10/30/allah-turunkan-hujan-sesaat-setelah-rakyat-ulama-dan-aparat-shalat-istisqa-di-bogor.html#sthash.i8NqyJgs.dpuf', '1', 26, 26, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0', 1, '', 1),
+(2, 'Raja Salman Perintahkan Seluruh Rakyat Saudi Shalat Istisqo’', 'Content 2', 'Content 2', '1', 26, 26, '2015-10-27 05:05:24', '2015-10-27 05:05:24', '2015-10-30 05:05:24', '0', 1, '', 1),
 (6, 'Raja Arab Saudi Salman bin Abdul Aziz Alu Saud ajak rakyatnya shalat Istisqo''', 'Content 3', 'Content 3', '1', 26, 26, '2015-10-27 05:05:24', '2015-10-27 05:05:24', '2015-10-30 05:05:24', '1', 1, '', 1),
 (7, 'Ini Pidato Terbaru Pastor Terry Jones Soal Islam', 'Content 4', 'Content 4', '1', 26, 26, '2015-10-27 05:05:24', '2015-10-27 05:05:24', '2015-10-30 05:05:24', '1', 1, '', 1),
 (8, 'Myanmar Gunakan Cara Nazi Untuk Habisi Muslim Rohingya', 'Content 5', 'Content 5', '2', 27, 27, '2015-10-28 04:05:12', '2015-10-28 04:05:12', '2015-10-31 04:05:12', '1', 2, '', 2),
@@ -140,7 +139,9 @@ INSERT INTO `table_content` (`content_id`, `content_title`, `content_headline`, 
 (15, 'Content 12', 'Content 12', 'Content 12', '4', 26, 26, '2015-10-28 04:08:34', '2015-10-28 04:08:34', '2015-10-31 04:08:34', '1', 1, '', 7),
 (16, 'Content 13', 'Content 13', 'Content 13', '1', 26, 26, '2015-10-27 05:05:24', '2015-10-27 05:05:24', '2015-10-30 05:05:24', '1', 1, '', 1),
 (17, 'Content 14', 'Content 14', 'Content 14', '2', 27, 27, '2015-10-28 04:12:21', '2015-10-28 04:12:21', '2015-10-31 04:12:21', '0', 2, '', 5),
-(18, 'Content 15', 'Content 15', 'Content 15', '2', 27, 27, '2015-10-28 04:12:21', '2015-10-28 04:12:21', '2015-10-31 04:12:21', '0', 2, '', 5);
+(18, 'Content 15', 'Content 15', 'Content 15', '2', 27, 27, '2015-10-28 04:12:21', '2015-10-28 04:12:21', '2015-10-31 04:12:21', '0', 2, '', 5),
+(19, '<p>tes</p>\r\n', '<p>tes</p>\r\n', '<p>tes</p>\r\n', '1', 1, 1, '2015-11-05 13:25:49', '2015-11-05 13:29:01', '2015-11-18 00:00:00', '0', 1, '', 1),
+(20, '<p>tesbug</p>\r\n', '<p>tesbug</p>\r\n', '<p>tesbug</p>\r\n', '2', 2, 27, '2015-11-12 07:23:15', '2015-11-12 07:38:48', '2015-11-13 00:00:00', '0', 1, '', 0);
 
 -- --------------------------------------------------------
 
@@ -154,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `table_content_category` (
   `content_category_description` text NOT NULL,
   `media_manager_id` int(11) NOT NULL,
   PRIMARY KEY (`content_category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `table_content_category`
@@ -175,7 +176,11 @@ INSERT INTO `table_content_category` (`content_category_id`, `content_category_t
 (12, 'Content Category 12', 'Deskripsi content category', 1),
 (13, 'Content Category 13', 'Deskripsi content category', 1),
 (14, 'Content Category 14', 'Deskripsi content category', 1),
-(15, 'Content Category 15', 'Deskripsi content category', 1);
+(15, 'Content Category 15', 'Deskripsi content category', 1),
+(16, 'test autocomplete', '<p>tes</p>\r\n', 1),
+(17, 'tes2', '<p>tes</p>\r\n', 5),
+(18, 'tes', '<p>tes again</p>\r\n', 1),
+(19, 'tes', '<p>tes</p>\r\n', 1);
 
 -- --------------------------------------------------------
 
@@ -225,14 +230,17 @@ CREATE TABLE IF NOT EXISTS `table_last_login` (
   `long` varchar(100) NOT NULL,
   `lat` varchar(100) NOT NULL,
   PRIMARY KEY (`last_login_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `table_last_login`
 --
 
 INSERT INTO `table_last_login` (`last_login_id`, `users_id`, `datetime`, `regional`, `long`, `lat`) VALUES
-(2, 28, '2015-10-30 02:46:22', 'Bogor', '106.806039', '-6.597147');
+(2, 28, '2015-10-30 02:46:22', 'Bogor', '106.806039', '-6.597147'),
+(3, 27, '2015-11-11 17:06:45', 'Jakarta', '106.806039', '-6.582538408272558'),
+(4, 2, '2015-11-12 02:27:43', 'bogor', '106.8060392', '-6.590979558712253'),
+(5, 0, '2015-11-12 02:28:13', 'bogor', '106.80603921', '-6.18131075752272');
 
 -- --------------------------------------------------------
 
@@ -265,7 +273,7 @@ INSERT INTO `table_media_manager` (`media_manager_id`, `media_manager_title`, `m
 (10, 'Media manager 9', 'test 9', 'test 9', '1'),
 (11, 'Media manager 10', 'test 10', 'test 10', '1'),
 (12, 'Media manager 11', 'test 11', 'test 11', '0'),
-(13, 'Media manager 12', 'test 12', 'test 12', '0'),
+(13, 'Media manager 12', 'test 12', 'test 12', '1'),
 (14, 'Media manager 13', 'test 13', 'test 13', '1'),
 (15, 'Media manager 14', 'test 14', 'test 14', '0'),
 (16, 'Media manager 15', 'test 15', 'test 15', '1');
@@ -282,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `table_notification` (
   `datetime` datetime NOT NULL,
   `status` varchar(50) NOT NULL,
   PRIMARY KEY (`notification_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `table_notification`
@@ -291,7 +299,9 @@ CREATE TABLE IF NOT EXISTS `table_notification` (
 INSERT INTO `table_notification` (`notification_id`, `users_id`, `datetime`, `status`) VALUES
 (2, 28, '2015-10-29 05:05:08', 'send'),
 (3, 27, '2015-10-30 01:48:20', ''),
-(4, 27, '2015-10-30 01:48:20', '');
+(4, 27, '2015-10-30 01:48:20', ''),
+(5, 27, '2015-11-11 17:23:53', 'read'),
+(6, 0, '2015-11-12 02:38:03', 'send');
 
 -- --------------------------------------------------------
 
@@ -311,29 +321,31 @@ CREATE TABLE IF NOT EXISTS `table_schedule` (
   `schedule_headline` text NOT NULL,
   `schedule_media_id` text NOT NULL,
   `schedule_publish` varchar(50) NOT NULL DEFAULT '',
+  `schedule_repeat` varchar(150) NOT NULL,
   PRIMARY KEY (`schedule_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `table_schedule`
 --
 
-INSERT INTO `table_schedule` (`schedule_id`, `schedule_title`, `schedule_type_id`, `schedule_users_creator`, `schedule_users_source`, `schedule_date_start`, `schedule_date_end`, `schedule_description`, `schedule_headline`, `schedule_media_id`, `schedule_publish`) VALUES
-(1, 'Testing schedule', 1, 26, 26, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'blablabla', 'blablabla', '1,2,3', '0'),
-(2, 'Testing schedule2', 2, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule2', 'schedule2', '1,2,3', '0'),
-(3, 'Testing schedule3', 2, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule3', 'schedule3', '1', '0'),
-(4, 'Testing schedule4', 1, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule4', 'schedule4', '1,3,4,5', '0'),
-(5, 'Testing schedule5', 3, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule5', 'schedule5', '1,3,4', '0'),
-(6, 'Testing schedule6', 4, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule6', 'schedule6', '1,3', '0'),
-(7, 'Testing schedule7', 4, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule7', 'schedule7', '3,4,5', '0'),
-(8, 'Testing schedule8', 5, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule8', 'schedule8', '1,3,4', '0'),
-(9, 'Testing schedule9', 9, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule9', 'schedule9', '3', '0'),
-(10, 'Testing schedule10', 9, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule10', 'schedule10', '3', '0'),
-(11, 'Testing schedule11', 7, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule11', 'schedule11', '5', '0'),
-(12, 'Testing schedule12', 7, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule12', 'schedule12', '5', '0'),
-(13, 'Testing schedule13', 7, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule13', 'schedule13', '5', '0'),
-(14, 'Testing schedule14', 6, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule14', 'schedule14', '5', '0'),
-(15, 'Testing schedule15', 8, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule15', 'schedule15', '6', '0');
+INSERT INTO `table_schedule` (`schedule_id`, `schedule_title`, `schedule_type_id`, `schedule_users_creator`, `schedule_users_source`, `schedule_date_start`, `schedule_date_end`, `schedule_description`, `schedule_headline`, `schedule_media_id`, `schedule_publish`, `schedule_repeat`) VALUES
+(1, 'Testing schedule', 1, 26, 26, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'blablabla', 'blablabla', '1,2,3', '0', ''),
+(2, 'Testing schedule2', 2, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule2', 'schedule2', '1,2,3', '0', ''),
+(3, 'Testing schedule3', 2, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule3', 'schedule3', '1', '0', ''),
+(4, 'Testing schedule4', 1, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule4', 'schedule4', '1,3,4,5', '0', ''),
+(5, 'Testing schedule5', 3, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule5', 'schedule5', '1,3,4', '0', ''),
+(6, 'Testing schedule6', 4, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule6', 'schedule6', '1,3', '0', ''),
+(7, 'Testing schedule7', 4, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule7', 'schedule7', '3,4,5', '0', ''),
+(8, 'Testing schedule8', 5, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule8', 'schedule8', '1,3,4', '0', ''),
+(9, 'Testing schedule9', 9, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule9', 'schedule9', '3', '0', ''),
+(10, 'Testing schedule10', 9, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule10', 'schedule10', '3', '0', ''),
+(11, 'Testing schedule11', 7, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule11', 'schedule11', '5', '0', ''),
+(12, 'Testing schedule12', 7, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule12', 'schedule12', '5', '0', ''),
+(13, 'Testing schedule13', 7, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule13', 'schedule13', '5', '0', ''),
+(14, 'Testing schedule14', 6, 27, 27, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule14', 'schedule14', '5', '0', ''),
+(15, 'Testing schedule15', 8, 26, 26, '2015-10-29 00:00:00', '2015-10-29 00:00:00', 'schedule15', 'schedule15', '6', '0', ''),
+(16, '<p>asd</p>\r\n', 0, 0, 0, '2015-11-24 00:00:00', '2015-11-09 00:00:00', '<p>asd</p>\r\n', '<p>asd</p>\r\n', '1', '0', 'asd');
 
 -- --------------------------------------------------------
 
@@ -347,7 +359,7 @@ CREATE TABLE IF NOT EXISTS `table_schedule_type` (
   `schedule_type_desc` text NOT NULL,
   `media_manager_id` text NOT NULL,
   PRIMARY KEY (`schedule_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `table_schedule_type`
@@ -368,7 +380,8 @@ INSERT INTO `table_schedule_type` (`schedule_type_id`, `schedule_type_name`, `sc
 (12, 'Schedule type 12', '', '12'),
 (13, 'Schedule type 13', '', '13'),
 (14, 'Schedule type 14', '', '14'),
-(15, 'Schedule type 15', '', '15');
+(15, 'Schedule type 15', '', '15,1'),
+(16, 'tes bug', '', '1,4,2');
 
 -- --------------------------------------------------------
 
@@ -388,7 +401,8 @@ CREATE TABLE IF NOT EXISTS `table_users_detail` (
   `users_json_following` text NOT NULL,
   `users_description` text NOT NULL,
   `media_manager_id` text NOT NULL,
-  `users_avatar` int(11) NOT NULL,
+  `users_avatar` varchar(200) NOT NULL,
+  `users_cover` varchar(200) NOT NULL,
   `users_status_id` int(11) NOT NULL,
   `users_password_recovery` text NOT NULL,
   `deviceID` varchar(100) DEFAULT NULL,
@@ -398,17 +412,17 @@ CREATE TABLE IF NOT EXISTS `table_users_detail` (
   `long` varchar(100) DEFAULT NULL,
   `lat` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`users_detail_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `table_users_detail`
 --
 
-INSERT INTO `table_users_detail` (`users_detail_id`, `users_id`, `users_name`, `users_fullname`, `users_password`, `users_group_id`, `users_email`, `users_telp`, `users_json_following`, `users_description`, `media_manager_id`, `users_avatar`, `users_status_id`, `users_password_recovery`, `deviceID`, `providerID`, `deviceVersion`, `deviceBrand`, `long`, `lat`) VALUES
-(2, 27, 'ubay', 'bayu', '', 6, 'data@data.com', '', '', '', '', 0, 2, '', '', 'IM3', '3.0', 'Samsung', '', ''),
-(3, 2, 'Rheza2', 'robbi', '', 6, 'admin@admin.com', '', '26,25,', '', '', 0, 0, '', NULL, 'IM3', '4.0', 'Xiaomi', NULL, NULL),
-(4, 28, 'tes', 'tes lengkap', '', 6, 'test@test.com', '', '26,25,', '', '', 0, 0, '', NULL, 'Simpati', '4.0', 'Xiaomi', NULL, NULL),
-(5, 29, 'testinputusersdetail2', 'testinputusersdetail2', '', 12, 'testinputusersdetail@gmail.com2', '2', '1,22', 'testinputusersdetail2', '12', 12, 2, '', 'testinputusersdetail2', 'testinputusersdetail2', 'testinputusersdetail2', 'testinputusersdetail2', 'testinputusersdetail2', 'testinputusersdetail2');
+INSERT INTO `table_users_detail` (`users_detail_id`, `users_id`, `users_name`, `users_fullname`, `users_password`, `users_group_id`, `users_email`, `users_telp`, `users_json_following`, `users_description`, `media_manager_id`, `users_avatar`, `users_cover`, `users_status_id`, `users_password_recovery`, `deviceID`, `providerID`, `deviceVersion`, `deviceBrand`, `long`, `lat`) VALUES
+(2, 27, 'ubay', 'bayu', '', 6, 'data@data.com', '', '', '', '', '0', '', 2, '', '', 'IM3', '3.0', 'Samsung', '', ''),
+(3, 2, 'Rheza2', 'robbi', '', 6, 'admin@admin.com', '', '26,25,', '', '', '0', '', 0, '', NULL, 'IM3', '4.0', 'Xiaomi', NULL, NULL),
+(4, 28, 'tes', 'tes lengkap', '', 1, 'test@test.com', '', '26,25,', '', '', '0', '', 0, '', NULL, 'Simpati', '4.0', 'Xiaomi', NULL, NULL),
+(5, 29, 'testinputusersdetail2', 'testinputusersdetail2', '', 12, 'testinputusersdetail@gmail.com2', '2', '1,22', 'testinputusersdetail2', '12', '12', '', 2, '', 'testinputusersdetail2', 'testinputusersdetail2', 'testinputusersdetail2', 'testinputusersdetail2', 'testinputusersdetail2', 'testinputusersdetail2');
 
 -- --------------------------------------------------------
 
@@ -432,9 +446,9 @@ INSERT INTO `table_users_group` (`users_group_id`, `users_group_name`, `users_gr
 (1, 'Superadmin', '', 0),
 (2, 'Administrator', '', 0),
 (3, 'Content Writer', '', 0),
-(4, 'Jamaah', '', 0),
-(5, 'Ustadz', '', 0),
-(6, 'Masjid', 'Masjid', 0);
+(4, 'Jamaah', '', 1),
+(5, 'Ustadz', '', 1),
+(6, 'Masjid', 'Masjid', 1);
 
 -- --------------------------------------------------------
 
@@ -475,7 +489,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `users`
@@ -484,7 +498,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (2, 'Rheza2', 'admin@admin.com', '$2y$10$jE84xQoX/HjmXa5lCOKb5OTMOXoINK/QcBanjXF6NYc9bOPnend4i', 'n7aXJrTRqpeLeQFnRtyyi4lHTLslUXgSfvyxPZs0wJeoQt9U8A1gmTxqlMPl', '2015-10-15 09:37:38', '2015-10-15 09:44:29'),
 (27, 'ubay', 'data@data.com', '$2y$10$nipTEi5yPMPtJiWBdHxidONj6CItXq2KyGhNwA7ihisYqM6vNqiL6', NULL, '2015-10-21 06:49:57', '2015-10-21 06:49:57'),
-(28, 'test', 'test@test.com', '$2y$10$TGEB4ESQ4uJZvT1K18Zdoe6DU67DsHaJ1nUKkcRcFAWyhx5C2hCIC', 'gzTbRuqJfYbIcCndXXRj69JU1jPFps9Lb5Tq0rPF91NfxqyGpBqxa3sD1oNH', '2015-11-27 10:30:13', '2015-11-02 08:36:19'),
+(28, 'test', 'test@test.com', '$2y$10$TGEB4ESQ4uJZvT1K18Zdoe6DU67DsHaJ1nUKkcRcFAWyhx5C2hCIC', 'tlV6OEimZR5frGcem2B6JshrOy6IkkpCLdKmBXGjsC5Rx60nOmBSeXhDAKFr', '2015-11-27 10:30:13', '2015-11-12 05:34:43'),
 (29, 'testinputusersdetail2', 'testinputusersdetail@gmail.com2', '$2y$10$8RMzF5KWU/yNqGL30XjzA.1pD/0dHZN0aikW53JbegNPqjSUmIbvm', NULL, '2015-11-03 08:49:22', '2015-11-03 09:28:02');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1766,3 +1766,7 @@ table td .label.orange {
 .ui-timepicker-div.ui-timepicker-oneLine .ui_tpicker_unit_hide:before{ display: none; }
 
 /*/END DATETIME/*/
+
+.widget-menu.customHover:hover > li > a{
+	background: #28262c !important;
+}

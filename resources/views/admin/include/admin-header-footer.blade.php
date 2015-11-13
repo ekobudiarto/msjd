@@ -62,23 +62,42 @@
                             </ul>
                             <!--/.widget-nav-->
                             <ul class="widget widget-menu unstyled">
-                                <li><a class="collapsed" data-toggle="collapse" href="#togglePages">
+                                <li><a class="" data-toggle="collapse" href="#togglePages">
                                 <i class="menu-icon icon-table"></i>
                                 <i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>Database </a>
-                                    <ul id="togglePages" class="collapse unstyled">
-                                        <li><a href="<?PHP echo url()?>/admin/banned-report"><i class="icon-inbox"></i>Banned Report </a></li>
-                                        <li><a href="<?PHP echo url()?>/admin/content"><i class="icon-inbox"></i>Content </a></li>
-                                        <li><a href="<?PHP echo url()?>/admin/content-category"><i class="icon-inbox"></i>Content Category </a></li>
-                                        <li><a href="<?PHP echo url()?>/admin/hashtag"><i class="icon-inbox"></i>Hashtag </a></li>
-                                        <li><a href="<?PHP echo url()?>/admin/last-login"><i class="icon-inbox"></i>Last Login User</a></li>
-                                        <li><a href="<?PHP echo url()?>/admin/media-manager"><i class="icon-inbox"></i>Media Manager </a></li>
-                                        <li><a href="<?PHP echo url()?>/admin/notification"><i class="icon-inbox"></i>Notification</a></li>
-                                        <li><a href="<?PHP echo url()?>/admin/schedule"><i class="icon-inbox"></i>Schedule </a></li>
-                                        <li><a href="<?PHP echo url()?>/admin/schedule-type"><i class="icon-inbox"></i>Schedule Type</a></li>
-                                        <li><a href="<?PHP echo url()?>/admin/users-group"><i class="icon-inbox"></i>Users Group </a></li>
-                                        <li><a href="<?PHP echo url()?>/admin/users-status"><i class="icon-inbox"></i>Users Status </a></li>
-                                        <li><a href="<?PHP echo url()?>/admin/users-detail"><i class="icon-inbox"></i>Users Detail </a></li>
+                                    <ul id="togglePages" class="collapse in unstyled">
+                                        <ul class="widget widget-menu unstyled customHover">
+                                            <li><a class="" data-toggle="collapse" href="#master">
+                                            <i class="menu-icon icon-table"></i>
+                                            <i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+                                            </i>Master</a>
+                                                <ul id="master" class="collapse in unstyled">
+                                                    <li><a href="<?PHP echo url()?>/admin/users-status"><i class="icon-inbox"></i>Users Status </a></li>
+                                                    <li><a href="<?PHP echo url()?>/admin/users-group"><i class="icon-inbox"></i>Users Group </a></li>
+                                                    <li><a href="<?PHP echo url()?>/admin/schedule-type"><i class="icon-inbox"></i>Schedule Type</a></li>
+                                                    <li><a href="<?PHP echo url()?>/admin/hashtag"><i class="icon-inbox"></i>Hashtag </a></li>
+                                                    <li><a href="<?PHP echo url()?>/admin/content-category"><i class="icon-inbox"></i>Content Category </a></li>
+                                                    <li><a href="<?PHP echo url()?>/admin/users-detail"><i class="icon-inbox"></i>Users Detail </a></li>
+                                                    <li><a href="<?PHP echo url()?>/admin/banned-report"><i class="icon-inbox"></i>Banned Report </a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                            
+                                        <ul class="widget widget-menu unstyled customHover">
+                                            <li><a class="collapsed" data-toggle="collapse" href="#join">
+                                            <i class="menu-icon icon-table"></i>
+                                            <i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+                                            </i>Join</a>
+                                                <ul id="join" class="collapse unstyled">
+                                                    <li><a href="<?PHP echo url()?>/admin/content"><i class="icon-inbox"></i>Content </a></li>
+                                                    <li><a href="<?PHP echo url()?>/admin/notification"><i class="icon-inbox"></i>Notification</a></li>
+                                                    <li><a href="<?PHP echo url()?>/admin/media-manager"><i class="icon-inbox"></i>Media Manager </a></li>
+                                                    <li><a href="<?PHP echo url()?>/admin/last-login"><i class="icon-inbox"></i>Last Login User</a></li>
+                                                    <li><a href="<?PHP echo url()?>/admin/schedule"><i class="icon-inbox"></i>Schedule </a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
                                     </ul>
                                 </li>
                             </ul>
