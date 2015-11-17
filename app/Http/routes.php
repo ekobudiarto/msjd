@@ -74,7 +74,6 @@ Route::controllers([
 
 //test API register
 Route::group(array('prefix'=>'api/v1'), function(){
-  
   //Example API
   Route::get('get-profile', array('uses'=>'Api\get_profile@index'));
   Route::post('profile-upload', array('uses'=>'Api\get_profile@upload'));
