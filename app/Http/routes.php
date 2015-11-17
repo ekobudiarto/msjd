@@ -85,6 +85,7 @@ Route::group(array('prefix'=>'api/v1'), function(){
   Route::get('post-following', array('uses'=>'Api\post_following@index'));
   Route::get('set-schedule', array('uses'=>'Api\set_schedule@index'));
   Route::get('settings-profile', array('uses'=>'Api\settings_profile@index'));
+  Route::get('get-schedule-each-user', array('uses'=>'Api\get_schedule_each_user@index'));
 });
 
 
