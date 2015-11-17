@@ -95,21 +95,7 @@ class schedule_each_user extends Controller
     	}
     	
 
-    }
-    
-    public function save_schedule()
-    {
-	    $app = app();
-    	if(Request::has('token'))
-    	{
-    		
-    	}
-    	else
-    	{
-	    	return (new Response(array('status' => false,'msg' => 'Authentication Failed'),200))->header('Content-Type', "json");	
-    	}
-    }
-    
+    }    
     
     private function check_users($data)
     {
