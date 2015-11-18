@@ -130,7 +130,7 @@ class schedule_each_user extends Controller
                     'schedule_publish' => Request::input('pub'),
                     'schedule_repeat' => Request::input('rpt'),
                 );
-                $user = table_schedule::create($field_user_detail);
+                $schedule = table_schedule::create($field_user_detail);
 
                 return (new Response(array('status' => true,'msg' => 'success'),200))->header('content-Type', "json");
             }

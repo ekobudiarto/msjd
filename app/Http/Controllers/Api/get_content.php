@@ -96,13 +96,13 @@ class content_each_user extends Controller
                     $dataConverted[$i]->med = $row->content_media_id;
                     $dataConverted[$i]->upl = $row->content_users_uploader;
                     $dataConverted[$i]->uun = $row->content_users_uploader_name;
-                    $dataConverted[$i]->med = $row->content_last_editor;
+                    $dataConverted[$i]->cle = $row->content_last_editor;
                     $dataConverted[$i]->cdi = $row->content_date_insert;
                     $dataConverted[$i]->cdu = $row->content_date_update;
-                    $dataConverted[$i]->upl = $row->content_date_expired;
+                    $dataConverted[$i]->cde = $row->content_date_expired;
                     $dataConverted[$i]->pub = $row->content_publish;
                     $dataConverted[$i]->cat = $row->content_category_id;
-                    $dataConverted[$i]->cat = $row->content_category_name;     
+                    $dataConverted[$i]->ccn = $row->content_category_name;     
                     $dataConverted[$i]->chi = $row->content_hashtag_id;
                     $dataConverted[$i]->crf = $row->content_repost_from;
                     $dataConverted[$i]->crn = $row->content_repost;
@@ -140,22 +140,38 @@ class content_each_user extends Controller
                 $uid = $users_checker[2];
                 $email = $users_checker[3];
 
-                $field_user_detail = array(
-                    'content_title'  => Request::input('ttl'),
-                    'content_type_id' => Request::input('typ'),
-                    'content_users_creator' => $uid,
-                    'content_users_source' => Request::input('usc'),
-                    'content_date_start' => Request::input('dst'),
-                    'content_date_end' => Request::input('dnd'),
-                    'content_description' => Request::input('des'),
-                    'content_headline' => Request::input('hed'),
-                    'content_media_id' => Request::input('med'),
-                    'content_publish' => Request::input('pub'),
-                    'content_repeat' => Request::input('rpt'),
-                );
-                $user = table_content::create($field_user_detail);
+                if(Request::input('ttl') == null)
+                    return (new Response(array('status' => true,'msg' => 'Title must have value'),200))->header('content-Type', "json");
+                else if (Request::input('hed') == null)
+                    return (new Response(array('status' => true,'msg' => 'Headline must have value'),200))->header('content-Type', "json");
+                else if (Request::input('det') == null)
+                    return (new Response(array('status' => true,'msg' => 'Detail must have value'),200))->header('content-Type', "json");
+                else if (Request::input('cle') == null)
+                    return (new Response(array('status' => true,'msg' => 'Media failed to upload'),200))->header('content-Type', "json");
+                else if (Request::input('cde') == null)
+                    return (new Response(array('status' => true,'msg' => 'Please set the date expired'),200))->header('content-Type', "json");
+                else if (Request::input('cat') == null)
+                    return (new Response(array('status' => true,'msg' => 'Please Select Category'),200))->header('content-Type', "json");
+                else{
 
-                return (new Response(array('status' => true,'msg' => 'success'),200))->header('content-Type', "json");
+                        $field_content = array(
+                            'content_title'  => Request::input('ttl'),
+                            'content_headline'  => Request::input('hed'),
+                            'content_detail'  => Request::input('det'),
+                            'content_media_id'  => Request::input('med'),
+                            'content_users_uploader'  => $uid,
+                            'content_last_editor'  => Request::input('cle'),
+                            'content_date_insert'  => date('Y-m-d H:i:s'),
+                            'content_date_expired'  => Request::input('cde'),
+                            'content_publish'  => Request::input('pub'),
+                            'content_category_id'  => Request::input('cat'),
+                            'content_hashtag_id'  => Request::input('chi'),
+                            'content_repost_from'  => Request::input('crf'),
+                        );
+                        $content = table_content::create($field_content);
+
+                        return (new Response(array('status' => true,'msg' => 'success'),200))->header('content-Type', "json");
+                }
             }
             else
             {
@@ -167,5 +183,36 @@ class content_each_user extends Controller
             return (new Response(array('status' => false,'msg' => 'Authentication Failed1'),200))->header('content-Type', "json");  
         }
     }   
+
+    public function delete(){
+        $app = app();
+        if(Request::has('token'))
+        {
+            $token = Request::input('token','');
+            $compare = GlobalLibrary::tokenExtractor($token);
+            $users_checker = GlobalLibrary::CheckUsersToken($compare);
+            //echo '<pre>'.print_r($compare).'</pre>';
+            if($users_checker[0])
+            {
+                $uname = $users_checker[1];
+                $uid = $users_checker[2];
+                $email = $users_checker[3];
+
+                $id_content = Request::input('id')
+
+                table_content::find($id_content)->delete();
+
+                return (new Response(array('status' => true,'msg' => 'success delete content'),200))->header('content-Type', "json");
+            }
+            else
+            {
+                return (new Response(array('status' => false,'msg' => 'Authentication Failed2'),200))->header('content-Type', "json");
+            }
+        }
+        else
+        {
+            return (new Response(array('status' => false,'msg' => 'Authentication Failed1'),200))->header('content-Type', "json");  
+        }
+    } 
 
 }

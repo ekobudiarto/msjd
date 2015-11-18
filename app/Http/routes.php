@@ -83,6 +83,9 @@ Route::group(array('prefix'=>'api/v1'), function(){
   Route::get('settings-profile', array('uses'=>'Api\settings_profile@index'));
   Route::get('schedule-user-get', array('uses'=>'Api\get_schedule_user@index'));
   Route::post('schedule-user-save', array('uses'=>'Api\get_schedule_user@input'));
+  Route::get('content-user-get', array('uses'=>'Api\get_schedule_user@index'));
+  Route::post('content-user-save', array('uses'=>'Api\get_schedule_user@input'));
+  Route::post('content-user-delete', array('uses'=>'Api\get_schedule_user@delete'));
 });
 
 
