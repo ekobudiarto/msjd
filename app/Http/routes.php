@@ -85,9 +85,11 @@ Route::group(array('prefix'=>'api/v1'), function(){
   Route::post('schedule-user-save', array('uses'=>'Api\get_schedule_user@input'));
   Route::get('content-user-get', array('uses'=>'Api\get_schedule_user@index'));
   Route::post('content-user-save', array('uses'=>'Api\get_schedule_user@input'));
+  Route::post('content-user-detail', array('uses'=>'Api\get_schedule_user@detail'));
   Route::post('content-user-delete', array('uses'=>'Api\get_schedule_user@delete'));
   Route::post('post_media_manager', array('uses'=>'Api\post_media_manager@upload'));
-  
+  Route::post('post_hashtag', array('uses'=>'Api\post_hashtag@input'));
+
 });
 
 

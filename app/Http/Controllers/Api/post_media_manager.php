@@ -81,8 +81,9 @@ class post_media_manager extends Controller
                     return (new Response(array('status' => true,'msg' => 'Failed, you did not select file to upload'),200))->header('content-Type', "json");
                 }
 
-                $file[0] = $title;
-                $file[1] = $type;
+                $file[0] = $media->media_manager_id;
+                $file[1] = $title;
+                $file[2] = $type;
                 
                 return (new Response(array('status' => true,'data' => $dataConverted),200))->header('Content-Type', "json");
             }
