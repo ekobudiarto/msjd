@@ -30,7 +30,7 @@ class schedule_each_user extends Controller
     	{
     		$token = Request::input('token','');
     		$compare = GlobalLibrary::tokenExtractor($token);
-    		$users_checker = $this->check_users($compare);
+    		$users_checker = GlobalLibrary::CheckUsersToken($compare);
     		//echo '<pre>'.print_r($compare).'</pre>';
     		if($users_checker[0])
     		{
@@ -105,7 +105,7 @@ class schedule_each_user extends Controller
         {
             $token = Request::input('token','');
             $compare = GlobalLibrary::tokenExtractor($token);
-            $users_checker = $this->check_users($compare);
+            $users_checker = $users_checker = GlobalLibrary::CheckUsersToken($compare);
             //echo '<pre>'.print_r($compare).'</pre>';
             if($users_checker[0])
             {
@@ -140,31 +140,5 @@ class schedule_each_user extends Controller
             return (new Response(array('status' => false,'msg' => 'Authentication Failed1'),200))->header('content-Type', "json");  
         }
     }   
-    
-    private function check_users($data)
-    {
-	    $uname = $data[4];
-	    $uid = $data[6];
-	    $email = $data[3].'@'.$data[2].'.'.$data[0];
-	    $users_detail = table_users_detail::where('users_email','=',$email)
-	    ->where('users_name','=',$uname)
-	    ->where('users_detail_id','=',$uid)
-	    ->first();
-        $values = array();
-	    if(count($users_detail) > 0)
-	    {
-            $values[0] = true;
-            $values[1] = $uname;
-            $values[2] = $uid;
-            $values[3] = $email;
-	    	return $values;
-	    }
-	    else
-	    {
-            $values[0] = false;
-		    return $values;
-	    }
-	    
-    }
 
 }
