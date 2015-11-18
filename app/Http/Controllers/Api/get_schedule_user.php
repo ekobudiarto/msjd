@@ -105,7 +105,7 @@ class schedule_each_user extends Controller
         {
             $token = Request::input('token','');
             $compare = GlobalLibrary::tokenExtractor($token);
-            $users_checker = $users_checker = GlobalLibrary::CheckUsersToken($compare);
+			$users_checker = GlobalLibrary::CheckUsersToken($compare);
             //echo '<pre>'.print_r($compare).'</pre>';
             if($users_checker[0])
             {
@@ -114,17 +114,17 @@ class schedule_each_user extends Controller
                 $email = $users_checker[3];
 
                 $field_user_detail = array(
-                    'schedule_title'  => Input::get('ttl',''),
-                    'schedule_type_id' => Input::get('typ',''),
+                    'schedule_title'  => Request::input('ttl'),
+                    'schedule_type_id' => Request::input('typ'),
                     'schedule_users_creator' => $uid,
-                    'schedule_users_source' => Input::get('usc',''),
-                    'schedule_date_start' => Input::get('dst','',
-                    'schedule_date_end' => Input::get('dnd',''),
-                    'schedule_description' => Input::get('des',''),
-                    'schedule_headline' => Input::get('hed',''),
-                    'schedule_media_id' => Input::get('med',''),
-                    'schedule_publish' => Input::get('pub',''),
-                    'schedule_repeat' => Input::get('rpt',''),
+                    'schedule_users_source' => Request::input('usc'),
+                    'schedule_date_start' => Request::input('dst'),
+                    'schedule_date_end' => Request::input('dnd'),
+                    'schedule_description' => Request::input('des'),
+                    'schedule_headline' => Request::input('hed'),
+                    'schedule_media_id' => Request::input('med'),
+                    'schedule_publish' => Request::input('pub'),
+                    'schedule_repeat' => Request::input('rpt'),
                 );
                 $user = table_schedule::create($field_user_detail);
 
