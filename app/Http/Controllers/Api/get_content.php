@@ -18,7 +18,7 @@ use App\Models\table_content;
 use App\Models\table_hashtag;
 use DB;
 
-class content_each_user extends Controller
+class get_content extends Controller
 {
     /**
      * Display a listing of the resource.
