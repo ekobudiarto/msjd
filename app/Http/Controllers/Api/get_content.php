@@ -124,6 +124,95 @@ class get_content extends Controller
 
     } 
 
+    public function detail(){
+        $app = app();
+        if(Request::has('token'))
+        {
+            $token = Request::input('token','');
+            $compare = GlobalLibrary::tokenExtractor($token);
+            $users_checker = GlobalLibrary::CheckUsersToken($compare);
+            //echo '<pre>'.print_r($compare).'</pre>';
+            if($users_checker[0])
+            {
+                $uname = $users_checker[1];
+                $uid = $users_checker[2];
+                $email = $users_checker[3];
+
+                $id_content = Request::input('id');
+
+                 $result = DB::table('table_content as ct')
+                                    ->select('ct.*',DB::raw('(select content_category_title from table_content_category where content_category_id = ct.content_category_id) as content_category_title'),
+                                             DB::raw('(select content_title from table_content where content_id = ct.content_repost_from) as content_repost'),
+                                             DB::raw('(select users_name from table_users_detail where users_id = ct.content_users_uploader) as content_uploader_name')
+                                            )
+                                    ->where('ct.content_id', $id_content),
+                                    ->first();
+
+                foreach( $result as $res=>$value ){
+                     //get media manager
+                     $idsplit = explode(',', $value->content_media_id);
+                     $length = count($idsplit);
+                     $name = '';
+                     for($i = 0; $i<$length;$i++){
+                        $cek = table_media_manager::where('media_manager_id', '=', $idsplit[$i])->first();
+                        if($cek!= null){
+                            $name=$name.$cek->media_manager_title.', ';
+                        }
+                     }
+
+
+                     //get hashtag
+                     $idsplittag = explode(',', $value->hashtag_id);
+                     $lengthtag = count($idsplittag);
+                     $hashtag='';
+                     for($j = 0; $j<$lengthtag;$j++){
+                        $cektag = table_hashtag::where('hashtag_id', '=', $idsplittag[$j])->first();
+                        if($cek!= null){
+                            $nametag=$nametag.$cektag->media_manager_title.', ';
+                        }
+                     }
+                     $value->hashtag_id = $nametag;
+                }
+
+                //this code for convert
+                $dataConverted = array();
+                $app = app();
+                $i = 0;
+                foreach($result as $row){
+                    $dataConverted[$i] = $app->make('stdClass');
+                    $dataConverted[$i]->id = $row->content_id;
+                    $dataConverted[$i]->ttl = $row->ccontent_title;
+                    $dataConverted[$i]->hed = $row->content_headline;
+                    $dataConverted[$i]->det = $row->content_detail;
+                    $dataConverted[$i]->med = $row->content_media_id;
+                    $dataConverted[$i]->upl = $row->content_users_uploader;
+                    $dataConverted[$i]->uun = $row->content_users_uploader_name;
+                    $dataConverted[$i]->cle = $row->content_last_editor;
+                    $dataConverted[$i]->cdi = $row->content_date_insert;
+                    $dataConverted[$i]->cdu = $row->content_date_update;
+                    $dataConverted[$i]->cde = $row->content_date_expired;
+                    $dataConverted[$i]->pub = $row->content_publish;
+                    $dataConverted[$i]->cat = $row->content_category_id;
+                    $dataConverted[$i]->ccn = $row->content_category_name;     
+                    $dataConverted[$i]->chi = $row->content_hashtag_id;
+                    $dataConverted[$i]->crf = $row->content_repost_from;
+                    $dataConverted[$i]->crn = $row->content_repost;
+                    
+                    $i++;
+                }
+                return (new Response(array('status' => true,'msg' => 'success','data' => $dataConverted),200))->header('Content-Type', "json");                
+            }
+            else
+            {
+                return (new Response(array('status' => false,'msg' => 'Authentication Failed2'),200))->header('Content-Type', "json");
+            }
+        }
+        else
+        {
+            return (new Response(array('status' => false,'msg' => 'Authentication Failed1'),200))->header('Content-Type', "json");  
+        }
+    }
+
 
 
     public function input(){
