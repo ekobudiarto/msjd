@@ -17,6 +17,9 @@ class JsonAPI extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken{
            'api/v1/login',
            'api/v1/get-profile',
            'api/v1/profile-upload',
+           'api/v1/profile-save',
+           'api/v1/schedule-user-get',
+           'api/v1/schedule-user-save',
    ];
 
     /**

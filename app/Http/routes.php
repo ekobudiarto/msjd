@@ -10,10 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/', 'HomeController@index');
 Route::get('home', 'HomeController@index');
 Route::resource('public', 'HomeController@index');
@@ -71,12 +67,13 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
-
 //test API register
 Route::group(array('prefix'=>'api/v1'), function(){
+  
   //Example API
   Route::get('get-profile', array('uses'=>'Api\get_profile@index'));
   Route::post('profile-upload', array('uses'=>'Api\get_profile@upload'));
+  Route::post('profile-save', array('uses'=>'Api\get_profile@save_edit'));
   Route::post('signup', array('uses'=>'Api\controller_signup@index'));
   Route::post('login', array('uses'=>'Api\controller_login@index'));
   Route::get('get-roles', array('uses'=>'Api\roles@findAll'));
@@ -84,8 +81,8 @@ Route::group(array('prefix'=>'api/v1'), function(){
   Route::get('post-following', array('uses'=>'Api\post_following@index'));
   Route::get('set-schedule', array('uses'=>'Api\set_schedule@index'));
   Route::get('settings-profile', array('uses'=>'Api\settings_profile@index'));
-  Route::get('get-schedule-user', array('uses'=>'Api\get_schedule_user@index'));
-  Route::get('post-schedule-user', array('uses'=>'Api\get_schedule_user@input'));
+  Route::get('schedule-user-get', array('uses'=>'Api\get_schedule_user@index'));
+  Route::post('schedule-user-save', array('uses'=>'Api\get_schedule_user@input'));
 });
 
 

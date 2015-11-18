@@ -29,7 +29,7 @@ class get_profile extends Controller
     	{
     		$token = Request::input('token','');
     		$compare = GlobalLibrary::tokenExtractor($token);
-    		$users_checker = $this->check_users($compare);
+    		$users_checker = GlobalLibrary::CheckUsersToken($compare);
     		//echo '<pre>'.print_r($compare).'</pre>';
     		if($users_checker[0])
     		{
@@ -68,12 +68,29 @@ class get_profile extends Controller
 
     }
     
-    public function save_profile()
+    public function save_edit()
     {
 	    $app = app();
     	if(Request::has('token'))
     	{
-    		
+    		$token = Request::input('token','');
+    		$compare = GlobalLibrary::tokenExtractor($token);
+    		$users_checker = GlobalLibrary::CheckUsersToken($compare);
+    		//echo '<pre>'.print_r($compare).'</pre>';
+    		if($users_checker[0])
+    		{
+			    $uid = $users_checker[2];
+			    $email = $users_checker[3];
+    			
+    			$field_data = array('users_telp' => Request::input('ph'),'users_description' => Request::input('d'),'users_fullname' => Request::input('fu'),'long' => Request::input('long'), 'lat' => Request::input('lat'),'providerID' => Request::input('provider'),'deviceVersion' => Request::input('devVersion'),'deviceBrand' => Request::input('devBrand'),'deviceID' => Request::input('devID'));
+				$data = table_users_detail::find($uid);
+				$data->update($field_data);
+				return (new Response(array('status' => true,'msg' => 'Update Profile Success'),200))->header('Content-Type', "json");
+    		}
+    		else
+    		{
+	    		return (new Response(array('status' => false,'msg' => 'Authentication Failed2'),200))->header('Content-Type', "json");
+    		}
     	}
     	else
     	{
@@ -99,24 +116,28 @@ class get_profile extends Controller
 					$token = Request::input('token');
             		$file     = Request::file('file');
             		$filename = "";
+            		$field_update = array();
             		if($param_picture == "ava")
             		{
 	            		$filename = md5('Avatar -'.date("Y-m-d H:i:s").'-').'.'.$file->getClientOriginalExtension();	
+	            		$field_update = array('users_avatar' => $filename);
+	            		
             		}
             		else
             		{
 	            		$filename = md5('Cover -'.date("Y-m-d H:i:s").'-').'.'.$file->getClientOriginalExtension();	
+	            		$field_update = array('users_cover' => $filename);
             		}
-	                //$filename = date("Y-m-d").'-'.str_random(8).'-'.$file->getClientOriginalName();
 	                $destinationPath = 'UPLOADED';
 	                $file->move($destinationPath, $filename);
+	                $data_find = table_users_detail::find($id);
+	            	$data_find->update($field_update);
 	                $str = "success ";
 	                return (new Response(array('status' => true,'msg' => $str,'f' => $filename),200))->header('Content-Type', "json");
             	}catch(Exception $e){
 					$str = $e->getMessage(); 	
 					return (new Response(array('status' => false,'msg' => $str),200))->header('Content-Type', "json");
             	}
-                //$users = table_users_detail::find();
             }
         }
         else
@@ -125,30 +146,6 @@ class get_profile extends Controller
         }
     }
     
-    private function check_users($data)
-    {
-	    $uname = $data[4];
-	    $uid = $data[6];
-	    $email = $data[3].'@'.$data[2].'.'.$data[0];
-	    $users_detail = table_users_detail::where('users_email','=',$email)
-	    ->where('users_name','=',$uname)
-	    ->where('users_detail_id','=',$uid)
-	    ->first();
-        $values = array();
-	    if(count($users_detail) > 0)
-	    {
-            $values[0] = true;
-            $values[1] = $uname;
-            $values[2] = $uid;
-            $values[3] = $email;
-	    	return $values;
-	    }
-	    else
-	    {
-            $values[0] = false;
-		    return $values;
-	    }
-	    
-    }
+    
 
 }
