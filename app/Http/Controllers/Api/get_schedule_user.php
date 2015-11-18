@@ -14,6 +14,7 @@ use Validator;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Models\table_users_detail;
+use App\Models\table_schedule;
 use DB;
 
 class schedule_each_user extends Controller
@@ -79,6 +80,9 @@ class schedule_each_user extends Controller
                     $dataConverted[$i]->med = $row->schedule_media_id;
                     $dataConverted[$i]->pub = $row->schedule_publish;
                     $dataConverted[$i]->rpt = $row->schedule_repeat;
+                    $dataConverted[$i]->uns = $row->users_name_source;
+                    $dataConverted[$i]->utn = $row->schedule_type_name;
+                    $dataConverted[$i]->unc = $row->users_name_creator;
                     
                     $i++;
                 }
