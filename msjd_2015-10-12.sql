@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 13, 2015 at 12:03 PM
+-- Generation Time: Nov 20, 2015 at 08:00 AM
 -- Server version: 5.5.25a
 -- PHP Version: 5.6.14
 
@@ -302,6 +302,19 @@ INSERT INTO `table_notification` (`notification_id`, `users_id`, `datetime`, `st
 (4, 27, '2015-10-30 01:48:20', ''),
 (5, 27, '2015-11-11 17:23:53', 'read'),
 (6, 0, '2015-11-12 02:38:03', 'send');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `table_request_follow`
+--
+
+CREATE TABLE IF NOT EXISTS `table_request_follow` (
+  `request_follow_id` int(11) NOT NULL AUTO_INCREMENT,
+  `users_id` int(11) NOT NULL,
+  `json_request_follow` text NOT NULL,
+  PRIMARY KEY (`request_follow_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

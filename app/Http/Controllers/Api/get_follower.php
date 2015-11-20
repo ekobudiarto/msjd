@@ -33,7 +33,7 @@ class Get_follower extends Controller
             $token = Request::input('token','');
             $compare = GlobalLibrary::tokenExtractor($token);
             $users_checker = GlobalLibrary::CheckUsersToken($compare);
-            //echo '<pre>'.print_r($compare).'</pre>';
+            
             if($users_checker[0])
             {
                 $uname = $users_checker[1];
