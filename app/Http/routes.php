@@ -89,6 +89,8 @@ Route::group(array('prefix'=>'api/v1'), function(){
   Route::post('content-user-delete', array('uses'=>'Api\get_schedule_user@delete'));
   Route::post('post_media_manager', array('uses'=>'Api\post_media_manager@upload'));
   Route::post('post_hashtag', array('uses'=>'Api\post_hashtag@input'));
+  Route::get('get_follower', array('uses'=>'Api\get_follower@index'));
+  Route::post('post_follower', array('uses'=>'Api\post_follower@input'));
 
 });
 
