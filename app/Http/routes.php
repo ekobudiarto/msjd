@@ -90,6 +90,7 @@ Route::group(array('prefix'=>'api/v1'), function(){
   Route::post('post_media_manager', array('uses'=>'Api\post_media_manager@upload'));
   Route::post('post_hashtag', array('uses'=>'Api\post_hashtag@input'));
   Route::get('get_follower', array('uses'=>'Api\get_follower@index'));
+  Route::get('get_request_follower', array('uses'=>'Api\get_follower@get_follower_request'));
   Route::post('post_follower', array('uses'=>'Api\post_follower@input'));
 
 });
