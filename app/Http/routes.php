@@ -91,7 +91,9 @@ Route::group(array('prefix'=>'api/v1'), function(){
   Route::post('post_hashtag', array('uses'=>'Api\post_hashtag@input'));
   Route::get('get_follower', array('uses'=>'Api\get_follower@index'));
   Route::get('get_request_follower', array('uses'=>'Api\get_follower@get_follower_request'));
-  Route::post('post_follower', array('uses'=>'Api\post_follower@input'));
+  Route::post('post_request_follower', array('uses'=>'Api\post_follower@post_request_follower'));
+  Route::post('accept_request_follower', array('uses'=>'Api\get_follower@accept_follower_request'));
+  Route::post('reject_request_follower', array('uses'=>'Api\get_follower@reject_follower_request'));
 
 });
 

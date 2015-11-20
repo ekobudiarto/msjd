@@ -219,4 +219,53 @@ class Get_follower extends Controller
     }
 
 
+
+    public function post_request_follower()
+    { 
+        $app = app();
+        if(Request::has('token'))
+        {
+            $token = Request::input('token','');
+            $compare = GlobalLibrary::tokenExtractor($token);
+            $users_checker = GlobalLibrary::CheckUsersToken($compare);
+            
+            if($users_checker[0])
+            {
+                $uname = $users_checker[1];
+                $uid = $users_checker[2];
+                $email = $users_checker[3];
+
+                $followingid = Request::input('fol','');
+
+
+                $follow_requesting = table_request_follow::where('users_id','=',$followingid)->first();
+                if($follow_requesting == null){
+                    $field = array(
+                            'users_id' => $uid,
+                            'json_request_follow' => $fol.',',
+                    );
+                    $user = table_media_manager::create($field_media_manager);
+                }
+                else{
+                    $field = array(
+                            'json_request_follow' => $follow_requesting->json_request_follow.$fol.',',
+                    );
+                    $data2 = table_request_follow::find($uid);
+                    $data2->update($field);   
+                }
+            
+                return (new Response(array('status' => true,'msg' => 'success, request sent'),200))->header('Content-Type', "json");
+            }
+            else
+            {
+                return (new Response(array('status' => false,'msg' => 'Authentication Failed2'),200))->header('Content-Type', "json");
+            }
+        }
+        else
+        {
+            return (new Response(array('status' => false,'msg' => 'Authentication Failed1'),200))->header('Content-Type', "json");  
+        }   
+    }
+
+
 }
