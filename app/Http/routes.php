@@ -78,17 +78,21 @@ Route::group(array('prefix'=>'api/v1'), function(){
   Route::post('login', array('uses'=>'Api\controller_login@index'));
   Route::get('get-roles', array('uses'=>'Api\roles@findAll'));
   Route::get('post-ban-report', array('uses'=>'Api\post_ban_report@index'));
-  Route::get('post-following', array('uses'=>'Api\post_following@index'));
+  
   Route::get('set-schedule', array('uses'=>'Api\set_schedule@index'));
   Route::get('settings-profile', array('uses'=>'Api\settings_profile@index'));
+
   Route::get('schedule-user-get', array('uses'=>'Api\get_schedule_user@index'));
   Route::post('schedule-user-save', array('uses'=>'Api\get_schedule_user@input'));
-  Route::get('content-user-get', array('uses'=>'Api\get_schedule_user@index'));
-  Route::post('content-user-save', array('uses'=>'Api\get_schedule_user@input'));
-  Route::post('content-user-detail', array('uses'=>'Api\get_schedule_user@detail'));
-  Route::post('content-user-delete', array('uses'=>'Api\get_schedule_user@delete'));
-  Route::post('post_media_manager', array('uses'=>'Api\post_media_manager@upload'));
+
+  Route::get('content-user-get', array('uses'=>'Api\get_content_user@index'));
+  Route::post('content-user-save', array('uses'=>'Api\get_content_user@input'));
+  Route::post('content-user-detail', array('uses'=>'Api\get_content_user@detail'));
+  Route::post('content-user-delete', array('uses'=>'Api\get_content_user@delete'));
+  Route::post('content-user-media', array('uses'=>'Api\get_content_user@upload_media'));
+
   Route::post('post_hashtag', array('uses'=>'Api\post_hashtag@input'));
+
   Route::get('get_follower', array('uses'=>'Api\get_follower@index'));
   Route::get('get_request_follower', array('uses'=>'Api\get_follower@get_follower_request'));
   Route::post('post_request_follower', array('uses'=>'Api\post_follower@post_request_follower'));

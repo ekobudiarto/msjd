@@ -70,7 +70,32 @@ class Get_follower extends Controller
 
     public function get_follower_request()
     {
-        
+        $follower = table_request_follow::where('json_request_follow','LIKE','%2%')->get();
+               
+        foreach($follower as $fol){
+            $arrayid[$fol->users_id] = $fol->users_id;
+        }
+        echo "<pre>";
+
+
+                $follower = table_users_detail::whereIN('users_id',$arrayid)->get();
+                $dataConverted = array();
+                $app = app();
+                $i = 0;
+                foreach($follower as $row){
+                    $dataConverted[$i] = $app->make('stdClass');
+                    $dataConverted[$i]->id = $row->users_id;
+                    $dataConverted[$i]->unm = $row->users_name;
+                    $dataConverted[$i]->ufn = $row->users_fullname; 
+                    $dataConverted[$i]->des = $row->users_description;
+                    $dataConverted[$i]->ava = $row->users_avatar;        
+                    $i++;
+                }
+                print_r($dataConverted);
+        die();
+
+
+        //================
         $app = app();
         if(Request::has('token'))
         {
@@ -84,8 +109,26 @@ class Get_follower extends Controller
                 $uid = $users_checker[2];
                 $email = $users_checker[3];
 
-                $follower = table_users_detail::where('request_json_following','LIKE','%'.$uid.'%')->get();
+                $followerrequest = table_request_follow::where('json_request_follow','LIKE','%'.$uid.'%')->get();
+                
+                foreach($followerrequest as $fol){
+                    $arrayid[$fol->users_id] = $fol->users_id;
+                }
 
+                //get users detail
+                $follower = table_users_detail::whereIN('users_id',$arrayid)->get();
+                $dataConverted = array();
+                $app = app();
+                $i = 0;
+                foreach($follower as $row){
+                    $dataConverted[$i] = $app->make('stdClass');
+                    $dataConverted[$i]->id = $row->users_id;
+                    $dataConverted[$i]->unm = $row->users_name;
+                    $dataConverted[$i]->ufn = $row->users_fullname; 
+                    $dataConverted[$i]->des = $row->users_description;
+                    $dataConverted[$i]->ava = $row->users_avatar;        
+                    $i++;
+                }
                 //this code for convert
                 $dataConverted = array();
                 $app = app();
@@ -238,13 +281,13 @@ class Get_follower extends Controller
                 $followingid = Request::input('fol','');
 
 
-                $follow_requesting = table_request_follow::where('users_id','=',$followingid)->first();
+                $follow_requesting = table_request_follow::where('users_id',$uid)->first();
                 if($follow_requesting == null){
                     $field = array(
                             'users_id' => $uid,
                             'json_request_follow' => $fol.',',
                     );
-                    $user = table_media_manager::create($field_media_manager);
+                    $user = table_request_follow::create($field);
                 }
                 else{
                     $field = array(

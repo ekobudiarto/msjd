@@ -20,6 +20,18 @@ class JsonAPI extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken{
            'api/v1/profile-save',
            'api/v1/schedule-user-get',
            'api/v1/schedule-user-save',
+           'api/v1/content-user-get',
+           'api/v1/content-user-save',
+           'api/v1/content-user-detail',
+           'api/v1/content-user-delete',
+           'api/v1/content-user-media',
+           'api/v1/post_hashtag',
+           'api/v1/get_follower',
+           'api/v1/get_request_follower',
+           'api/v1/post_request_follower',
+           'api/v1/accept_request_follower',
+           'api/v1/reject_request_follower'
+
    ];
 
     /**
