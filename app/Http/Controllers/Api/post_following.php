@@ -20,14 +20,14 @@ class post_following extends Controller
      */
     public function index()
     {
-    	$token = Input::get('token','');
+    	$token = Request::input('token','');
     	if($token != '')
     	{
     		$compare = GlobalLibrary::compareToken($token);
     		if($compare)
     		{
-    			$ujs = Input::get('ujf','');
-    			$users_id = Input::get('ui','');
+    			$ujs = Request::input('ujf','');
+    			$users_id = Request::input('ui','');
 
                 $user = table_users_detail::where('users_id', '=', $users_id)->first();
                 
