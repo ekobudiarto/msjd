@@ -85,17 +85,18 @@ Route::group(array('prefix'=>'api/v1'), function(){
   Route::get('schedule-user-get', array('uses'=>'Api\get_schedule_user@index'));
   Route::post('schedule-user-save', array('uses'=>'Api\get_schedule_user@input'));
 
-  Route::get('content-user-get', array('uses'=>'Api\get_content_user@index'));
-  Route::post('content-user-save', array('uses'=>'Api\get_content_user@input'));
-  Route::post('content-user-detail', array('uses'=>'Api\get_content_user@detail'));
-  Route::post('content-user-delete', array('uses'=>'Api\get_content_user@delete'));
-  Route::post('content-user-media', array('uses'=>'Api\get_content_user@upload_media'));
+  Route::get('content-user-get', array('uses'=>'Api\get_content@index'));
+  Route::post('content-user-save', array('uses'=>'Api\get_content@input'));
+  Route::post('content-user-detail', array('uses'=>'Api\get_content@detail'));
+  Route::post('content-user-delete', array('uses'=>'Api\get_content@delete'));
+  Route::post('content-user-media', array('uses'=>'Api\get_content@upload_media'));
+  Route::get('content-user-search', array('uses'=>'Api\get_content@search_content'));
 
   Route::post('post_hashtag', array('uses'=>'Api\post_hashtag@input'));
 
   Route::get('get_follower', array('uses'=>'Api\get_follower@index'));
   Route::get('get_request_follower', array('uses'=>'Api\get_follower@get_follower_request'));
-  Route::post('post_request_follower', array('uses'=>'Api\post_follower@post_request_follower'));
+  Route::post('post_request_follower', array('uses'=>'Api\get_follower@post_request_follower'));
   Route::post('accept_request_follower', array('uses'=>'Api\get_follower@accept_follower_request'));
   Route::post('reject_request_follower', array('uses'=>'Api\get_follower@reject_follower_request'));
 
