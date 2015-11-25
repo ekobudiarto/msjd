@@ -15,9 +15,10 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Models\table_users_detail;
 use App\Models\table_schedule;
+use App\Models\table_media_manager;
 use DB;
 
-class schedule_each_user extends Controller
+class get_schedule_user extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,18 +41,25 @@ class schedule_each_user extends Controller
 			    $email = $users_checker[3];
 
                 //get query
-                $result = DB::table('table_schedule as sch')
-                                    ->select('sch.*',DB::raw('(select users_name from table_users_detail where users_id = sch.schedule_users_creator) as users_name_creator'),
-                                             DB::raw('(select users_name from table_users_detail where users_id = sch.schedule_users_source) as users_name_source'),
-                                             DB::raw('(select schedule_type_name from table_schedule_type where schedule_type_id = sch.schedule_type_id) as schedule_type_name')
-                                            )
-                                    ->where('sch.users_creator',$uid)
-                                    ->orderBy('schedule_id', 'desc');
+
+                 $result = DB::select('Select ts.*, tud.users_name as users_name_creator, st.schedule_type_name, tud.users_name as users_name_source
+                                from table_schedule ts, table_schedule_type st, table_users_detail tud
+                                WHERE ts.schedule_type_id = st.content_category_id
+                                AND tud.users_id = ts.schedule_users_creator
+                                AND ts.schedule_users_creator = '.$uid.'
+                                ORDER BY schedule_id DESC
+                            ');
                 
-                //this foreach for get media manager name
+                //this foreach for get media manager name and source
                 foreach( $result as $res=>$value ){
                      $idsplit = explode(',', $value->schedule_media_id);
                      
+                     //get user source
+                     $cekuser = table_users_detail::where('users_id', '=', $value->schedule_users_source )->first();
+                        if($cekuser!= null){
+                            $value->users_name_source = $cekuser->users_name;
+                     }
+
                      $length = count($idsplit);
                      $name = '';
                      for($i = 0; $i<$length;$i++){
@@ -72,6 +80,7 @@ class schedule_each_user extends Controller
                     $dataConverted[$i]->id = $row->schedule_id;
                     $dataConverted[$i]->ttl = $row->cschedule_title;
                     $dataConverted[$i]->typ = $row->schedule_type_id;
+                    $dataConverted[$i]->suc = $row->schedule_users_creator;
                     $dataConverted[$i]->usc = $row->schedule_users_source;
                     $dataConverted[$i]->dst = $row->schedule_date_start;
                     $dataConverted[$i]->dnd = $row->schedule_date_end;
