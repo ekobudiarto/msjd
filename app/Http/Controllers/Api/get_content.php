@@ -49,13 +49,14 @@ class get_content extends Controller
                 $follow = explode(',',$users->users_json_following);
 
                 //get query
+                $result = DB::select('Select tc.*, tud.users_name, tcc.content_category_title
+                                from table_content_category tcc, table_content tc, table_users_detail tud
+                                WHERE tc.content_category_id = tcc.content_category_id
+                                AND tud.users_id = tc.content_users_uploader
+                                AND tc.content_users_uploader IN '.$follow.'
+                                ORDER BY tc.content_id DESC
+                            ');
 
-                $result = DB::table('table_content as ct')
-                                    ->select('ct.*',DB::raw('(select content_category_title from table_content_category where content_category_id = ct.content_category_id) as content_category_title'),
-                                             DB::raw('(select content_title from table_content where content_id = ct.content_repost_from) as content_repost'),
-                                             DB::raw('(select users_name from table_users_detail where users_id = ct.content_users_uploader) as content_uploader_name'))
-                                    ->whereIN('ct.content_users_uploader',$follow)
-                                    ->orderBy('content_id', 'desc');
 
                 foreach( $result as $res=>$value ){
                      //get media manager
@@ -67,6 +68,12 @@ class get_content extends Controller
                         if($cek!= null){
                             $name=$name.$cek->media_manager_title.', ';
                         }
+                     }
+
+                     //get repost
+                     $cekrepost = table_content::where('content_id', '=', $value->content_repost_from )->first();
+                        if($cekrepost!= null){
+                            $value->content_repost_from = $cekrepost->content_title;
                      }
 
 
@@ -140,13 +147,14 @@ class get_content extends Controller
 
                 $id_content = Request::input('id');
 
-                 $result = DB::table('table_content as ct')
-                                    ->select('ct.*',DB::raw('(select content_category_title from table_content_category where content_category_id = ct.content_category_id) as content_category_title'),
-                                             DB::raw('(select content_title from table_content where content_id = ct.content_repost_from) as content_repost'),
-                                             DB::raw('(select users_name from table_users_detail where users_id = ct.content_users_uploader) as content_uploader_name')
-                                            )
-                                    ->where('ct.content_id', $id_content)
-                                    ->first();
+                $result = DB::select('Select tc.*, tud.users_name, tcc.content_category_title
+                                from table_content_category tcc, table_content tc, table_users_detail tud
+                                WHERE tc.content_category_id = tcc.content_category_id
+                                AND tud.users_id = tc.content_users_uploader
+                                AND ct.content_id = '.$id_content.'
+                                ORDER BY tc.content_id DESC
+                            ');
+                
 
                 foreach( $result as $res=>$value ){
                      //get media manager
@@ -160,7 +168,12 @@ class get_content extends Controller
                         }
                      }
 
-
+                     //get repost
+                     $cekrepost = table_content::where('content_id', '=', $value->content_repost_from )->first();
+                        if($cekrepost!= null){
+                            $value->content_repost_from = $cekrepost->content_title;
+                     }
+                     
                      //get hashtag
                      $idsplittag = explode(',', $value->hashtag_id);
                      $lengthtag = count($idsplittag);
@@ -409,7 +422,7 @@ class get_content extends Controller
                 //get query
                 $keyword = Request::input('qwr');
 
-                $result = DB::select('Select tc.*, tud.users_name, tcc.content_category_title,
+                $result = DB::select('Select tc.*, tud.users_name, tcc.content_category_title
                                 from table_content_category tcc, table_content tc, table_users_detail tud
                                 WHERE tc.content_category_id = tcc.content_category_id
                                 AND tud.users_id = tc.content_users_uploader
@@ -426,6 +439,12 @@ class get_content extends Controller
                         if($cek!= null){
                             $name=$name.$cek->media_manager_title.', ';
                         }
+                     }
+
+                     //get content repost
+                     $cekrepost = table_content::where('content_id', '=', $value->content_repost_from )->first();
+                        if($cekrepost!= null){
+                            $value->content_repost_from = $cekrepost->content_title;
                      }
 
                      //get hashtag
