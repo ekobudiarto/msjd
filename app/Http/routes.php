@@ -91,6 +91,7 @@ Route::group(array('prefix'=>'api/v1'), function(){
   Route::post('content-user-delete', array('uses'=>'Api\get_content@delete'));
   Route::post('content-user-media', array('uses'=>'Api\get_content@upload_media'));
   Route::get('content-user-search', array('uses'=>'Api\get_content@search_content'));
+  Route::get('content-user-repost', array('uses'=>'Api\get_content@repost'));
 
   Route::post('post_hashtag', array('uses'=>'Api\post_hashtag@input'));
 

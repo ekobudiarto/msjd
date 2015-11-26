@@ -26,6 +26,7 @@ class JsonAPI extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken{
            'api/v1/content-user-delete',
            'api/v1/content-user-media',
            'api/v1/content-user-search',
+           'api/v1/content-user-repost',
            'api/v1/post_hashtag',
            'api/v1/get_follower',
            'api/v1/get_request_follower',

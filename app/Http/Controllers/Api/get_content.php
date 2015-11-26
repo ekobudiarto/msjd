@@ -17,6 +17,7 @@ use App\Models\table_users_detail;
 use App\Models\table_content;
 use App\Models\table_hashtag;
 use App\Models\table_media_manager;
+use App\Models\table_notification;
 use DB;
 
 class get_content extends Controller
@@ -496,6 +497,86 @@ class get_content extends Controller
         else
         {
             return (new Response(array('status' => false,'msg' => 'Authentication Failed1'),200))->header('Content-Type', "json");  
+        }
+    }
+
+    public function repost()
+    {                             
+
+        $app = app();
+        if(Request::has('token'))
+        {
+            $token = Request::input('token','');
+            $compare = GlobalLibrary::tokenExtractor($token);
+            $users_checker = GlobalLibrary::CheckUsersToken($compare);
+            //echo '<pre>'.print_r($compare).'</pre>';
+            if($users_checker[0])
+            {
+                $uname = $users_checker[1];
+                $uid = $users_checker[2];
+                $email = $users_checker[3];
+
+                if(Request::input('cid') == null)
+                    return (new Response(array('status' => true,'msg' => 'Please select a content that you want to repost '),200))->header('content-Type', "json");
+                else{
+
+                        //get content resource
+                        $target = table_content::where('content_id', '=',Request::input('cid'))->first();
+
+                        //input content
+                        $field_content = array(
+                            'content_title'  => $target->content_title,
+                            'content_headline'  => $target->headline,
+                            'content_detail'  => $target->content_detail,
+                            'content_media_id'  => $target->content_media_id,
+                            'content_users_uploader'  => $uid,
+                            'content_last_editor'  => $target->content_last_editor,
+                            'content_date_insert'  => date('Y-m-d H:i:s'),
+                            'content_date_expired'  => $target->content_date_expired,
+                            'content_publish'  => $target->content_publish,
+                            'content_category_id'  => $target->content_category_id,
+                            'content_hashtag_id'  => $target->content_hashtag_id,
+                            'content_repost_from'  => $target->content_id,
+                        );
+                        $content = table_content::create($field_content);
+
+                        //notification repost
+                        //input content
+                        $field_notiication = array(
+                            'users_id'  => $target->content_users_uploader,
+                            'datetime'  => date('Y-m-d H:i:s'),
+                            'status'  => 'send',
+                        );
+                        $content = table_notification::create($field_notiication);
+
+
+                        /*
+                        //it always return 1 iterate. i made it but i don't know where a message of notiication store?
+                         $dataConverted = array();
+                         $app = app();
+                         $i=0;
+                        $whorepost = table_users_detail::where('users_id', '=',$uid)->first();
+                        foreach($whorepost as $row){
+                            $dataConverted[$i]->uid = $row->users_id; //send user ID who repost his/her content
+                            $dataConverted[$i]->unm = $row->users_name; //send user Name who repost his/her content
+                            $dataConverted[$i]->ttl = $target->content_title; //send the Title that reposted
+                            $dataConverted[$i]->nci = $whorepost; //send the new content ID to him/her 
+                            $dataConverted[$i]->cdi = date('Y-m-d H:i:s'); //send the date repost (insert)
+
+                        }
+                        */
+
+                        return (new Response(array('status' => true,'msg' => 'success'),200))->header('content-Type', "json");
+                }
+            }
+            else
+            {
+                return (new Response(array('status' => false,'msg' => 'Authentication Failed2'),200))->header('content-Type', "json");
+            }
+        }
+        else
+        {
+            return (new Response(array('status' => false,'msg' => 'Authentication Failed1'),200))->header('content-Type', "json");  
         }
     } 
 
